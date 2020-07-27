@@ -3,6 +3,7 @@ import React, { createContext } from 'react';
 import AnimationProvider from '../AnimationProvider';
 import LoadFontProvider from '../LoadFontProvider';
 import NotificationProvider from '../NotificationProvider';
+import TextProvider from '../TextProvider';
 
 // Main Context
 const MainContext = createContext({
@@ -16,9 +17,11 @@ const MainProvider = ({ children }: any) => {
     <NotificationProvider>
       <LoadFontProvider>
         <AnimationProvider>
-          <MainContext.Provider value={{ active: true, }}>
-            {children}
-          </MainContext.Provider>
+          <TextProvider>
+            <MainContext.Provider value={{ active: true, }}>
+              {children}
+            </MainContext.Provider>
+          </TextProvider>
         </AnimationProvider>
       </LoadFontProvider>
     </NotificationProvider>

@@ -11,8 +11,8 @@ const FontSettingsContext = createContext({} as IFontSettingsContext);
 const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ children, font, getFvarTable }) => {
   // context
   const notificationContext = useContext(NotificationContext);
-  const { notificationBasic } = notificationContext;
-
+  const { notificationSuccess, notificationError } = notificationContext;
+  
   // axes
   const [ settings, setSettings ]: any = useState();
 
@@ -61,21 +61,18 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
       try {
         for (let index in axes) {
           const axe = axes[index];
-
           if (axe instanceof Object) {
             sett[axe.tag] = axe.defaultValue;
           }
         }
+      } catch(e) {
+        notificationError('Load Font', 'The type font was successfully!');
       } finally {
-        notificationBasic('Load Font', <div>
-          <p>
-            the type font was successfully!
-          </p>
-        </div>);
-        return setSettings({...sett});
+        notificationSuccess('Load Font', 'The type font was successfully!');
+        setSettings({...sett});
       }
     }
-  }, [ getFvarTable, notificationBasic ]);
+  }, [ getFvarTable, notificationSuccess, notificationError ]);
 
   // use effect
   useEffect(() => {

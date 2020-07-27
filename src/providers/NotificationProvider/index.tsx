@@ -8,19 +8,42 @@ const NotificationContext = createContext({} as INotificationContext);
 
 // notification
 const NotificationProvider: FunctionComponent<INotificationProvider> = ({ children }) => {
+  // duration
+  const duration = 5000;
+
   // notification 
   const notificationBasic = useCallback((title: string, description: string) => {
     Notification.open({
       title,
-      duration: 5000,
+      duration,
       description: (description),
     });
-  }, []);
+  }, [ duration ]);
+
+  // notification success
+  const notificationSuccess = useCallback((title: string, description: any) => {
+    Notification['info']({
+      title,
+      duration,
+      description: (description),
+    });
+  }, [ duration ]);
+
+  // notification error
+  const notificationError = useCallback((title: string, description: any) => {
+    Notification['error']({
+      title,
+      duration,
+      description: (description),
+    });
+  }, [ duration ]);
 
   // render
   return (
     <NotificationContext.Provider value={{
       notificationBasic,
+      notificationSuccess,
+      notificationError,
     }}>
       {children}
     </NotificationContext.Provider>

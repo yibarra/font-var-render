@@ -2,12 +2,13 @@ import React, { createContext, FunctionComponent, useState } from 'react';
 
 import { ITextContext, ITextProvider } from './interfaces';
 
+// text content
 const TextContext = createContext({} as ITextContext);
 
 // notification
 const TextProvider: FunctionComponent<ITextProvider> = ({ children }) => {
   // text
-  const [ text, setText ]:any = useState('CANAL BRASIL');
+  const [ text, setText ]:any = useState(process.env.REACT_APP_FONT_TEXT_DEFAULT);
   const [ textProperties, setTextProperties ]:any = useState({
     fontSize: 50,
     lineHeight: 1,
