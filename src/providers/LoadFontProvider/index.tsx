@@ -1,8 +1,10 @@
-import React, { createContext, useCallback, useEffect, useState, FunctionComponent } from 'react';
+import React, { createContext, memo, useCallback, useEffect, useState, FunctionComponent } from 'react';
 import opentype from 'opentype.js';
 import base64 from 'base-64';
 
 import FontSettingsProvider from '../FontSettingsProvider';
+
+import useFont from '../../uses/useFont';
 
 import { IFontInfo } from '../FontSettingsProvider/interfaces';
 import { ILoadFontContext, ILoadFontProvider } from './interfaces';
@@ -14,6 +16,9 @@ const LoadFontContext = createContext({} as ILoadFontContext);
 const LoadFontProvider: FunctionComponent<ILoadFontProvider> = ({ children }) => {
   // state
   const [ font, setFont ]:any = useState<IFontInfo>();
+
+  // get f var table
+  const { getFvarTable } = useFont(font);
 
   // uint 8 to string
   const Uint8ToString = (u8a: any) => {
@@ -67,8 +72,8 @@ const LoadFontProvider: FunctionComponent<ILoadFontProvider> = ({ children }) =>
   // use effect
   useEffect(() => {
     const load = () => {
-      const fontFileName: string = process.env.PUBLIC_URL + '/fonts/canal-brasil.ttf';
-
+      const fontFileName: string = `${process.env.PUBLIC_URL}${process.env.REACT_APP_FONT_DEFAULT}`;
+      
       opentype.load(fontFileName, (err: any, font: any) => {
         if (err) {
           console.log(err);
@@ -85,16 +90,16 @@ const LoadFontProvider: FunctionComponent<ILoadFontProvider> = ({ children }) =>
 
   // render
   return (
-    <FontSettingsProvider font={font}>
-      <LoadFontContext.Provider value={{
-        font,
-        onLoad: onReadFile
+    <LoadFontContext.Provider value={{
+      font,
+      onLoad: onReadFile
       }}>
-        {children}
-      </LoadFontContext.Provider>
-    </FontSettingsProvider>
+        <FontSettingsProvider font={font} getFvarTable={getFvarTable}>
+          {children}
+        </FontSettingsProvider>
+    </LoadFontContext.Provider>
   );
 };
 
 export { LoadFontContext, LoadFontProvider };
-export default LoadFontProvider;
+export default memo(LoadFontProvider);

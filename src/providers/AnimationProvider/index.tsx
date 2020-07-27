@@ -1,6 +1,6 @@
 import React, { createContext, useState, FunctionComponent, useEffect, useCallback } from 'react';
 
-import useRequestAnimation from '../../hooks/useRequestAnimation';
+import useRequestAnimation from '../../uses/useRequestAnimation';
 import { IAnimationContext, IAnimationProvider } from './interfaces';
 
 // animation context

@@ -1,30 +1,31 @@
 import { IFontInfo } from '../providers/FontSettingsProvider/interfaces';
+import { useCallback } from 'react';
 
 // use font
 const useFont = (font: IFontInfo) => {
   // get fvar table
-  const getFvarTable = () => {
+  const getFvarTable = useCallback((font: IFontInfo) => {
     if (font.tables) {
       return font.tables['fvar'];
     }
 
     return false;
-  };
+  }, []);
 
   // get name instance
-  const getNamedInstance = (i: number) => {
-    const fvar = getFvarTable();
+  const getNamedInstance = useCallback((i: number) => {
+    const fvar = getFvarTable(font);
 
     if (fvar) {
       return fvar.instances[i];
     }
 
     return null;
-  };
+  }, [ font, getFvarTable ]);
 
   // get named instance setting
-  const getNamedInstanceSetting = (index: number) => {
-    const fvar = getFvarTable();
+  const getNamedInstanceSetting = useCallback((index: number) => {
+    const fvar = getFvarTable(font);
 
     if (fvar) {
       const settings = [];
@@ -38,7 +39,7 @@ const useFont = (font: IFontInfo) => {
     }
 
     return null;
-  };
+  }, [ font, getFvarTable ]);
 
   return {
     getFvarTable,

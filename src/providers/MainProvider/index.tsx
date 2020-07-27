@@ -13,15 +13,15 @@ const MainContext = createContext({
 const MainProvider = ({ children }: any) => {
   // render
   return (
-    <LoadFontProvider>
-      <NotificationProvider>
+    <NotificationProvider>
+      <LoadFontProvider>
         <AnimationProvider>
           <MainContext.Provider value={{ active: true, }}>
             {children}
           </MainContext.Provider>
         </AnimationProvider>
-      </NotificationProvider>
-    </LoadFontProvider>
+      </LoadFontProvider>
+    </NotificationProvider>
   );
 };
 

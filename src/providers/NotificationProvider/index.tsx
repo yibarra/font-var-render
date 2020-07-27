@@ -8,18 +8,19 @@ const NotificationContext = createContext({} as INotificationContext);
 
 // notification
 const NotificationProvider: FunctionComponent<INotificationProvider> = ({ children }) => {
-  // open
-  const open = useCallback((title: string, description: string) => {
+  // notification 
+  const notificationBasic = useCallback((title: string, description: string) => {
     Notification.open({
       title,
-      description
+      duration: 5000,
+      description: (description),
     });
   }, []);
 
   // render
   return (
     <NotificationContext.Provider value={{
-      open,
+      notificationBasic,
     }}>
       {children}
     </NotificationContext.Provider>

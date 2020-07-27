@@ -44,4 +44,5 @@ export interface IFontSettingsContext {
 export interface IFontSettingsProvider {
   children: ReactNode;
   font: IFontInfo;
+  getFvarTable: (any: any) => any;
 }

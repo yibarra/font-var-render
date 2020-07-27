@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface INotificationContext {
-  open: (title: string, description: string) => any;
+  notificationBasic: (title: string, description: any) => any;
 }
 
 export interface INotificationProvider {

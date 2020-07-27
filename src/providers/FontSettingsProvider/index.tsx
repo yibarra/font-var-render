@@ -1,16 +1,17 @@
-import React, { createContext, FunctionComponent, useState, useEffect, useCallback } from 'react';
+import React, { createContext, FunctionComponent, memo, useState, useEffect, useContext, useCallback } from 'react';
+
+import { NotificationContext } from '../NotificationProvider';
 
 import { IFontSettingsContext, IFontSettingsProvider } from './interfaces';
-
-import useFont from '../../hooks/useFont';
 
 // Load Font Context
 const FontSettingsContext = createContext({} as IFontSettingsContext);
 
 // Load Font Provider
-const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ children, font }) => {
-  // get f var table
-  const { getFvarTable } = useFont(font);
+const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ children, font, getFvarTable }) => {
+  // context
+  const notificationContext = useContext(NotificationContext);
+  const { notificationBasic } = notificationContext;
 
   // axes
   const [ settings, setSettings ]: any = useState();
@@ -36,7 +37,7 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
 
   // set name instance value
   const setNamedInstanceValue = useCallback((item: any, element: any) => {
-    const fvar = getFvarTable();
+    const fvar = getFvarTable(font);
 
     if (fvar) {
       const setts = { ...settings, ...item };
@@ -45,33 +46,40 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
         setSettings(setts);
       }
     }
-  }, [ settings, getFvarTable, setInstanceValue ]);
+  }, [ settings, getFvarTable, setInstanceValue, font ]);
 
   // load
-  const load = useCallback(() => {
-    const table = getFvarTable();
+  const load = useCallback((font: any) => {
+    if (font instanceof Object === false) return false;
+
+    const table = getFvarTable(font);
     const sett: any = [];
 
     if (table) {
       const { axes } = table;
 
-      for (let index in axes) {
-        const axe = axes[index];
+      try {
+        for (let index in axes) {
+          const axe = axes[index];
 
-        if (axe instanceof Object) {
-          sett[axe.tag] = axe.defaultValue;
+          if (axe instanceof Object) {
+            sett[axe.tag] = axe.defaultValue;
+          }
         }
+      } finally {
+        notificationBasic('Load Font', <div>
+          <p>
+            the type font was successfully!
+          </p>
+        </div>);
+        return setSettings({...sett});
       }
-
-      setSettings({...sett});
     }
-  }, [ setSettings, getFvarTable ]);
+  }, [ getFvarTable, notificationBasic ]);
 
   // use effect
   useEffect(() => {
-    if (font) {
-      load();
-    }
+    load(font);
   }, [ font, load ]);
 
   // render
@@ -88,4 +96,4 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
 };
 
 export { FontSettingsContext, FontSettingsProvider };
-export default FontSettingsProvider;
+export default memo(FontSettingsProvider);
