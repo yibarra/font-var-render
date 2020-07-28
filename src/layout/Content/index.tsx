@@ -9,6 +9,8 @@ import Load from '../../components/Load';
 import EditText from '../../components/EditText';
 import InputText from '../../components/InputText';
 import SelectLetters from '../../components/SelectLetters';
+import Preview from '../../components/Preview';
+import AnimationSlider from '../../components/AnimationSlider';
 
 // content
 const Content = () => {
@@ -20,7 +22,7 @@ const Content = () => {
   // font
   const { font, onLoad } = fontContext;
   const { settings } = fontSettingsContext;
-  const { text, setText } = textContext;
+  const { text, setText, textProperties } = textContext;
 
   // render
   return (
@@ -36,6 +38,10 @@ const Content = () => {
       </FlexboxGrid.Item>
       <FlexboxGrid.Item colspan={9}>
         <SelectLetters font={font} text={text} />
+      </FlexboxGrid.Item>
+      <FlexboxGrid.Item colspan={18}>
+        <AnimationSlider />
+        <Preview font={font} text={text} textProperties={textProperties} />
       </FlexboxGrid.Item>
     </FlexboxGrid>
   );

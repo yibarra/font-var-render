@@ -1,0 +1,48 @@
+/* --- SLIDER BASE --- */
+@import '../settings/colors';
+@import '../settings/fonts';
+
+@import '../tools/mixins';
+
+%slider {
+  .rs {
+    &-icon {
+      @include rem('font-size', 18px);
+      margin: 0 10px 0 0;
+    }
+    
+    &-slider {
+      &-bar {
+        border-radius: 0;
+        height: 3px;
+      }
+
+      &-handle {
+        &:before {
+          border-width: 5px;
+          height: 6px;
+          top: -2px;
+          width: 6px;
+        }
+      }
+
+      &-progress {
+        &-bar {
+          border-radius: 0;
+          height: 3px;
+        }
+      }
+
+      &-tooltip {
+        .rs-tooltip {
+          &-inner {
+            @include font($font-default, 11px, 400, $white-900);
+            border-radius: 0;
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}

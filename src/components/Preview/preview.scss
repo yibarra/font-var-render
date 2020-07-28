@@ -1,0 +1,27 @@
+/* --- PREVIEW --- */
+@import '../../styles/settings/colors';
+@import '../../styles/settings/fonts';
+
+@import '../../styles/tools/mixins';
+
+.preview {
+  &--content {
+    float: left;
+    padding: 0 0 70px;
+    position: relative;
+    width: 100%;
+
+    .letter {
+      display: inline-block;
+      font-size: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+
+      &--text {
+        font-size: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
+      }
+    }
+  }
+}

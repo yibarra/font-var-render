@@ -36,9 +36,16 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
 
   // play
   const onChange = useCallback(() => {
-    setPlay(!play);
+    const value = !play;
+
+    if (value === true) {
+      setPlay(value);
+      onPlay();
+    } else {
+      onStop();
+    }
     // el valor llega despues tengo que hacer el play y el stop tengo que ver quien llama este componente
-  }, [ onPlay, onStop ]);
+  }, [ onPlay, onStop, play, setPlay ]);
 
   // options
   const onOptions = useCallback((value: any) => {
