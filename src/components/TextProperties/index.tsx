@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Form, Col, FormGroup } from 'rsuite';
 
-import ITextPropertySlider from './TextPropertySlider';
+import TextPropertySlider from './TextPropertySlider';
 
 import { ITextProperties } from './interfaces';
 
@@ -25,37 +25,35 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
   return (
     <Form className="text-properties">
       <FormGroup>
-        <FormGroup>
-          <Col xs={8}>
-            <ITextPropertySlider
-              icon="font"
-              label="Font Size"
-              property="fontSize"
-              onChange={onChange}
-              options={{ defaultValue: 50, step: 1, min: 12, max: 300 }}
-              value={fontSize} />
-          </Col>
+        <Col xs={8}>
+          <TextPropertySlider
+            icon="font"
+            label="Font Size"
+            property="fontSize"
+            onChange={onChange}
+            options={{ defaultValue: 50, step: 1, min: 12, max: 300 }}
+            value={fontSize} />
+        </Col>
 
-          <Col xs={8}>
-            <ITextPropertySlider
-              icon="text-height"
-              label="Line Height"
-              property="lineHeight"
-              onChange={onChange}
-              options={{ defaultValue: 0.1, step: 0.1, min: 0.1, max: 2 }}
-              value={lineHeight} />
-          </Col>
+        <Col xs={8}>
+          <TextPropertySlider
+            icon="text-height"
+            label="Line Height"
+            property="lineHeight"
+            onChange={onChange}
+            options={{ defaultValue: 0.1, step: 0.1, min: 0.1, max: 2 }}
+            value={lineHeight} />
+        </Col>
 
-          <Col xs={8}>
-            <ITextPropertySlider
-              icon="text-width"
-              label="letterSpacing"
-              property="letterSpacing"
-              onChange={onChange}
-              options={{ defaultValue: 0, step: 1, min: -50, max: 50 }}
-              value={letterSpacing} />
-          </Col>
-        </FormGroup>
+        <Col xs={8}>
+          <TextPropertySlider
+            icon="text-width"
+            label="Letter Spacing"
+            property="letterSpacing"
+            onChange={onChange}
+            options={{ defaultValue: 0, step: 1, min: -50, max: 50 }}
+            value={letterSpacing} />
+        </Col>
       </FormGroup>
     </Form>
   );

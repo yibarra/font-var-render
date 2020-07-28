@@ -1,4 +1,5 @@
 import React, { memo, useRef, useContext, FunctionComponent } from 'react';
+import { Col } from 'rsuite';
 
 import { LettersContext } from '../../providers/LettersProvider';
 import useFont from '../../uses/useFont';
@@ -7,6 +8,8 @@ import Letter from '../Letter';
 
 import { IFontInfo } from '../../providers/FontSettingsProvider/interfaces';
 import { ISelectLetters } from './interfaces';
+
+import './select-letters.scss';
 
 // preview
 const SelectLetters: FunctionComponent<ISelectLetters> = ({ font, text }) => {
@@ -48,13 +51,17 @@ const SelectLetters: FunctionComponent<ISelectLetters> = ({ font, text }) => {
   // render
   return (
     <div className="select-letters" ref={element}>
-      <div className="select-letters--content">
-        {font && textSplit(font, text)}
-      </div>
+      <Col xs={24} className="select-letters--title">
+        <p>Click to select the letter you want to transform</p>
+      </Col>
 
-      <div className="select-letters--count">
-        <p>Number of letters {letters.length}</p>
-      </div>
+      <Col xs={24} className="select-letters--content">
+        {font && textSplit(font, text)}
+      </Col>
+
+      <Col xs={24}  className="select-letters--count">
+        <p><strong>{letters.length}</strong> letters</p>
+      </Col>
     </div>
   );
 };

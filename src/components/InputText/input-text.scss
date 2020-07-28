@@ -5,17 +5,20 @@
 @import '../../styles/tools/mixins';
 
 .input-text {
+  padding: 10px;
+
   .label {
     @include font($font-default, 12px, 400, $black-900);
     display: inline-block;
+    float: left;
+    margin: 0 0 10px;
     line-height: 1em;
     letter-spacing: 0.01em;
-    width: 90px;
+    width: 100%;
   }
 
   .rs-form-control-wrapper {
-    display: inline-block;
-    width: calc(100% - 90px);
+    width: 100%;
 
     input {
       @include font($font-default, 12px, 400, $black-900);

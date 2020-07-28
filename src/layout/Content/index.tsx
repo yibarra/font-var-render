@@ -7,6 +7,7 @@ import { TextContext } from '../../providers/TextProvider';
 
 import Load from '../../components/Load';
 import EditText from '../../components/EditText';
+import InputText from '../../components/InputText';
 import SelectLetters from '../../components/SelectLetters';
 
 // content
@@ -19,7 +20,7 @@ const Content = () => {
   // font
   const { font, onLoad } = fontContext;
   const { settings } = fontSettingsContext;
-  const { text } = textContext;
+  const { text, setText } = textContext;
 
   // render
   return (
@@ -30,7 +31,10 @@ const Content = () => {
       <FlexboxGrid.Item colspan={18}>
         <EditText font={font} />
       </FlexboxGrid.Item>
-      <FlexboxGrid.Item colspan={18}>
+      <FlexboxGrid.Item colspan={9}>
+        <InputText label="Type here to text" setText={setText} text={text} />
+      </FlexboxGrid.Item>
+      <FlexboxGrid.Item colspan={9}>
         <SelectLetters font={font} text={text} />
       </FlexboxGrid.Item>
     </FlexboxGrid>

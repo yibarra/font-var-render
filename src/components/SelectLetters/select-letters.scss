@@ -13,12 +13,12 @@
   vertical-align: top;
 
   &--count,
-  &--content {
-    float: left;
-    padding: 0;
+  &--content,
+  &--title {
     position: relative;
-    width: 100%;
+  }
 
+  &--content {
     .letter {
       display: inline-block;
       
@@ -42,5 +42,25 @@
 
   &--count {
     margin: 10px 0 0;
+
+    p {
+      @include font($font-default, 12px, 400, $black-900);
+      line-height: 1em;
+
+      strong {
+        @include rem('font-size', 18px);
+        font-weight: 700;
+      }
+    }
+  }
+
+  &--title {
+    margin: 0 0 5px;
+    padding: 10px;
+
+    p {
+      @include font($font-default, 12px, 400, $black-900);
+      line-height: 1em;
+    }
   }
 }

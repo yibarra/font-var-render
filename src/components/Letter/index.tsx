@@ -6,7 +6,7 @@ import { LettersContext } from '../../providers/LettersProvider';
 import LetterItemAnimation from './LetterItemAnimation';
 import LetterType from './LetterType';
 
-//import './letter.scss';
+import './letter.scss';
 
 // letter
 const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
