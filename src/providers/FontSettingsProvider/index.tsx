@@ -1,4 +1,4 @@
-import React, { createContext, FunctionComponent, memo, useState, useCallback } from 'react';
+import React, { createContext, FunctionComponent, memo, useState, useCallback, useEffect } from 'react';
 
 import { IFontSettingsContext, IFontSettingsProvider } from './interfaces';
 
@@ -16,7 +16,7 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
   }, [ setSettings, settings ]);
 
   // set css instance value
-  const setInstanceValue = useCallback((settings: [], element: any) => {
+  const setInstanceValue = useCallback((settings: any[], element: any) => {
     if (settings instanceof Object === false) return false;
 
     const cssProperties = Object.keys(settings).map((key: any) => `'${key}' ${settings[key]}`);
@@ -41,6 +41,21 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
       }
     }
   }, [ settings, getFvarTable, setInstanceValue, font ]);
+
+  useEffect(() => {
+    const load = () => {
+      const body:any = document.body.querySelector('.preview--content');
+      const cssProperties = '"wdth" 30, "wght" 0';
+  
+      if (body instanceof Object) {
+        const css:any = body.style as StyleSheet;
+        console.log(body);
+        css.fontVariationSettings = cssProperties;
+      }
+    };
+
+    load();
+  }, []);
 
   // render
   return (

@@ -48,7 +48,7 @@ const LoadFontProvider: FunctionComponent<ILoadFontProvider> = ({ children }) =>
 
       const style: any = document.getElementById('font-load');
       style.textContent = fontFace;
-
+      
       notificationSuccess('Upload', 'The type font was successfully loaded!');
     }
   }, [ notificationSuccess ]);

@@ -10,11 +10,11 @@
   .label {
     @include font($font-default, 12px, 400, $black-900);
     display: inline-block;
-    float: left;
     margin: 0 0 10px;
     line-height: 1em;
     letter-spacing: 0.01em;
     width: 100%;
+    vertical-align: top;
   }
 
   .rs-form-control-wrapper {
