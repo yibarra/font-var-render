@@ -31,7 +31,7 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
             label="Font Size"
             property="fontSize"
             onChange={onChange}
-            options={{ defaultValue: 50, step: 1, min: 12, max: 300 }}
+            options={{ defaultValue: 35, step: 1, min: 12, max: 300 }}
             value={fontSize} />
         </Col>
 

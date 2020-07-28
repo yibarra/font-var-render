@@ -8,12 +8,13 @@
 
 .animation-slider {
   margin: 0;
-  padding: 40px 0;
+  padding: 10px 10px !important;
   width: 100%;
 
   &--controls,
   &--slider {
     display: inline-block;
+    width: 100%;
     vertical-align: top;
   }
 
@@ -31,6 +32,7 @@
       border-radius: 0;
       margin: 0 5px 0 0;
       padding: 10px;
+      width: 32px;
 
       .rs {
         &-icon {
@@ -45,7 +47,7 @@
       }
 
       &.active {
-        background-color: $white-900;
+        background-color: $white-900 !important;
 
         .rs {
           &-icon {
@@ -59,6 +61,15 @@
               display: inline-block;
             }
           }
+        }
+      }
+
+      &:hover,
+      &:focus {
+        background-color: inherit;
+
+        .rs-icon {
+          color: $black-900;
         }
       }
 
@@ -76,5 +87,14 @@
     @extend %slider;
     padding: 15px !important;
     width: calc(100% - 70px);
+  }
+
+  &--title {
+    padding: 0;
+
+    p {
+      @include font($font-default, 12px, 400, $black-900);
+      margin: 0 0 10px;
+    }
   }
 }

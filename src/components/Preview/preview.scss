@@ -5,9 +5,11 @@
 @import '../../styles/tools/mixins';
 
 .preview {
+  padding: 20px 5px 5px;
+
   &--content {
     float: left;
-    padding: 0 0 70px;
+    padding: 10px 0;
     position: relative;
     width: 100%;
 
@@ -22,6 +24,27 @@
         line-height: inherit;
         letter-spacing: inherit;
       }
+    }
+  }
+
+  &--title {
+    .rs-message {
+      margin: 10px 0 0;
+
+      .rs-message {
+        &-container {
+          padding: 10px;
+
+          p {
+            @include rem('font-size', 12px);
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    p {
+      @include font($font-default, 12px, 400, $black-900);
     }
   }
 }

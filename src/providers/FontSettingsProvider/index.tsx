@@ -1,6 +1,4 @@
-import React, { createContext, FunctionComponent, memo, useState, useEffect, useContext, useCallback } from 'react';
-
-import { NotificationContext } from '../NotificationProvider';
+import React, { createContext, FunctionComponent, memo, useState, useCallback } from 'react';
 
 import { IFontSettingsContext, IFontSettingsProvider } from './interfaces';
 
@@ -9,10 +7,6 @@ const FontSettingsContext = createContext({} as IFontSettingsContext);
 
 // Load Font Provider
 const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ children, font, getFvarTable }) => {
-  // context
-  const notificationContext = useContext(NotificationContext);
-  const { notificationSuccess, notificationError } = notificationContext;
-  
   // axes
   const [ settings, setSettings ]: any = useState();
 
@@ -47,37 +41,6 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
       }
     }
   }, [ settings, getFvarTable, setInstanceValue, font ]);
-
-  // load
-  const load = useCallback((font: any) => {
-    if (font instanceof Object === false) return false;
-
-    const table = getFvarTable(font);
-    const sett: any = [];
-
-    if (table) {
-      const { axes } = table;
-
-      try {
-        for (let index in axes) {
-          const axe = axes[index];
-          if (axe instanceof Object) {
-            sett[axe.tag] = axe.defaultValue;
-          }
-        }
-      } catch(e) {
-        notificationError('Load Font', 'The type font was successfully!');
-      } finally {
-        notificationSuccess('Load Font', 'The type font was successfully!');
-        setSettings({...sett});
-      }
-    }
-  }, [ getFvarTable, notificationSuccess, notificationError ]);
-
-  // use effect
-  useEffect(() => {
-    load(font);
-  }, [ font, load ]);
 
   // render
   return (

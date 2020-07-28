@@ -1,5 +1,5 @@
 import React, { memo, FunctionComponent, useContext } from 'react';
-import { Button, Icon, Slider } from 'rsuite';
+import { Button, Col, Icon, Slider } from 'rsuite';
 
 import { AnimationContext } from '../../providers/AnimationProvider';
 
@@ -20,7 +20,11 @@ const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
 
   // render
   return (
-    <div className="animation-slider">
+    <Col className="animation-slider" xs={24}>
+      <div className="animation-slider--title">
+        <p>Time Controls</p>
+      </div>
+
       <div className="animation-slider--controls">
         <Button
           className={play === true ? 'btn-ui active min' : 'btn-ui min'}
@@ -34,7 +38,7 @@ const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
           onClick={() => onOptions({ repeat: !options.repeat })}>
           <Icon icon="repeat" />
         </Button>
-      </div>
+      </div>  
 
       <div className="animation-slider--slider">
         <Slider
@@ -45,7 +49,7 @@ const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
           progress
           defaultValue={0} />
       </div>
-    </div>
+    </Col>
   );
 };
 

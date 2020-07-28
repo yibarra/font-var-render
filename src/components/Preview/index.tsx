@@ -1,5 +1,5 @@
 import React, { memo, useContext, useCallback, FunctionComponent } from 'react';
-import { Col, Row } from 'rsuite';
+import { Col, Message } from 'rsuite';
 
 import { LettersContext } from '../../providers/LettersProvider';
 
@@ -44,11 +44,23 @@ const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) =>
   
   // render
   return (
-    <Col xs={24} className="preview">
-      <Row className="preview--content" style={{...textProperties}}>
+    <div className="preview">
+      <Col className="preview--title" xs={24}>
+        <p>Hover the letter to select the final stage.</p>
+
+        {!letters.length && <Message
+          type="error"
+          description={
+            <p>
+              Select at least one letter in the previous section.
+            </p>
+          }
+        />}
+      </Col>
+      <Col className="preview--content" style={{...textProperties}}>
         {font && textSplit(font, text)}
-      </Row>
-    </Col>
+      </Col>
+    </div>
   );
 };
 

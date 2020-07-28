@@ -1,4 +1,4 @@
-import React, { memo, Fragment, FunctionComponent } from 'react';
+import React, { memo, FunctionComponent } from 'react';
 
 import DragDrop from '../DragDrop';
 import FontLoad from '../FontLoad';

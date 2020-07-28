@@ -11,7 +11,7 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
   // text
   const [ current, setCurrent ]:any = useState(0);
   const [ options, setOptions ]:any = useState({
-    repeat: false
+    repeat: true
   });
 
   // animation

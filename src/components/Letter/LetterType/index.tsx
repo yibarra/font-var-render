@@ -4,7 +4,7 @@ import { LettersContext } from '../../../providers/LettersProvider';
 
 import LetterItem from '../LetterItem';
 
-// import './letter-type.scss';
+import './letter-type.scss';
 
 // letter type
 const LetterType = ({ letter, setInstanceValue, instances, text, onSelect }: any) => {

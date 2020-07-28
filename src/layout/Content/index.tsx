@@ -40,8 +40,8 @@ const Content = () => {
         <SelectLetters font={font} text={text} />
       </FlexboxGrid.Item>
       <FlexboxGrid.Item colspan={18}>
-        <AnimationSlider />
         <Preview font={font} text={text} textProperties={textProperties} />
+        <AnimationSlider />
       </FlexboxGrid.Item>
     </FlexboxGrid>
   );
