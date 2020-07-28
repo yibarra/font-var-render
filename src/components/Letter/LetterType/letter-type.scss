@@ -1,0 +1,69 @@
+/* --- LETTER TYPE --- */
+@import '../../../styles/settings/colors';
+@import '../../../styles/settings/fonts';
+
+@import '../../../styles/tools/mixins';
+
+.letter-type {
+  background-color: rgba($white-900, 0.9);
+  border: none;
+  display: none;
+  flex-flow: row wrap;
+  list-style: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  user-select: none;
+  width: auto;
+  z-index: 2;
+
+  &--item {
+    border: 1px solid rgba($black-900, 0.1);
+    border-right: none;
+    line-height: 1em;
+    padding: 0 5px;
+    position: relative;
+    width: 70px;
+
+    .instance {
+      @include rem('font-size', 10px);
+      overflow: hidden;
+      pointer-events: none;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .letter {
+      &--text {
+        padding: 0 !important;
+        width: 100% !important;
+      }
+
+      &-item {
+        align-items: center;
+        display: inline-flex;
+        justify-content: center;
+        flex-flow: row wrap;
+        float: left;
+        line-height: 1em;
+        padding: 10px 0 13px;
+        width: 100%;
+      }
+    }
+
+    &[data-active="true"] {
+      background-color: rgba($black-900, 0.9);
+
+      > .letter-item {
+        .letter--text {
+          color: $white-900 !important;
+        }
+      }
+    }
+
+    &:last-child {
+      border-right: 1px solid rgba($black-900, 0.1);
+    }
+  }
+}

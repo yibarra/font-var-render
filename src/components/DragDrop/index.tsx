@@ -20,7 +20,7 @@ const DragDrop: FunctionComponent<IDragDrop> = ({ onLoad }) => {
 
   // render
   return (
-    <Row className="drag-drop" data-active={true}>
+    <div className="drag-drop" data-active={true}>
       <Uploader
         autoUpload={false}
         fileListVisible={false}
@@ -30,7 +30,7 @@ const DragDrop: FunctionComponent<IDragDrop> = ({ onLoad }) => {
             <p className="drag-drop--container--text">Click or Drag files to this area to upload</p>
           </div>
       </Uploader>
-    </Row>
+    </div>
   );
 };
 

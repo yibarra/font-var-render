@@ -1,0 +1,36 @@
+/* --- FONT LOAD --- */
+@import '../../styles/settings/colors';
+@import '../../styles/settings/fonts';
+@import '../../styles/tools/mixins';
+
+.font-load {
+  background-color: rgba($black-900, 0.05);
+  padding: 10px 15px;
+
+  &--content {
+    padding: 0;
+  }
+
+  p {
+    @include font($font-default, 12px, 400, $black-900);
+    display: inline-block;
+    line-height: 1em;
+    margin: 0;
+    position: relative;
+
+    &.name,
+    &.version {
+      @include font($font-default, 18px, 400, $black-900);
+    }
+
+    &.name {
+      margin: 0 0 0 10px;
+    }
+
+    &.version {
+      @include rem('font-size', 10px);
+      color: rgba($black-900, 0.8);
+      display: block;
+    }
+  }
+}

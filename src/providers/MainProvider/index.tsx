@@ -4,6 +4,7 @@ import AnimationProvider from '../AnimationProvider';
 import LoadFontProvider from '../LoadFontProvider';
 import NotificationProvider from '../NotificationProvider';
 import TextProvider from '../TextProvider';
+import LettersProvider from '../LettersProvider';
 
 // Main Context
 const MainContext = createContext({
@@ -18,9 +19,11 @@ const MainProvider = ({ children }: any) => {
       <LoadFontProvider>
         <AnimationProvider>
           <TextProvider>
-            <MainContext.Provider value={{ active: true, }}>
-              {children}
-            </MainContext.Provider>
+            <LettersProvider>  
+              <MainContext.Provider value={{ active: true, }}>
+                {children}
+              </MainContext.Provider>
+            </LettersProvider>
           </TextProvider>
         </AnimationProvider>
       </LoadFontProvider>

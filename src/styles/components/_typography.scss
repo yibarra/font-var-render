@@ -1,0 +1,25 @@
+/* --- TYPOGRAPHY --- */
+@import './../settings/colors';
+@import './../settings/fonts';
+
+@import './../tools/mixins';
+
+h4 {
+  @include font($font-default, 20px, 400, $black-900);
+  font-family: $font-default !important;
+  line-height: 1em;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px !important;
+}
+
+a,
+p {
+  @include font($font-default, 14px, 400, $black-900);
+  line-height: 1.7em;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: $black-900;
+  text-decoration: underline;
+}

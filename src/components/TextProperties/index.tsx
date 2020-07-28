@@ -20,60 +20,60 @@ const TextProperties = () => {
 
   // render
   return (
-    <Form className="text-properties" autocomplete="off">
+    <Form className="text-properties">
       <FormGroup>
-          <FormGroup>
-            <Col xs={8}>
-              <ControlLabel className="label-control">
-                Font Size<Icon icon="font" />
-              </ControlLabel>
+        <FormGroup>
+          <Col xs={8}>
+            <ControlLabel className="label-control">
+              Font Size<Icon icon="font" />
+            </ControlLabel>
 
-              <Slider
-                defaultValue={50}
-                step={1}
-                min={12}
-                max={300}
-                tooltip
-                progress
-                value={textProperties['fontSize']}
-                onChange={(value: any) => onChange(value, 'fontSize')} />
-            </Col>
+            <Slider
+              defaultValue={50}
+              step={1}
+              min={12}
+              max={300}
+              tooltip
+              progress
+              value={textProperties['fontSize']}
+              onChange={(value: any) => onChange(value, 'fontSize')} />
+          </Col>
 
-            <Col xs={8}>
-              <ControlLabel className="label-control">
-                Line Height
-                <Icon icon="text-height" />
-              </ControlLabel>
+          <Col xs={8}>
+            <ControlLabel className="label-control">
+              Line Height
+              <Icon icon="text-height" />
+            </ControlLabel>
 
-              <Slider
-                defaultValue={0.1}
-                min={0.1}
-                max={2}
-                step={0.1}
-                tooltip
-                progress
-                onChange={(value: any) => onChange(value, 'lineHeight')}
-                value={textProperties['lineHeight']} />
-            </Col>
+            <Slider
+              defaultValue={0.1}
+              min={0.1}
+              max={2}
+              step={0.1}
+              tooltip
+              progress
+              onChange={(value: any) => onChange(value, 'lineHeight')}
+              value={textProperties['lineHeight']} />
+          </Col>
 
-            <Col xs={8}>
-              <ControlLabel className="label-control">
-                Line Height
-                <Icon icon="text-width" />
-              </ControlLabel>
+          <Col xs={8}>
+            <ControlLabel className="label-control">
+              Line Height
+              <Icon icon="text-width" />
+            </ControlLabel>
 
-              <Slider
-                defaultValue={1}
-                min={-50}
-                max={50}
-                step={1}
-                tooltip
-                progress
-                onChange={(value: any) => onChange(value, 'letterSpacing')}
-                value={textProperties['letterSpacing']} />
-            </Col>
-          </FormGroup>
+            <Slider
+              defaultValue={1}
+              min={-50}
+              max={50}
+              step={1}
+              tooltip
+              progress
+              onChange={(value: any) => onChange(value, 'letterSpacing')}
+              value={textProperties['letterSpacing']} />
+          </Col>
         </FormGroup>
+      </FormGroup>
     </Form>
   );
 };

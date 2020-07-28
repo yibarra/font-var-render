@@ -3,7 +3,7 @@ import { Row, Col } from 'rsuite';
 
 import { IFontLoad } from './interfaces';
 
-//import './font-load.scss';
+import './font-load.scss';
 
 // header name
 const FontLoad = ({ names }: IFontLoad) => {
@@ -12,18 +12,14 @@ const FontLoad = ({ names }: IFontLoad) => {
 
   // render
   return (
-    <Row className="font-load">
-      <Col className="font-load--item" xs={24}>
-        <p className="name">
-          <strong>Font Family</strong>
-        </p>
+    <Col className="font-load" xs={24}>
+      <Col className="font-load--content" xs={24}>
+        <p className="label">Font Family</p>
 
-        <Col className="container" xs={24}>
-          <p>{fontFamily.en}</p>
-          <p>{version.en}</p>
-        </Col>
+        <p className="name">{fontFamily.en}</p>
+        <p className="version">{version.en}</p>
       </Col>
-    </Row>
+    </Col>
   );
 };
 
