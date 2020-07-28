@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1f51e7201a5a21757878020ac27332b2",
+    "revision": "64afca052ce757fcfade4327b0c0c3df",
     "url": "/font-var-render/index.html"
   },
   {
-    "revision": "8ced281cb8baf06d6a86",
+    "revision": "03063807ef57eab25598",
     "url": "/font-var-render/static/css/2.fd3fe366.chunk.css"
   },
   {
-    "revision": "434afb1067adc542686f",
+    "revision": "2c5d0ac6b53b72918436",
     "url": "/font-var-render/static/css/main.234650e8.chunk.css"
   },
   {
-    "revision": "8ced281cb8baf06d6a86",
-    "url": "/font-var-render/static/js/2.28989516.chunk.js"
+    "revision": "03063807ef57eab25598",
+    "url": "/font-var-render/static/js/2.84eee2e0.chunk.js"
   },
   {
     "revision": "1502c80527df6509e2b003d6a76dbea1",
-    "url": "/font-var-render/static/js/2.28989516.chunk.js.LICENSE.txt"
+    "url": "/font-var-render/static/js/2.84eee2e0.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "434afb1067adc542686f",
-    "url": "/font-var-render/static/js/main.dc38ba2c.chunk.js"
+    "revision": "2c5d0ac6b53b72918436",
+    "url": "/font-var-render/static/js/main.8a3222c6.chunk.js"
   },
   {
     "revision": "ce77a74f7aa905924192",
