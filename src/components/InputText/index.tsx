@@ -3,17 +3,19 @@ import { Form, FormGroup, FormControl } from 'rsuite';
 
 import { IInputText } from './interfaces';
 
+import './input-text.scss';
+
 // input text
 const InputText: FunctionComponent<IInputText> = ({ label, setText, text }) => {
   // render
   return (
     <Form className="input-text">
       <FormGroup className="input-text--text">
-        <label>{label}</label>
+        <label className="label">{label}</label>
 
         <FormControl
           placeholder={label}
-          name="textarea"
+          name="text"
           componentClass="input"
           value={text}
           onChange={value => setText(value)} />

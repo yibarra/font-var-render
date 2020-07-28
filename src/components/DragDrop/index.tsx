@@ -1,5 +1,5 @@
 import React, { useCallback, memo, FunctionComponent } from 'react';
-import { Row, Uploader } from 'rsuite';
+import { Uploader } from 'rsuite';
 
 import { IDragDrop } from './interfaces';
 
@@ -22,9 +22,10 @@ const DragDrop: FunctionComponent<IDragDrop> = ({ onLoad }) => {
   return (
     <div className="drag-drop" data-active={true}>
       <Uploader
-        autoUpload={false}
-        fileListVisible={false}
+        autoUpload
         draggable
+        accept=".ttf"
+        fileListVisible={false}
         onChange={onDrop}>
           <div className="drag-drop--container">
             <p className="drag-drop--container--text">Click or Drag files to this area to upload</p>

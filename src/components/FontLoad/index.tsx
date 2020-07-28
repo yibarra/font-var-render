@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'rsuite';
+import { Col } from 'rsuite';
 
 import { IFontLoad } from './interfaces';
 

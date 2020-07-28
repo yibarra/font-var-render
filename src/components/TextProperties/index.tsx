@@ -1,14 +1,17 @@
-import React, { useContext } from 'react';
-import { Form, Col, FormGroup, ControlLabel, Icon, Slider } from 'rsuite';
+import React, { FunctionComponent } from 'react';
+import { Form, Col, FormGroup } from 'rsuite';
 
-import { TextContext } from '../../providers/TextProvider';
+import ITextPropertySlider from './TextPropertySlider';
+
+import { ITextProperties } from './interfaces';
+
+import './text-properties.scss';
 
 // text properties
-const TextProperties = () => {
-  // context
-  const textContext = useContext(TextContext);
-  const { textProperties, setTextProperties }: any = textContext;
-
+const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, setTextProperties }) => {
+  // text
+  const { fontSize, lineHeight, letterSpacing } = textProperties;
+  
   // on change
   const onChange = (value: any, name: string) => {
     const item:any = {};
@@ -24,53 +27,33 @@ const TextProperties = () => {
       <FormGroup>
         <FormGroup>
           <Col xs={8}>
-            <ControlLabel className="label-control">
-              Font Size<Icon icon="font" />
-            </ControlLabel>
-
-            <Slider
-              defaultValue={50}
-              step={1}
-              min={12}
-              max={300}
-              tooltip
-              progress
-              value={textProperties['fontSize']}
-              onChange={(value: any) => onChange(value, 'fontSize')} />
+            <ITextPropertySlider
+              icon="font"
+              label="Font Size"
+              property="fontSize"
+              onChange={onChange}
+              options={{ defaultValue: 50, step: 1, min: 12, max: 300 }}
+              value={fontSize} />
           </Col>
 
           <Col xs={8}>
-            <ControlLabel className="label-control">
-              Line Height
-              <Icon icon="text-height" />
-            </ControlLabel>
-
-            <Slider
-              defaultValue={0.1}
-              min={0.1}
-              max={2}
-              step={0.1}
-              tooltip
-              progress
-              onChange={(value: any) => onChange(value, 'lineHeight')}
-              value={textProperties['lineHeight']} />
+            <ITextPropertySlider
+              icon="text-height"
+              label="Line Height"
+              property="lineHeight"
+              onChange={onChange}
+              options={{ defaultValue: 0.1, step: 0.1, min: 0.1, max: 2 }}
+              value={lineHeight} />
           </Col>
 
           <Col xs={8}>
-            <ControlLabel className="label-control">
-              Line Height
-              <Icon icon="text-width" />
-            </ControlLabel>
-
-            <Slider
-              defaultValue={1}
-              min={-50}
-              max={50}
-              step={1}
-              tooltip
-              progress
-              onChange={(value: any) => onChange(value, 'letterSpacing')}
-              value={textProperties['letterSpacing']} />
+            <ITextPropertySlider
+              icon="text-width"
+              label="letterSpacing"
+              property="letterSpacing"
+              onChange={onChange}
+              options={{ defaultValue: 0, step: 1, min: -50, max: 50 }}
+              value={letterSpacing} />
           </Col>
         </FormGroup>
       </FormGroup>

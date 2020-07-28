@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 export interface ITextContext {
   text: string;
   setText: (value: string) => void;
-  textProperties: [];
+  textProperties: object;
   setTextProperties: (value:any) => void;
 }
 

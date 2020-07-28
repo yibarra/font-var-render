@@ -2,7 +2,6 @@ import React, { memo, Fragment, FunctionComponent } from 'react';
 
 import DragDrop from '../DragDrop';
 import FontLoad from '../FontLoad';
-//import FontInfo from '../FontInfo';
 
 import { ILoad } from './interfaces';
 
@@ -13,17 +12,12 @@ const Load: FunctionComponent<ILoad> = ({ font, onLoad }) => {
   // render
   return (
     <div className="load">
-      {font && font.tables instanceof Object &&
-        <Fragment>
-          <FontLoad names={font.names} />
-          
-        </Fragment>}
+      {font &&
+        <FontLoad names={font.names} />}
 
       <DragDrop onLoad={onLoad} />
     </div>
   );
-
-  /* <FontInfo names={font.names} font={font} /> */
 };
 
 export default memo(Load);

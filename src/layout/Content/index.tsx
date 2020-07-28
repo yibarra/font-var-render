@@ -7,7 +7,6 @@ import { TextContext } from '../../providers/TextProvider';
 
 import Load from '../../components/Load';
 import EditText from '../../components/EditText';
-import TextProperties from '../../components/TextProperties';
 import SelectLetters from '../../components/SelectLetters';
 
 // content
@@ -30,7 +29,6 @@ const Content = () => {
       </FlexboxGrid.Item>
       <FlexboxGrid.Item colspan={18}>
         <EditText font={font} />
-        <TextProperties />
       </FlexboxGrid.Item>
       <FlexboxGrid.Item colspan={18}>
         <SelectLetters font={font} text={text} />
