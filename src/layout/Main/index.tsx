@@ -7,6 +7,8 @@ import Content from '../Content';
 
 import { IMain } from './interfaces';
 
+import './main.scss';
+
 // main
 const Main:FunctionComponent<IMain> = () => {
   // render
