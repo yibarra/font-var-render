@@ -19,6 +19,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "react-spring": "^8.0.27",
     "resize-observer-polyfill": "^1.5.1",
     "rsuite": "^4.8.0",
     "typescript": "~3.7.2"
