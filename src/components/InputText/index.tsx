@@ -18,7 +18,7 @@ const InputText: FunctionComponent<IInputText> = ({ label, setText, text }) => {
           name="text"
           componentClass="input"
           value={text}
-          onChange={value => setText(value)} />
+          onChange={value => setText(value.toString().toUpperCase())} />
       </FormGroup>
     </Form>
   );

@@ -42,6 +42,7 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
     }
   }, [ settings, getFvarTable, setInstanceValue, font ]);
 
+  // use effect
   useEffect(() => {
     const load = () => {
       const body:any = document.body.querySelector('.preview--content');
@@ -49,7 +50,6 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
   
       if (body instanceof Object) {
         const css:any = body.style as StyleSheet;
-        console.log(body);
         css.fontVariationSettings = cssProperties;
       }
     };

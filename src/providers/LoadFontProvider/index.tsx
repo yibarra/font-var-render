@@ -76,7 +76,7 @@ const LoadFontProvider: FunctionComponent<ILoadFontProvider> = ({ children }) =>
     };
 
     reader.readAsArrayBuffer(file);
-  }, [ setFontFace, notificationError, notificationSuccess ]);
+  }, [ setFontFace, notificationError ]);
 
   // use effect
   useEffect(() => {

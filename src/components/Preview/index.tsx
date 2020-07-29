@@ -22,8 +22,8 @@ const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) =>
   const { letters }:any = lettersContext;
 
   // text split
-  const textSplit = useCallback((font: IFontInfo, text: string) => {
-    const textFull = text.toString();
+  const textSplit = useCallback((font: IFontInfo, text: string = '') => {
+    const textFull = text;
     const items:any = [];
 
     for (let i = 0; i < textFull.length; i++) {

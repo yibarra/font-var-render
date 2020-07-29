@@ -29,8 +29,8 @@ const SelectLetters: FunctionComponent<ISelectLetters> = ({ font, text }) => {
   };
 
   // text split
-  const textSplit = (font: IFontInfo, text: string) => {
-    const textFull = text.toString();
+  const textSplit = (font: IFontInfo, text: string = '') => {
+    const textFull = text;
     const items:any = [];
 
     for (let i = 0; i < textFull.length; i++) {
