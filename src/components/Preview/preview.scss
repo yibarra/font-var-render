@@ -9,7 +9,7 @@
 
   &--content {
     float: left;
-    padding: 10px 0;
+    padding: 10px 5px;
     position: relative;
     width: 100%;
 
@@ -29,15 +29,28 @@
 
   &--title {
     .rs-message {
+      background-color: transparent;
       margin: 10px 0 0;
 
       .rs-message {
         &-container {
-          padding: 10px;
+          padding: 10px 30px;
 
           p {
             @include rem('font-size', 12px);
             font-weight: 700;
+            position: relative;
+
+            &:before {
+              background-color: $red-900;
+              content: '';
+              height: 6px;
+              left: -15px;
+              position: absolute;
+              top: 50%;
+              transform: translate(0, -50%);
+              width: 6px;
+            }
           }
         }
       }

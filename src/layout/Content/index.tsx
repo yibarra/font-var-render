@@ -11,6 +11,7 @@ import InputText from '../../components/InputText';
 import SelectLetters from '../../components/SelectLetters';
 import Preview from '../../components/Preview';
 import AnimationSlider from '../../components/AnimationSlider';
+import SelectInitState from '../../components/SelectInitState';
 
 // content
 const Content = () => {
@@ -30,15 +31,25 @@ const Content = () => {
       <FlexboxGrid.Item colspan={18}>
         <Load font={font} onLoad={onLoad} />
       </FlexboxGrid.Item>
+
       <FlexboxGrid.Item colspan={18}>
         <EditText font={font} />
       </FlexboxGrid.Item>
+
       <FlexboxGrid.Item colspan={9}>
         <InputText label="Type here to text" setText={setText} text={text} />
       </FlexboxGrid.Item>
+
       <FlexboxGrid.Item colspan={9}>
         <SelectLetters font={font} text={text} />
       </FlexboxGrid.Item>
+
+      <FlexboxGrid.Item colspan={9}>
+        <SelectInitState font={font} />
+      </FlexboxGrid.Item>
+
+      <FlexboxGrid.Item colspan={9}></FlexboxGrid.Item>
+
       <FlexboxGrid.Item colspan={18}>
         <Preview font={font} text={text} textProperties={textProperties} />
         <AnimationSlider />

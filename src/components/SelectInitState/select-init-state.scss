@@ -1,0 +1,22 @@
+/* --- SELECT INIT STATE --- */
+@import '../../styles/settings/colors';
+@import '../../styles/settings/fonts';
+
+@import '../../styles/components/buttons';
+
+@import '../../styles/tools/mixins';
+
+.select-init-state {
+  float: left;
+  padding: 5px;
+  position: relative;
+  width: 100%;
+  vertical-align: top;
+
+  &--content {
+    .rs-btn {
+      @extend %btn-default;
+      margin: 2px 4px 2px 0;
+    }
+  }
+}

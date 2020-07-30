@@ -25,7 +25,7 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
   return (
     <Form className="text-properties">
       <FormGroup>
-        <Col xs={8}>
+        <Col xs={6}>
           <TextPropertySlider
             icon="font"
             label="Font Size"
@@ -35,7 +35,7 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
             value={fontSize} />
         </Col>
 
-        <Col xs={8}>
+        <Col xs={6}>
           <TextPropertySlider
             icon="text-height"
             label="Line Height"
@@ -45,7 +45,7 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
             value={lineHeight} />
         </Col>
 
-        <Col xs={8}>
+        <Col xs={6}>
           <TextPropertySlider
             icon="text-width"
             label="Letter Spacing"
@@ -53,6 +53,10 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
             onChange={onChange}
             options={{ defaultValue: 0, step: 1, min: -50, max: 50 }}
             value={letterSpacing} />
+        </Col>
+
+        <Col xs={6}>
+          <p>Align Text</p>
         </Col>
       </FormGroup>
     </Form>
