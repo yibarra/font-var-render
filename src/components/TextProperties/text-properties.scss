@@ -1,8 +1,25 @@
 /* --- TEXT PROPERTIES --- */
+@import '../../styles/settings/colors';
+
+@import '../../styles/components/typography';
+
+@import '../../styles/tools/mixins';
 
 .text-properties {
-  display: block;
-  float: left;
+  display: inline-block;
   padding: 0 0 10px;
   width: 100%;
+  vertical-align: top;
+
+  
+  p {
+    @extend %text;
+    margin: 0 0 10px;
+    padding: 0;
+
+    .rs-icon {
+      @include rem('font-size', 18px);
+      margin: 0 10px 0 0;
+    }
+  }
 }

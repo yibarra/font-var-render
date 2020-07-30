@@ -4,7 +4,10 @@
 @import '../../styles/components/typography';
 
 .preview {
+  display: inline-block;
   padding: 20px 5px 5px;
+  width: 100%;
+  vertical-align: top;
 
   &--content {
     float: left;

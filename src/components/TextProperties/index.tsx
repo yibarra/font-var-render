@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Form, Col, FormGroup } from 'rsuite';
+import { Form, Col, FormGroup, ButtonGroup, IconButton, Icon } from 'rsuite';
 
 import TextPropertySlider from './TextPropertySlider';
 
@@ -25,38 +25,45 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
   return (
     <Form className="text-properties">
       <FormGroup>
-        <Col xs={6}>
-          <TextPropertySlider
-            icon="font"
-            label="Font Size"
-            property="fontSize"
-            onChange={onChange}
-            options={{ defaultValue: 35, step: 1, min: 12, max: 300 }}
-            value={fontSize} />
+        <Col xs={20}>
+          <Col xs={8}>
+            <TextPropertySlider
+              icon="font"
+              label="Font Size"
+              property="fontSize"
+              onChange={onChange}
+              options={{ defaultValue: 35, step: 1, min: 12, max: 300 }}
+              value={fontSize} />
+          </Col>
+
+          <Col xs={8}>
+            <TextPropertySlider
+              icon="text-height"
+              label="Line Height"
+              property="lineHeight"
+              onChange={onChange}
+              options={{ defaultValue: 0.1, step: 0.1, min: 0.1, max: 2 }}
+              value={lineHeight} />
+          </Col>
+
+          <Col xs={8}>
+            <TextPropertySlider
+              icon="text-width"
+              label="Letter Spacing"
+              property="letterSpacing"
+              onChange={onChange}
+              options={{ defaultValue: 0, step: 1, min: -50, max: 50 }}
+              value={letterSpacing} />
+          </Col>
         </Col>
 
-        <Col xs={6}>
-          <TextPropertySlider
-            icon="text-height"
-            label="Line Height"
-            property="lineHeight"
-            onChange={onChange}
-            options={{ defaultValue: 0.1, step: 0.1, min: 0.1, max: 2 }}
-            value={lineHeight} />
-        </Col>
-
-        <Col xs={6}>
-          <TextPropertySlider
-            icon="text-width"
-            label="Letter Spacing"
-            property="letterSpacing"
-            onChange={onChange}
-            options={{ defaultValue: 0, step: 1, min: -50, max: 50 }}
-            value={letterSpacing} />
-        </Col>
-
-        <Col xs={6}>
-          <p>Align Text</p>
+        <Col xs={4}>
+          <p><Icon icon="align-justify" />Align Text</p>
+          <ButtonGroup>
+            <IconButton icon={<Icon icon="align-left"/>} onClick={() => console.log('left')} />
+            <IconButton icon={<Icon icon="align-center"/>} onClick={() => console.log('center')} />
+            <IconButton icon={<Icon icon="align-right"/>} onClick={() => console.log('right')} />
+          </ButtonGroup>
         </Col>
       </FormGroup>
     </Form>
