@@ -23,32 +23,30 @@
     border-right: none;
     display: inline-block;
     line-height: 1em;
-    margin: 1px 0;
-    padding: 5px;
+    margin: 0 0 1px;
+    padding: 0;
     position: relative;
     width: 50px;
     vertical-align: top;
 
     .letter {
       &--text {
-        padding: 0 !important;
+        padding: 10px !important;
         width: 100% !important;
       }
 
       &-item {
-        align-items: center;
-        display: inline-flex;
-        justify-content: center;
-        flex-flow: row wrap;
+        display: inline-block;
         float: left;
         line-height: 1em;
-        padding: 5px 0;
+        padding: 0;
         width: 100%;
+        vertical-align: top;
       }
     }
 
     &[data-active="true"] {
-      background-color: rgba($purple-900, 1);
+      background-color: rgba($red-900, 1);
 
       > .letter-item {
         .letter--text {

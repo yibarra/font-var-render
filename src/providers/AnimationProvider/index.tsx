@@ -44,7 +44,6 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
     } else {
       onStop();
     }
-    // el valor llega despues tengo que hacer el play y el stop tengo que ver quien llama este componente
   }, [ onPlay, onStop, play, setPlay ]);
 
   // options

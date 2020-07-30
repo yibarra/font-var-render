@@ -6,6 +6,8 @@ import LetterItem from '../LetterItem';
 
 import './letter-type.scss';
 
+//interface
+
 // letter type
 const LetterType = ({ letter, setInstanceValue, instances, text, onSelect }: any) => {
   // letters

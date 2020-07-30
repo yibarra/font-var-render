@@ -14,7 +14,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   const fontSettingsContext = useContext(FontSettingsContext);
   const lettersContext = useContext(LettersContext);
 
-  const { settings, setInstanceValue }:any = fontSettingsContext;
+  const { settings, setInstanceValue, initialState }:any = fontSettingsContext;
   const { updateLetterItem }:any = lettersContext;
 
   // element
@@ -57,6 +57,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
       {type === 2 && active() === true &&
         <LetterItemAnimation
           letter={letter}
+          initialState={initialState}
           text={text}
           setInstanceValue={setInstanceValue} />}
 

@@ -82,7 +82,7 @@
 
         .letter {
           &--text {
-            @include rem('font-size', 24px);
+            @include rem('font-size', 20px);
             line-height: 1em;
           }
         }

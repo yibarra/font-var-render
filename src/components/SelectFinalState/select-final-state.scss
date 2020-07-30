@@ -11,14 +11,16 @@
 
   &--content {
     float: left;
+    line-height: 1em !important;
     padding: 10px 5px;
     position: relative;
     width: 100%;
 
     .letter {
       display: none;
+      float: left;
       font-size: inherit;
-      line-height: inherit;
+      line-height: 1em;
       letter-spacing: inherit;
       width: 100%;
 
@@ -34,7 +36,11 @@
 
       .letter-type {
         display: inline-block;
+        line-height: 1em;
+        float: left;
         position: relative;
+        width: 100%;
+        vertical-align: top;
       }
 
       &[data-active="true"] {

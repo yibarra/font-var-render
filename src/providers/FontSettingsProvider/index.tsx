@@ -9,6 +9,7 @@ const FontSettingsContext = createContext({} as IFontSettingsContext);
 const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ children, font, getFvarTable }) => {
   // axes
   const [ settings, setSettings ]: any = useState();
+  const [ initialState, setInitialState ]:any = useState();
 
   // set named instance
   const setNamedInstance = useCallback((setts: any) => {
@@ -55,7 +56,7 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
     };
 
     load();
-  }, []);
+  }, [ font ]);
 
   // render
   return (
@@ -63,7 +64,9 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
       settings,
       setNamedInstance,
       setNamedInstanceValue,
-      setInstanceValue
+      setInstanceValue,
+      initialState,
+      setInitialState
     }}>
       {children}
     </FontSettingsContext.Provider>

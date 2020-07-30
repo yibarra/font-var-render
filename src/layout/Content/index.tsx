@@ -23,7 +23,7 @@ const Content = () => {
   
   // font
   const { font, onLoad } = fontContext;
-  const { settings } = fontSettingsContext;
+  const { settings, initialState, setInitialState } = fontSettingsContext;
   const { text, setText, textProperties } = textContext;
 
   // render
@@ -46,11 +46,17 @@ const Content = () => {
       </FlexboxGrid.Item>
 
       <FlexboxGrid.Item colspan={9}>
-        <SelectInitState font={font} />
+        <SelectInitState
+          font={font} 
+          initialState={initialState}
+          setInitialState={setInitialState} />
       </FlexboxGrid.Item>
 
       <FlexboxGrid.Item colspan={9}>
-        <SelectFinalState font={font} text={text} textProperties={textProperties} />
+        <SelectFinalState
+          font={font}
+          text={text}
+          textProperties={textProperties} />
       </FlexboxGrid.Item>
 
       <FlexboxGrid.Item colspan={18}>

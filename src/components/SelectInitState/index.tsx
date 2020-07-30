@@ -1,4 +1,4 @@
-import React, { FunctionComponent, memo, useState, useCallback } from 'react';
+import React, { FunctionComponent, memo, useCallback } from 'react';
 import { Col, Button } from 'rsuite';
 
 import useFont from '../../uses/useFont';
@@ -8,10 +8,7 @@ import { ISelectInitState } from './interfaces';
 import './select-init-state.scss';
 
 // select init state
-const SelectInitState: FunctionComponent<ISelectInitState> = ({ font }) => {
-  // state
-  const [ value, setValue ]:any = useState();
-
+const SelectInitState: FunctionComponent<ISelectInitState> = ({ font, initialState, setInitialState }) => {
   // get fvar table
   const { getFvarTable } = useFont(font);
 
@@ -26,7 +23,7 @@ const SelectInitState: FunctionComponent<ISelectInitState> = ({ font }) => {
         const item = instances[key];
         if (item instanceof Object) {
           const { name: { en } } = item;
-          items.push(<Button active={value === item} key={key} onClick={() => setValue(item)}>{en}</Button>)
+          items.push(<Button active={initialState === item} key={key} onClick={() => setInitialState(item)}>{en}</Button>)
         }
       }
 
@@ -34,13 +31,13 @@ const SelectInitState: FunctionComponent<ISelectInitState> = ({ font }) => {
     }
 
     return '';
-  }, [ getFvarTable, value ]);
+  }, [ getFvarTable, initialState, setInitialState]);
 
   // render
   return (
     <div className="select-init-state">
       <Col className="select-init-state--title" xs={24}>
-        <p>Select the first state</p>
+      <p>Select the first state</p>
       </Col>
       <Col className="select-init-state--content" xs={24}>
         {font && 

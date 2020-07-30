@@ -39,6 +39,8 @@ export interface IFontSettingsContext {
   setNamedInstance: (i: number) => void;
   setNamedInstanceValue: (item: object, element: any) => void;
   setInstanceValue: (settings: any, element: any) => void;
+  initialState: any;
+  setInitialState: (value: any) => any;
 }
 
 export interface IFontSettingsProvider {

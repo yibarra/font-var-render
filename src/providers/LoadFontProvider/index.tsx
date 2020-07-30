@@ -89,10 +89,7 @@ const LoadFontProvider: FunctionComponent<ILoadFontProvider> = ({ children }) =>
           const file = new File([blob], 'untitled', { type: blob.type });
 
           opentype.load(url, (err: any, font: any) => {
-            if (err) {
-              console.log(err);
-              return;
-            }
+            if (err) { console.log(err); return; }
     
             document.body.style.fontFamily = font.names.fontFamily.en;
             setFont(font);
@@ -111,7 +108,9 @@ const LoadFontProvider: FunctionComponent<ILoadFontProvider> = ({ children }) =>
       font,
       onLoad: onReadFile
       }}>
-        <FontSettingsProvider font={font} getFvarTable={getFvarTable}>
+        <FontSettingsProvider
+          font={font}
+          getFvarTable={getFvarTable}>
           {children}
         </FontSettingsProvider>
     </LoadFontContext.Provider>
