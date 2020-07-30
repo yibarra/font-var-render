@@ -3,6 +3,7 @@
 @import '../../styles/settings/fonts';
 
 @import '../../styles/components/buttons';
+@import '../../styles/components/typography';
 
 @import '../../styles/tools/mixins';
 
@@ -17,6 +18,13 @@
     .rs-btn {
       @extend %btn-default;
       margin: 2px 4px 2px 0;
+    }
+  }
+
+  &--title {
+    p {
+      @extend %text;
+      margin: 0 0 10px;
     }
   }
 }

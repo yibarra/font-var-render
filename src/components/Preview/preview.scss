@@ -1,8 +1,7 @@
 /* --- PREVIEW --- */
 @import '../../styles/settings/colors';
-@import '../../styles/settings/fonts';
 
-@import '../../styles/tools/mixins';
+@import '../../styles/components/typography';
 
 .preview {
   padding: 20px 5px 5px;
@@ -37,7 +36,7 @@
           padding: 10px 30px;
 
           p {
-            @include rem('font-size', 12px);
+            @extend %text;
             font-weight: 700;
             position: relative;
 
@@ -57,7 +56,7 @@
     }
 
     p {
-      @include font($font-default, 12px, 400, $black-900);
+      @extend %text;
     }
   }
 }
