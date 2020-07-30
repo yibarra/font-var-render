@@ -1,0 +1,79 @@
+/* --- PREVIEW --- */
+@import '../../styles/settings/colors';
+
+@import '../../styles/components/typography';
+
+.select-final-state {
+  display: inline-block;
+  padding: 20px 5px 5px;
+  width: 100%;
+  vertical-align: top;
+
+  &--content {
+    float: left;
+    padding: 10px 5px;
+    position: relative;
+    width: 100%;
+
+    .letter {
+      display: none;
+      font-size: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+      width: 100%;
+
+      &--text {
+        font-size: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
+
+        &.end {
+          display: none;
+        }
+      }
+
+      .letter-type {
+        display: inline-block;
+        position: relative;
+      }
+
+      &[data-active="true"] {
+        display: inline-block !important;
+      }
+    }
+  }
+
+  &--title {
+    .rs-message {
+      background-color: transparent;
+      margin: 10px 0 0;
+
+      .rs-message {
+        &-container {
+          padding: 10px 30px;
+
+          p {
+            @extend %text;
+            font-weight: 700;
+            position: relative;
+
+            &:before {
+              background-color: $red-900;
+              content: '';
+              height: 6px;
+              left: -15px;
+              position: absolute;
+              top: 50%;
+              transform: translate(0, -50%);
+              width: 6px;
+            }
+          }
+        }
+      }
+    }
+
+    p {
+      @extend %text;
+    }
+  }
+}

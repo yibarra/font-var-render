@@ -21,18 +21,13 @@
   &--item {
     border: 1px solid rgba($black-900, 0.1);
     border-right: none;
+    display: inline-block;
     line-height: 1em;
-    padding: 0 5px;
+    margin: 1px 0;
+    padding: 5px;
     position: relative;
-    width: 70px;
-
-    .instance {
-      @include rem('font-size', 10px);
-      overflow: hidden;
-      pointer-events: none;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+    width: 50px;
+    vertical-align: top;
 
     .letter {
       &--text {
@@ -47,13 +42,13 @@
         flex-flow: row wrap;
         float: left;
         line-height: 1em;
-        padding: 10px 0 13px;
+        padding: 5px 0;
         width: 100%;
       }
     }
 
     &[data-active="true"] {
-      background-color: rgba($black-900, 0.9);
+      background-color: rgba($purple-900, 1);
 
       > .letter-item {
         .letter--text {

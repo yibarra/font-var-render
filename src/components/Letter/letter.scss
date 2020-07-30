@@ -74,16 +74,15 @@
 
       &-type {
         display: none;
-        flex-flow: row nowrap;
         left: 0;
-        padding: 5px 0 0;
+        padding: 0;
         position: absolute;
         top: 100%;
         width: auto;
 
         .letter {
           &--text {
-            @include rem('font-size', 32px);
+            @include rem('font-size', 24px);
             line-height: 1em;
           }
         }
@@ -121,7 +120,7 @@
       &[data-active="true"] {
         .letter {
           &-type {
-            display: inline-flex;
+            display: inline-block;
           }
         }
 
