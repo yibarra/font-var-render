@@ -20,25 +20,26 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
     const props: any = {};
     const propsInit = { 'wdth': 30, 'wght': 0 };
 
-
-
     for (let key in instances) {
+      const end = instances[key];
+
       Object.entries(propsInit).forEach(([index, value]) => {
         if (index === key) {
-          const diff = Math.abs(instances[key] - value);
-          const inverse = instances[key] <= value;
-
+          const diff = Math.abs(end - value);
+          const inverse = end <= value;
+          
           if (inverse === true) {
-            console.log('inverse', key);
+            const pos = diff - current;
+            props[key] = (pos <= 0) ? end : pos;
           } else {
-            console.log('next', key);
+            if (current < value) {
+              props[key] = value;
+            } else {
+              props[key] = current;
+            }
           }
-          //console.log('diff', diff, current, diff - current, key, instances[key]);
-        }
-        // console.log(index + ' ' + value); // "a 5", "b 7", "c 9"     
+        }    
       });
-
-      //props[key] = instances[key] < current ? instances[key] : current;
     }
 
     setInstanceValue(props, element.current);
