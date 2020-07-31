@@ -43,10 +43,16 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
     }
   }, [ settings, getFvarTable, setInstanceValue, font ]);
 
+  // set main instance
+  const setMainInstance = useCallback((setts: any) => {
+    setInstanceValue(setts, document.body);
+    setInitialState(setts);
+  }, [ setInstanceValue ]);
+
   // use effect
   useEffect(() => {
     const load = () => {
-      const body:any = document.body.querySelector('.preview--content');
+      const body:any = document.body;
       const cssProperties = '"wdth" 30, "wght" 0';
   
       if (body instanceof Object) {
@@ -66,7 +72,7 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
       setNamedInstanceValue,
       setInstanceValue,
       initialState,
-      setInitialState
+      setInitialState: setMainInstance
     }}>
       {children}
     </FontSettingsContext.Provider>

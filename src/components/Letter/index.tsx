@@ -38,6 +38,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
       const check = items.filter((item:any) => item.index === index);
 
       if (check.length > 0) {
+
         setLetter(check[0]);
       }
     }

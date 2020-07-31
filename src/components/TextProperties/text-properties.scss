@@ -11,6 +11,10 @@
   width: 100%;
   vertical-align: top;
 
+  &--align {
+    text-align: right;
+  }
+
   
   p {
     @extend %text;

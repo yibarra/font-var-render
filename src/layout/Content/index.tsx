@@ -33,16 +33,8 @@ const Content = () => {
         <Load font={font} onLoad={onLoad} />
       </FlexboxGrid.Item>
 
-      <FlexboxGrid.Item colspan={18}>
-        <EditText font={font} />
-      </FlexboxGrid.Item>
-
       <FlexboxGrid.Item colspan={9}>
         <InputText label="Type here to text" setText={setText} text={text} />
-      </FlexboxGrid.Item>
-
-      <FlexboxGrid.Item colspan={9}>
-        <SelectLetters font={font} text={text} />
       </FlexboxGrid.Item>
 
       <FlexboxGrid.Item colspan={9}>
@@ -53,12 +45,20 @@ const Content = () => {
       </FlexboxGrid.Item>
 
       <FlexboxGrid.Item colspan={9}>
+        <SelectLetters font={font} text={text} />
+      </FlexboxGrid.Item>
+
+      <FlexboxGrid.Item colspan={9}>
         <SelectFinalState
           font={font}
           text={text}
           textProperties={textProperties} />
       </FlexboxGrid.Item>
 
+      <FlexboxGrid.Item colspan={18}>
+        <EditText font={font} />
+      </FlexboxGrid.Item>
+      
       <FlexboxGrid.Item colspan={18}>
         <Preview font={font} text={text} textProperties={textProperties} />
         <AnimationSlider />

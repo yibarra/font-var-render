@@ -9,10 +9,15 @@
 
 .select-init-state {
   float: left;
-  padding: 5px;
+  padding: 10px;
   position: relative;
   width: 100%;
   vertical-align: top;
+
+  &--content,
+  &--title {
+    padding: 0 !important;
+  }
 
   &--content {
     .rs-btn {

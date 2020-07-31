@@ -57,8 +57,7 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
           </Col>
         </Col>
 
-        <Col xs={4}>
-          <p><Icon icon="align-justify" />Align Text</p>
+        <Col xs={4} className="text-properties--align">
           <ButtonGroup>
             <IconButton icon={<Icon icon="align-left"/>} onClick={() => console.log('left')} />
             <IconButton icon={<Icon icon="align-center"/>} onClick={() => console.log('center')} />
