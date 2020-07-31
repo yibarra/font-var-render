@@ -13,6 +13,7 @@ const TextProvider: FunctionComponent<ITextProvider> = ({ children }) => {
     fontSize: 35,
     lineHeight: 1,
     letterSpacing: 0,
+    textAlign: 'left', 
   });
 
   // render

@@ -21,6 +21,12 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
     setTextProperties(result);
   };
 
+  // on align
+  const onAlign = (value: string) => {
+    const result = { ...textProperties, textAlign: value };
+    setTextProperties(result);
+  };
+
   // render
   return (
     <Form className="text-properties">
@@ -59,9 +65,9 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
 
         <Col xs={4} className="text-properties--align">
           <ButtonGroup>
-            <IconButton icon={<Icon icon="align-left"/>} onClick={() => console.log('left')} />
-            <IconButton icon={<Icon icon="align-center"/>} onClick={() => console.log('center')} />
-            <IconButton icon={<Icon icon="align-right"/>} onClick={() => console.log('right')} />
+            <IconButton icon={<Icon icon="align-left"/>} onClick={() => onAlign('left')} />
+            <IconButton icon={<Icon icon="align-center"/>} onClick={() => onAlign('center')} />
+            <IconButton icon={<Icon icon="align-right"/>} onClick={() => onAlign('right')} />
           </ButtonGroup>
         </Col>
       </FormGroup>
