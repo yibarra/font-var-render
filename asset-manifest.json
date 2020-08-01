@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/font-var-render/static/css/main.36436b03.chunk.css",
-    "main.js": "/font-var-render/static/js/main.11cc3cc0.chunk.js",
-    "main.js.map": "/font-var-render/static/js/main.11cc3cc0.chunk.js.map",
+    "main.css": "/font-var-render/static/css/main.588ddc73.chunk.css",
+    "main.js": "/font-var-render/static/js/main.6b9d2808.chunk.js",
+    "main.js.map": "/font-var-render/static/js/main.6b9d2808.chunk.js.map",
     "runtime-main.js": "/font-var-render/static/js/runtime-main.f08522ac.js",
     "runtime-main.js.map": "/font-var-render/static/js/runtime-main.f08522ac.js.map",
     "static/css/2.fd3fe366.chunk.css": "/font-var-render/static/css/2.fd3fe366.chunk.css",
     "static/js/2.07366029.chunk.js": "/font-var-render/static/js/2.07366029.chunk.js",
     "static/js/2.07366029.chunk.js.map": "/font-var-render/static/js/2.07366029.chunk.js.map",
     "index.html": "/font-var-render/index.html",
-    "precache-manifest.2c23d15933ba0b72e09cbfd421431add.js": "/font-var-render/precache-manifest.2c23d15933ba0b72e09cbfd421431add.js",
+    "precache-manifest.58cb17ff56247a70de3f33fd902ffbca.js": "/font-var-render/precache-manifest.58cb17ff56247a70de3f33fd902ffbca.js",
     "service-worker.js": "/font-var-render/service-worker.js",
     "static/css/2.fd3fe366.chunk.css.map": "/font-var-render/static/css/2.fd3fe366.chunk.css.map",
-    "static/css/main.36436b03.chunk.css.map": "/font-var-render/static/css/main.36436b03.chunk.css.map",
+    "static/css/main.588ddc73.chunk.css.map": "/font-var-render/static/css/main.588ddc73.chunk.css.map",
     "static/js/2.07366029.chunk.js.LICENSE.txt": "/font-var-render/static/js/2.07366029.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f08522ac.js",
     "static/css/2.fd3fe366.chunk.css",
     "static/js/2.07366029.chunk.js",
-    "static/css/main.36436b03.chunk.css",
-    "static/js/main.11cc3cc0.chunk.js"
+    "static/css/main.588ddc73.chunk.css",
+    "static/js/main.6b9d2808.chunk.js"
   ]
 }
