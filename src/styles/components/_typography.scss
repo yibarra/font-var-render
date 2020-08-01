@@ -8,4 +8,5 @@
   @include font($font-default, 12px, 400, $black-900);
   line-height: 1em;
   letter-spacing: 0.02em;
+  font-variation-settings: normal;
 }

@@ -25,9 +25,11 @@
       width: 100%;
 
       &--text {
+        float: left;
         font-size: inherit;
-        line-height: inherit;
+        line-height: 1em;
         letter-spacing: inherit;
+        vertical-align: top;
 
         &.end {
           display: none;

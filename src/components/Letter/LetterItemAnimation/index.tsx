@@ -15,10 +15,10 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
 
   // animation
   const animation = useCallback((instances: any) => {
-    if (instances instanceof Object === false) return false;
+    if (instances instanceof Object === false || !initialState.hasOwnProperty('coordinates')) return false;
 
-    const props: any = {};
     const { coordinates }:any = initialState;
+    const props: any = {};
 
     for (let key in instances) {
       const end = instances[key];
