@@ -6,6 +6,7 @@ import { LettersContext } from '../../providers/LettersProvider';
 import useFont from '../../uses/useFont';
 
 import Letter from '../Letter';
+import PreviewRender from './PreviewRender';
 
 import { IFontInfo } from '../../providers/FontSettingsProvider/interfaces';
 import { IPreview } from './interfaces';
@@ -46,19 +47,18 @@ const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) =>
   return (
     <div className="preview">
       <Col className="preview--title" xs={24}>
-        <p>Hover the letter to select the final stage.</p>
-
         {!letters.length && <Message
           type="error"
           description={
             <p>
               Select at least one letter in the previous section.
-            </p>
-          }
-        />}
+            </p>} />}
       </Col>
-      <Col className="preview--content" style={{...textProperties}}>
+      <Col className="preview--content" xs={24} style={{...textProperties}}>
         {font && textSplit(font, text)}
+      </Col>
+      <Col className="preview--render" xs={24}>
+        <PreviewRender font={font} letters={letters} textProperties={textProperties} />
       </Col>
     </div>
   );
