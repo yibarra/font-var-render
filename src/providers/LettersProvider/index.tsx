@@ -38,7 +38,10 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
 
     if (item instanceof Object) {
       const items = letters;
-      items[items.indexOf(item)].settings = value;
+      const position = items.indexOf(item);
+      const letter = { ...items[position], ...value };
+
+      items[position] = letter;
       setLetters(items);
     }
   }, [ letters, setLetters, getLetter ]);

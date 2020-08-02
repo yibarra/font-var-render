@@ -28,7 +28,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
 
   // on select
   const onSelect = (values: any) => {
-    updateLetterItem(index, values);
+    updateLetterItem(index, { settings: values });
     setInstanceValue(values, element.current);
   };
 
@@ -38,7 +38,6 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
       const check = items.filter((item:any) => item.index === index);
 
       if (check.length > 0) {
-
         setLetter(check[0]);
       }
     }
@@ -59,6 +58,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
         <LetterItemAnimation
           letter={letter}
           initialState={initialState}
+          updateLetterItem={updateLetterItem}
           text={text}
           setInstanceValue={setInstanceValue} />}
 

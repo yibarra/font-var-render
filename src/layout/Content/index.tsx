@@ -63,6 +63,10 @@ const Content = () => {
         <Preview font={font} text={text} textProperties={textProperties} />
         <AnimationSlider />
       </FlexboxGrid.Item>
+
+      <FlexboxGrid.Item colspan={18}>
+        
+      </FlexboxGrid.Item>
     </FlexboxGrid>
   );
 };

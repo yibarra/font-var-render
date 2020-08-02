@@ -5,7 +5,7 @@ import { AnimationContext } from '../../../providers/AnimationProvider';
 import { ILetterItemAnimation } from './interfaces';
 
 // letter animation
-const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, setInstanceValue, initialState }) => {
+const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, updateLetterItem, setInstanceValue, initialState }) => {
   // context
   const animationContext = useContext(AnimationContext);
   const { current } = animationContext;
@@ -15,7 +15,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
 
   // animation
   const animation = useCallback((instances: any) => {
-    if (instances instanceof Object === false || !initialState.hasOwnProperty('coordinates')) return false;
+    if (instances instanceof Object === false || !initialState || !initialState.hasOwnProperty('coordinates')) return false;
 
     const { coordinates }:any = initialState;
     const props: any = {};
@@ -42,8 +42,10 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
       });
     }
 
+    console.log('-------');
+    updateLetterItem(letter.index, { current: props });
     setInstanceValue(props, element.current);
-  }, [ current, setInstanceValue, initialState]);
+  }, [ current, letter, setInstanceValue, updateLetterItem, initialState]);
 
   // use effect
   useEffect(() => {

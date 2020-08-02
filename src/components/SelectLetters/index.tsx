@@ -24,8 +24,9 @@ const SelectLetters: FunctionComponent<ISelectLetters> = ({ font, text }) => {
   const element = useRef(null);
 
   // set letter
-  const setLetter = (letter: number) => {
-    setLetters(letter);
+  const setLetter = (letter: any) => {
+    const lett = { ...letter, current: {} };
+    setLetters(lett);
   };
 
   // text split

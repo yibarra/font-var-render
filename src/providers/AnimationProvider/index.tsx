@@ -1,13 +1,23 @@
-import React, { createContext, useState, FunctionComponent, useEffect, useCallback } from 'react';
+import React, { createContext, useState, FunctionComponent, useEffect, useCallback, useContext } from 'react';
 
 import useRequestAnimation from '../../uses/useRequestAnimation';
+import CanvasRender from '../../helpers';
+
 import { IAnimationContext, IAnimationProvider } from './interfaces';
+import { LettersContext } from '../LettersProvider';
 
 // animation context
 const AnimationContext = createContext({} as IAnimationContext);
 
 // animation provider
 const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: any) => {
+  // canvas render
+  const canvasRender = new CanvasRender(400, 400);
+
+  // context
+  const lettersContext = useContext(LettersContext);
+  const { letters } = lettersContext;
+
   // text
   const [ current, setCurrent ]:any = useState(0);
   const [ options, setOptions ]:any = useState({
@@ -26,8 +36,10 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
         }
       }
 
+      canvasRender.render(letters);
       return parseInt(current);
     });
+
   };
 
   // animation
