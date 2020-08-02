@@ -5,7 +5,13 @@ import { AnimationContext } from '../../../providers/AnimationProvider';
 import { ILetterItemAnimation } from './interfaces';
 
 // letter animation
-const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, updateLetterItem, setInstanceValue, initialState }) => {
+const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
+  letter,
+  text,
+  setLetter,
+  updateLetterItem,
+  setInstanceValue,
+  initialState }) => {
   // context
   const animationContext = useContext(AnimationContext);
   const { current } = animationContext;
@@ -14,19 +20,23 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
   const element = useRef(null);
 
   // animation
-  const animation = useCallback((instances: any) => {
-    if (instances instanceof Object === false || !initialState || !initialState.hasOwnProperty('coordinates')) return false;
+  const animation = useCallback((index: number, instances: any) => {
+    if (instances instanceof Object === false) return false;
 
-    const { coordinates }:any = initialState;
+    console.log(index);
+    /*
     const props: any = {};
+    const propsInit = { 'wdth': 30, 'wght': 0 };
 
-    for (let key in instances) {
-      const end = instances[key];
+    Object.entries(propsInit).forEach(([key, instance]) => {
+      const end = instance;
 
-      Object.entries(coordinates).forEach(([index, value]:any) => {
+      Object.entries(instances).forEach(([index, value]: any) => {
         if (index === key) {
           const diff = Math.abs(end - value);
           const inverse = end <= value;
+
+          console.log(diff, value, current);
           
           if (inverse === true) {
             const pos = diff - current;
@@ -40,19 +50,23 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
           }
         }    
       });
-    }
+    });
 
-    console.log('-------');
+    console.log(props, '---- props ----');
+
     updateLetterItem(letter.index, { current: props });
     setInstanceValue(props, element.current);
-  }, [ current, letter, setInstanceValue, updateLetterItem, initialState]);
+    */
+  }, [ current, setInstanceValue, updateLetterItem ]);
 
   // use effect
   useEffect(() => {
     if (letter.settings) {
-      animation(letter.settings);
+      if (initialState instanceof Object) {
+        animation(letter.index, initialState.coordinates);
+      }
     }
-  }, [ letter, animation ]);
+  }, [ letter, animation, initialState ]);
 
   // render
   return (

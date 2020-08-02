@@ -9,6 +9,7 @@ export interface IFontInfo {
   names: any,
   tables: IFontTable,
   ascender: number,
+  getPath: any;
   descender: number,
   encoding: any,
   glyphNames: any,
@@ -22,6 +23,7 @@ export declare class FontFace {
   style: string;
   weight: string;
   stretch: string;
+  getPath: any;
   unicodeRange: string;
   variant: string;
   featureSettings: string;

@@ -1,10 +1,12 @@
 import React, { createContext, useState, FunctionComponent, useEffect, useCallback, useContext } from 'react';
 
+import { LettersContext } from '../LettersProvider';
+import { LoadFontContext } from '../LoadFontProvider';
+
 import useRequestAnimation from '../../uses/useRequestAnimation';
 import CanvasRender from '../../helpers';
 
 import { IAnimationContext, IAnimationProvider } from './interfaces';
-import { LettersContext } from '../LettersProvider';
 
 // animation context
 const AnimationContext = createContext({} as IAnimationContext);
@@ -12,10 +14,11 @@ const AnimationContext = createContext({} as IAnimationContext);
 // animation provider
 const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: any) => {
   // canvas render
-  const canvasRender = new CanvasRender(400, 400);
+  const canvasRender = new CanvasRender(400, 50);
 
   // context
   const lettersContext = useContext(LettersContext);
+  const { font } = useContext(LoadFontContext)
   const { letters } = lettersContext;
 
   // text
@@ -36,10 +39,9 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
         }
       }
 
-      canvasRender.render(letters);
+      canvasRender.render(parseInt(current), letters, font);
       return parseInt(current);
     });
-
   };
 
   // animation

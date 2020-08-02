@@ -4,4 +4,5 @@ export interface ILetterItemAnimation {
   text: string;
   initialState: any;
   setInstanceValue: (values: any, element: any) => void;
+  setLetter: (value: any) => any;
 }

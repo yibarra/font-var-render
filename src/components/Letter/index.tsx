@@ -1,9 +1,8 @@
-import React, { memo, useContext, useRef, useState, useEffect } from 'react';
+import React, { memo, useContext, useRef, useState, useEffect, useCallback } from 'react';
 
 import { FontSettingsContext } from '../../providers/FontSettingsProvider';
 import { LettersContext } from '../../providers/LettersProvider';
 
-import LetterItemAnimation from './LetterItemAnimation';
 import LetterType from './LetterType';
 
 import './letter.scss';
@@ -14,7 +13,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   const fontSettingsContext = useContext(FontSettingsContext);
   const lettersContext = useContext(LettersContext);
 
-  const { settings, setInstanceValue, initialState }:any = fontSettingsContext;
+  const { settings, setInstanceValue }:any = fontSettingsContext;
   const { updateLetterItem }:any = lettersContext;
 
   // element
@@ -22,15 +21,15 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   const [ letter, setLetter ]:any = useState({});
 
   // active
-  const active = () => {
+  const active = useCallback(() => {
     return Array.isArray(items) && (items && items.filter((item:any) => item === letter).length > 0);
-  };
+  }, [ items, letter ]);
 
   // on select
-  const onSelect = (values: any) => {
+  const onSelect = useCallback((values: any) => {
     updateLetterItem(index, { settings: values });
     setInstanceValue(values, element.current);
-  };
+  }, [ updateLetterItem, index, setInstanceValue ]);
 
   // use effect
   useEffect(() => {
@@ -53,14 +52,6 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
       onClick={() => onChange({ index, settings })}>
 
       <p className="letter--text">{text}</p>
-
-      {type === 2 && active() === true &&
-        <LetterItemAnimation
-          letter={letter}
-          initialState={initialState}
-          updateLetterItem={updateLetterItem}
-          text={text}
-          setInstanceValue={setInstanceValue} />}
 
       {type === 2 &&
         <LetterType
