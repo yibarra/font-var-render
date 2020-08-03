@@ -2,6 +2,7 @@ import React, { createContext, useState, FunctionComponent, useEffect, useCallba
 
 import { LettersContext } from '../LettersProvider';
 import { LoadFontContext } from '../LoadFontProvider';
+import { TextContext } from '../TextProvider';
 
 import useRequestAnimation from '../../uses/useRequestAnimation';
 import CanvasRender from '../../helpers';
@@ -13,13 +14,16 @@ const AnimationContext = createContext({} as IAnimationContext);
 
 // animation provider
 const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: any) => {
-  // canvas render
-  const canvasRender = new CanvasRender(400, 50);
-
   // context
   const lettersContext = useContext(LettersContext);
-  const { font } = useContext(LoadFontContext)
+  const textContext = useContext(TextContext);
+  const { font } = useContext(LoadFontContext);
+
   const { letters } = lettersContext;
+  const { text, textProperties } = textContext;
+
+  // canvas render
+  const canvasRender = new CanvasRender(font, 800, 150);
 
   // text
   const [ current, setCurrent ]:any = useState(0);
@@ -39,7 +43,7 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
         }
       }
 
-      canvasRender.render(parseInt(current), letters, font);
+      canvasRender.render(parseInt(current), letters, text, textProperties);
       return parseInt(current);
     });
   };

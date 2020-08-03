@@ -10,6 +10,7 @@ export interface IFontInfo {
   tables: IFontTable,
   ascender: number,
   getPath: any;
+  drawPoints: any;
   descender: number,
   encoding: any,
   glyphNames: any,

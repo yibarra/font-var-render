@@ -25,7 +25,7 @@ const SelectLetters: FunctionComponent<ISelectLetters> = ({ font, text }) => {
 
   // set letter
   const setLetter = (letter: any) => {
-    const lett = { ...letter, current: {} };
+    const lett = { ...letter };
     setLetters(lett);
   };
 

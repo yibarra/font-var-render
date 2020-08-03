@@ -27,7 +27,7 @@ const LetterType = ({ letter, setInstanceValue, instances, text, onSelect }: any
       const letterSettings = findInstance[0];
 
       if (letterSettings.coordinates instanceof Object) {
-        updateLetterItem(letter.index, { settings: letterSettings.coordinates });
+        updateLetterItem(letter.index, { settings: letterSettings.coordinates, value: text });
       }
 
       setCurrent(instance);
