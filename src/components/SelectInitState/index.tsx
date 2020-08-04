@@ -3,6 +3,7 @@ import { Col, Button } from 'rsuite';
 
 import useFont from '../../uses/useFont';
 
+import { IFontInfo } from '../../providers/FontSettingsProvider/interfaces';
 import { ISelectInitState } from './interfaces';
 
 import './select-init-state.scss';
@@ -13,7 +14,7 @@ const SelectInitState: FunctionComponent<ISelectInitState> = ({ font, initialSta
   const { getFvarTable } = useFont(font);
 
   // get instances
-  const getInstances = useCallback((font) => {
+  const getInstances = useCallback((font: IFontInfo) => {
     const { instances } = getFvarTable(font);
 
     if (instances instanceof Object) {
@@ -21,8 +22,10 @@ const SelectInitState: FunctionComponent<ISelectInitState> = ({ font, initialSta
 
       for (let key in instances) {
         const item = instances[key];
+        
         if (item instanceof Object) {
           const { name: { en } } = item;
+
           items.push(<Button active={initialState === item} key={key} onClick={() => setInitialState(item)}>{en}</Button>)
         }
       }
@@ -30,7 +33,7 @@ const SelectInitState: FunctionComponent<ISelectInitState> = ({ font, initialSta
       return items;
     }
 
-    return '';
+    return;
   }, [ getFvarTable, initialState, setInitialState]);
 
   // render
@@ -40,8 +43,7 @@ const SelectInitState: FunctionComponent<ISelectInitState> = ({ font, initialSta
       <p>Select the first state</p>
       </Col>
       <Col className="select-init-state--content" xs={24}>
-        {font && 
-          getInstances(font)}
+        {font && getInstances(font)}
       </Col>
     </div>
   );

@@ -13,7 +13,9 @@ export default class CanvasRender extends Render {
   render(current: number, letters: [], text: string, textProperties: any) {
     if (letters instanceof Object === false) return false;
 
-    const items = this.createLetters(text, letters);
-    this.renderCanvas(current, items);
+    if (this.canvas instanceof Object) {
+      const items = this.createLetters(text, letters);
+      this.renderCanvas(current, items);
+    }
   }
 };

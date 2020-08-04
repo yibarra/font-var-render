@@ -9,7 +9,19 @@ const FontSettingsContext = createContext({} as IFontSettingsContext);
 const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ children, font, getFvarTable }) => {
   // axes
   const [ settings, setSettings ]:any = useState({});
-  const [ initialState, setInitialState ]:any = useState({ coordinates: { wdth: 30, wght: 0 } });
+  const [ initialState, setInitialState ]:any = useState({ name: { en: "Neutra" }, coordinates: { wdth: 30, wght: 0 } });
+
+  // convert properties
+  const convertProperties = (settings: any[]) => {
+    const props = Object.keys(settings).map((key: any) => `'${key}' ${settings[key]}`);
+
+    return props.join();
+  };
+
+  // init settings
+  const initSettings = () => {
+    // tvar
+  };
 
   // set named instance
   const setNamedInstance = useCallback((setts: any) => {
@@ -20,11 +32,11 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
   const setInstanceValue = useCallback((settings: any[], element: any) => {
     if (settings instanceof Object === false) return false;
 
-    const cssProperties = Object.keys(settings).map((key: any) => `'${key}' ${settings[key]}`);
+    const cssProperties = convertProperties(settings);
   
-    if (cssProperties && element instanceof Object) {
+    if (element instanceof Object) {
       const css:any = element.style as StyleSheet;
-      css.fontVariationSettings = cssProperties.join();
+      css.fontVariationSettings = cssProperties;
     }
 
     return true;
@@ -53,7 +65,7 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
   useEffect(() => {
     const load = () => {
       const body:any = document.body;
-      const cssProperties = '"wdth" 30, "wght" 0';
+      const cssProperties = convertProperties(initialState.coordinates);
   
       if (body instanceof Object) {
         const css:any = body.style as StyleSheet;
@@ -62,7 +74,7 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
     };
 
     load();
-  }, [ font ]);
+  }, [ font, initialState ]);
 
   // render
   return (

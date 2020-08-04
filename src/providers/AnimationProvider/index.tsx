@@ -73,13 +73,16 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
 
   // use effect
   useEffect(() => {
-    if (current >= 100) {
+    console.log(current);
+    if (current > 100) {
       if (!options.repeat) {
         setCurrent(100);
         onStop();
       } else {
         setCurrent(0);
       }
+    } else {
+      canvasRender.render(parseInt(current), letters, text, textProperties);
     }
   }, [ play, current, setPlay, onStop, options, setCurrent ]);
 

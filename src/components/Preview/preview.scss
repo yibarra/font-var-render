@@ -62,4 +62,10 @@
       @extend %text;
     }
   }
+
+  #preview {
+    float: left;
+    position: relative;
+    vertical-align: top;
+  }
 }

@@ -27,9 +27,9 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
 
   // on select
   const onSelect = useCallback((values: any) => {
-    updateLetterItem(index, { settings: values });
+    updateLetterItem(index, { settings: values, value: text });
     setInstanceValue(values, element.current);
-  }, [ updateLetterItem, index, setInstanceValue ]);
+  }, [ updateLetterItem, index, setInstanceValue, text ]);
 
   // use effect
   useEffect(() => {
@@ -49,7 +49,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
       ref={element}
       data-active={active()}
       data-type={type}
-      onClick={() => onChange({ index, settings })}>
+      onClick={() => onChange({ index, settings, value: text })}>
 
       <p className="letter--text">{text}</p>
 
