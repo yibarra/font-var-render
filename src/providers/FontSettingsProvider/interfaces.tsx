@@ -11,6 +11,8 @@ export interface IFontInfo {
   ascender: number,
   getPath: any;
   drawPoints: any;
+  drawMetrics: any;
+  getAdvanceWidth: any;
   descender: number,
   encoding: any,
   glyphNames: any,

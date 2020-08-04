@@ -23,15 +23,20 @@ export default class Render extends Letter {
     ctx.clearRect(0, 0, 300, 150);
     ctx.beginPath();
 
+    let count = 0;
+
     for (let key in letters) {
       const letter = letters[key];
 
       if (letter instanceof Object) {
         const { value, settings } = letter;
-        const path = this.font.getPath(value.toString(), (parseInt(key) * 72), 150, 72, settings); // mudar pelo current
-        this.font.drawPoints(ctx, value.toString(),  (parseInt(key) * 72), 150, 72, settings);
-        console.log(path.getBoundingBox());
         
+        const path = this.font.getPath(value.toString(), count, 72, 72, settings); // mudar pelo current
+        this.font.drawPoints(ctx, value.toString(), count, 72, 72, settings);
+        //this.font.drawMetrics(ctx, value.toString(),  (parseInt(key) * 60), 72, 72, settings);
+        
+        count += parseInt(this.font.getAdvanceWidth(letter.value));
+        console.log(letter.value);
         path.draw(ctx);
       }
     }
