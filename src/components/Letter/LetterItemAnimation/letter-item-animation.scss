@@ -1,5 +1,17 @@
 /* -- LETTER ITEM ANIMATION --- */
 
-.animation {
-  position: absolute;
+.letter {
+  &--animation {
+    position: relative;
+    vertical-align: top;
+  }
+
+  canvas {
+    display: inline-block;
+    left: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
 }

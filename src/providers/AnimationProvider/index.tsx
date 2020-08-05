@@ -1,11 +1,11 @@
-import React, { createContext, useState, FunctionComponent, useEffect, useCallback, useContext } from 'react';
+import React, { createContext, useState, FunctionComponent, useEffect, useCallback } from 'react';
 
-import { LettersContext } from '../LettersProvider';
-import { LoadFontContext } from '../LoadFontProvider';
-import { TextContext } from '../TextProvider';
+//import { LettersContext } from '../LettersProvider';
+//import { LoadFontContext } from '../LoadFontProvider';
+//import { TextContext } from '../TextProvider';
 
 import useRequestAnimation from '../../uses/useRequestAnimation';
-import CanvasRender from '../../helpers';
+//import CanvasRender from '../../helpers';
 
 import { IAnimationContext, IAnimationProvider } from './interfaces';
 
@@ -15,15 +15,15 @@ const AnimationContext = createContext({} as IAnimationContext);
 // animation provider
 const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: any) => {
   // context
-  const lettersContext = useContext(LettersContext);
-  const textContext = useContext(TextContext);
-  const { font } = useContext(LoadFontContext);
+  //const lettersContext = useContext(LettersContext);
+  //const textContext = useContext(TextContext);
+  //const { font } = useContext(LoadFontContext);
 
-  const { letters } = lettersContext;
-  const { text, textProperties } = textContext;
+  //const { letters } = lettersContext;
+  //const { text, textProperties } = textContext;
 
   // canvas render
-  const canvasRender = new CanvasRender(font, 800, 150);
+  //const canvasRender = new CanvasRender(font, 800, 150);
 
   // text
   const [ current, setCurrent ]:any = useState(0);
@@ -43,7 +43,7 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
         }
       }
 
-      canvasRender.render(parseInt(current), letters, text, textProperties);
+      //canvasRender.render(parseInt(current), letters, text, textProperties);
       return parseInt(current);
     });
   };
@@ -73,7 +73,6 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
 
   // use effect
   useEffect(() => {
-    console.log(current);
     if (current > 100) {
       if (!options.repeat) {
         setCurrent(100);
@@ -81,8 +80,6 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
       } else {
         setCurrent(0);
       }
-    } else {
-      canvasRender.render(parseInt(current), letters, text, textProperties);
     }
   }, [ play, current, setPlay, onStop, options, setCurrent ]);
 

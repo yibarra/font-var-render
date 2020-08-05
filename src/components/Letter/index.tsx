@@ -3,6 +3,7 @@ import React, { memo, useContext, useRef, useState, useEffect, useCallback } fro
 import { FontSettingsContext } from '../../providers/FontSettingsProvider';
 import { LettersContext } from '../../providers/LettersProvider';
 
+import LetterItemAnimation from './LetterItemAnimation';
 import LetterType from './LetterType';
 
 import './letter.scss';
@@ -13,7 +14,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   const fontSettingsContext = useContext(FontSettingsContext);
   const lettersContext = useContext(LettersContext);
 
-  const { settings, setInstanceValue }:any = fontSettingsContext;
+  const { settings, setInstanceValue, initialState }:any = fontSettingsContext;
   const { updateLetterItem }:any = lettersContext;
 
   // element
@@ -52,6 +53,13 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
       onClick={() => onChange({ index, settings, value: text })}>
 
       <p className="letter--text">{text}</p>
+
+      {type === 2 && active() === true &&
+        <LetterItemAnimation
+          letter={letter}
+          initialState={initialState}
+          text={text}
+          setInstanceValue={setInstanceValue} />}
 
       {type === 2 &&
         <LetterType

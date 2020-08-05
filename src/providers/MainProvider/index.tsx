@@ -16,17 +16,17 @@ const MainProvider = ({ children }: any) => {
   // render
   return (
     <NotificationProvider>
-      <LoadFontProvider>
-        <TextProvider>
-          <LettersProvider>  
-            <AnimationProvider>
-              <MainContext.Provider value={{ active: true, }}>
-                {children}
-              </MainContext.Provider>
-            </AnimationProvider>
-          </LettersProvider>
-        </TextProvider>
-      </LoadFontProvider>
+      <AnimationProvider>
+        <LoadFontProvider>
+          <TextProvider>
+            <LettersProvider>  
+                <MainContext.Provider value={{ active: true, }}>
+                  {children}
+                </MainContext.Provider>
+            </LettersProvider>
+          </TextProvider>
+        </LoadFontProvider>
+      </AnimationProvider>
     </NotificationProvider>
   );
 };
