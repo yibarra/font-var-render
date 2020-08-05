@@ -1,6 +1,7 @@
-import React, { createContext, useState, FunctionComponent, useEffect, useCallback } from 'react';
+import React, { createContext, useState, FunctionComponent, memo, useEffect, useCallback } from 'react';
 
 import useRequestAnimation from '../../uses/useRequestAnimation';
+
 import { IAnimationContext, IAnimationProvider } from './interfaces';
 
 // animation context
@@ -10,9 +11,7 @@ const AnimationContext = createContext({} as IAnimationContext);
 const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: any) => {
   // text
   const [ current, setCurrent ]:any = useState(0);
-  const [ options, setOptions ]:any = useState({
-    repeat: true
-  });
+  const [ options, setOptions ]:any = useState({ repeat: true });
 
   // animation
   const animation = (deltaTime: number) => {
@@ -81,4 +80,4 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
 };
 
 export { AnimationContext, AnimationProvider };
-export default AnimationProvider;
+export default memo(AnimationProvider);

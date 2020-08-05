@@ -1,8 +1,10 @@
-import React, { memo, useCallback, useContext, useEffect, useRef, Fragment, FunctionComponent } from 'react';
+import React, { memo, useCallback, useContext, useEffect, useRef, FunctionComponent, Fragment } from 'react';
 
 import { AnimationContext } from '../../../providers/AnimationProvider';
 
 import { ILetterItemAnimation } from './interfaces';
+
+import './letter-item-animation.scss';
 
 // letter animation
 const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, setInstanceValue, initialState }) => {
@@ -14,7 +16,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
   const element = useRef(null);
 
   // animation
-  const animation = useCallback((instances: any) => {
+  const animation = useCallback((instances: any, element: any) => {
     if (instances instanceof Object === false) return false;
 
     const props: any = {};
@@ -42,13 +44,13 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
       });
     }
 
-    setInstanceValue(props, element.current);
-  }, [ current, setInstanceValue, initialState]);
+    setInstanceValue(props, element);
+  }, [ current, setInstanceValue, initialState ]);
 
   // use effect
   useEffect(() => {
     if (letter.settings) {
-      animation(letter.settings);
+      animation(letter.settings, element.current);
     }
   }, [ letter, animation ]);
 

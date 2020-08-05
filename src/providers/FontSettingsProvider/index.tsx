@@ -9,7 +9,12 @@ const FontSettingsContext = createContext({} as IFontSettingsContext);
 const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ children, font, getFvarTable }) => {
   // axes
   const [ settings, setSettings ]: any = useState();
-  const [ initialState, setInitialState ]:any = useState();
+  const [ initialState, setInitialState ]:any = useState({
+    coordinates: {
+      name: { en: 'Neutra' },
+      coordinates: { 'wdth': 30, 'wght' :0 }
+    }
+  });
 
   // set named instance
   const setNamedInstance = useCallback((setts: any) => {

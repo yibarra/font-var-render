@@ -1,5 +1,10 @@
 import { useRef, useEffect, useState } from 'react';
 
+import RenderCanvas from '../helpers';
+
+// render canvas
+const renderCanvas: any = new RenderCanvas();
+
 // use animation frame
 const useRequestAnimation = (callback: any):any => {
   // refs
@@ -12,9 +17,10 @@ const useRequestAnimation = (callback: any):any => {
   // animate
   const animate = (time: number) => {
     if (previousTimeRef.current !== undefined) {
-      const deltaTime = time - previousTimeRef.current;
+      const deltaTime: number = time - previousTimeRef.current;
 
-      callback(deltaTime)
+      renderCanvas.render(deltaTime);
+      callback(deltaTime);
     }
 
     previousTimeRef.current = time;
