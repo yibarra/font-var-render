@@ -55,7 +55,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
 
       <p className="letter--text">{text}</p>
 
-      {type === 2 && active() === true &&
+      {type === 3 && active() === true &&
         <LetterItemAnimation
           letter={letter}
           initialState={initialState}

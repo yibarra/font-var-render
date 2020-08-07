@@ -1,6 +1,7 @@
-import React, { memo, useCallback, useContext, useEffect, useRef, FunctionComponent, Fragment } from 'react';
+import React, { memo, useCallback, useContext, useEffect, useRef, FunctionComponent } from 'react';
 
 import { AnimationContext } from '../../../providers/AnimationProvider';
+import { LoadFontContext } from '../../../providers/LoadFontProvider';
 
 import { ILetterItemAnimation } from './interfaces';
 
@@ -10,10 +11,44 @@ import './letter-item-animation.scss';
 const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, setInstanceValue, initialState }) => {
   // context
   const animationContext = useContext(AnimationContext);
+  const loadFontContext = useContext(LoadFontContext);
+
   const { current } = animationContext;
+  const { font } = loadFontContext;
 
   // element
   const element = useRef(null);
+
+  //
+  const animationCanvas = useCallback((element: any, text: string) => {
+    const { width, height } = element.getBoundingClientRect();
+    const parent: any = element.parentNode.querySelector('.canvas') as HTMLCanvasElement;
+    
+    if (parent) {
+      const ctx = parent.getContext('2d');
+      parent.setAttribute('width', width);
+      parent.setAttribute('height', height);
+
+      if (ctx) {
+        ctx.clearRect(0, 0, width, height);
+        ctx.beginPath();
+
+        ctx.font = "35px Canal Brasil VF";
+        ctx.fillStyle = 'red';
+        ctx.fillText(text, 0, height - 5);
+        const img = document.createElement('img');
+        const data = parent.toDataURL("image/png", 1.0);
+
+        img.setAttribute("src", data);
+
+        img.onload = () => {
+          // var fullQuality = canvas.toDataURL('image/jpeg', 1.0);
+          // add to canvas render main
+          document.body.append(img);
+        };
+      }
+    }
+  }, []);
 
   // animation
   const animation = useCallback((instances: any, element: any) => {
@@ -44,8 +79,9 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
       });
     }
 
+    animationCanvas(element, text);
     setInstanceValue(props, element);
-  }, [ current, setInstanceValue, initialState ]);
+  }, [ current, setInstanceValue, initialState, text, animationCanvas ]);
 
   // use effect
   useEffect(() => {
@@ -56,9 +92,10 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
 
   // render
   return (
-    <Fragment>
-      <p className="letter--text end" ref={element}>{text}</p>
-    </Fragment>
+    <div className="letter-item-animation" ref={element}>
+      <p className="letter--text end">{text}</p>
+      <canvas className="canvas" />
+    </div>
   );
 };
 

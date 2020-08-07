@@ -137,4 +137,34 @@
       }
     }
   }
+
+  &[data-type="3"] {
+    .letter {
+      &--text {
+        display: inline-block;
+        
+        &.end {
+          display: none;
+          color: $black-900;
+
+          &:before {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &[data-active="true"] {
+      .letter {
+        &--text {
+          display: none;
+
+          &.end {
+            
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
 }

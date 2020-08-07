@@ -35,7 +35,7 @@ const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) =>
         text={item === ' ' ? '\u00A0' : item}
         index={i}
         key={i}
-        type={2}
+        type={3}
         onChange={() => {}} />);
     }
 

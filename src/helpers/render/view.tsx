@@ -1,5 +1,3 @@
-import * as PIXI from 'pixi.js';
-
 export default class View {
   // props
   public app: any;
@@ -7,14 +5,7 @@ export default class View {
 
   // constructor
   constructor() {
-    this.app = new PIXI.Application({
-      width: 800,
-      height: 500,
-      backgroundColor:0x999999,
-      resolution: window.devicePixelRatio,
-      autoStart: false,
-      autoDensity: true,
-    });
+    this.app = {};
   }
 
   // load
@@ -29,11 +20,7 @@ export default class View {
       const parent: any = document.body.querySelector('.preview--canvas');
     
       if (parent instanceof Object) {
-        this.canvas = parent.querySelector('canvas');
-  
-        if (!this.canvas) {
-          parent.appendChild(this.app.view);
-        }
+        console.log('yeah parent');
       }
     }
   }
@@ -45,8 +32,7 @@ export default class View {
 
   // render
   renderView (current: number) {
-    this.getParent();
-
-    console.log(current, '--');
+    //this.getParent();
+    console.log(current + ' current');
   }
 }
