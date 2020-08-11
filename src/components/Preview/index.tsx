@@ -50,6 +50,8 @@ const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) =>
       <Col className="preview--content" style={{...textProperties}}>
         {font && textSplit(font, text)}
       </Col>
+
+      <canvas id="preview-canvas" width="1020" height="1080" />
     </div>
   );
 };

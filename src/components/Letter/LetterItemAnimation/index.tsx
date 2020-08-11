@@ -19,10 +19,15 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
   // element
   const element = useRef(null);
 
-  //
-  const animationCanvas = useCallback((element: any, text: string) => {
+  // animation canvas
+  const animationCanvas = useCallback((element: any, text: string, current: number) => {
     const { width, height } = element.getBoundingClientRect();
+
     const parent: any = element.parentNode.querySelector('.canvas') as HTMLCanvasElement;
+    //const container = element.querySelector('.letter-item-animation--container');
+
+    // clear container
+    //if (current === 0 || current > 100) container.innerHTML = '';
     
     if (parent) {
       const ctx = parent.getContext('2d');
@@ -33,19 +38,26 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
         ctx.clearRect(0, 0, width, height);
         ctx.beginPath();
 
-        ctx.font = "35px Canal Brasil VF";
-        ctx.fillStyle = 'red';
-        ctx.fillText(text, 0, height - 5);
-        const img = document.createElement('img');
-        const data = parent.toDataURL("image/png", 1.0);
+        if (current >= 100 || current <= 100) {
+          ctx.font = "35px Canal Brasil VF";
+          ctx.fillStyle = 'red';
+          ctx.fillText(text, 0, height - 5);
 
-        img.setAttribute("src", data);
+          /*
+          const img = document.createElement('img');
+          const data = parent.toDataURL("image/png", 1.0);
 
-        img.onload = () => {
-          // var fullQuality = canvas.toDataURL('image/jpeg', 1.0);
-          // add to canvas render main
-          document.body.append(img);
-        };
+          img.setAttribute('src', data);
+          img.setAttribute('data-index', current.toString());
+
+          img.onload = () => {
+            if (element) {
+              if (container instanceof Object) {
+                container.append(img);
+              }
+            }
+          };*/
+        }
       }
     }
   }, []);
@@ -79,7 +91,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
       });
     }
 
-    animationCanvas(element, text);
+    animationCanvas(element, text, current);
     setInstanceValue(props, element);
   }, [ current, setInstanceValue, initialState, text, animationCanvas ]);
 
@@ -94,7 +106,10 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
   return (
     <div className="letter-item-animation" ref={element}>
       <p className="letter--text end">{text}</p>
+      
       <canvas className="canvas" />
+      <div className="letter-item-animation--container">
+      </div>
     </div>
   );
 };
