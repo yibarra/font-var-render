@@ -1,33 +1,24 @@
 import React, { memo, useCallback, useContext, useEffect, useRef, FunctionComponent } from 'react';
 
 import { AnimationContext } from '../../../providers/AnimationProvider';
-import { LoadFontContext } from '../../../providers/LoadFontProvider';
 
 import { ILetterItemAnimation } from './interfaces';
 
 import './letter-item-animation.scss';
 
 // letter animation
-const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, setInstanceValue, initialState }) => {
+const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, setInstanceValue, initialState, settings }) => {
   // context
   const animationContext = useContext(AnimationContext);
-  const loadFontContext = useContext(LoadFontContext);
-
   const { current } = animationContext;
-  const { font } = loadFontContext;
 
   // element
   const element = useRef(null);
 
   // animation canvas
-  const animationCanvas = useCallback((element: any, text: string, current: number) => {
+  const animationCanvas = useCallback((element: any, text: string, current: number, settings: any) => {
     const { width, height } = element.getBoundingClientRect();
-
     const parent: any = element.parentNode.querySelector('.canvas') as HTMLCanvasElement;
-    //const container = element.querySelector('.letter-item-animation--container');
-
-    // clear container
-    //if (current === 0 || current > 100) container.innerHTML = '';
     
     if (parent) {
       const ctx = parent.getContext('2d');
@@ -38,25 +29,12 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
         ctx.clearRect(0, 0, width, height);
         ctx.beginPath();
 
+        console.log(settings);
+
         if (current >= 100 || current <= 100) {
           ctx.font = "35px Canal Brasil VF";
           ctx.fillStyle = 'red';
           ctx.fillText(text, 0, height - 5);
-
-          /*
-          const img = document.createElement('img');
-          const data = parent.toDataURL("image/png", 1.0);
-
-          img.setAttribute('src', data);
-          img.setAttribute('data-index', current.toString());
-
-          img.onload = () => {
-            if (element) {
-              if (container instanceof Object) {
-                container.append(img);
-              }
-            }
-          };*/
         }
       }
     }
@@ -91,9 +69,9 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
       });
     }
 
-    animationCanvas(element, text, current);
+    animationCanvas(element, text, current, settings);
     setInstanceValue(props, element);
-  }, [ current, setInstanceValue, initialState, text, animationCanvas ]);
+  }, [ current, setInstanceValue, initialState, text, animationCanvas, settings ]);
 
   // use effect
   useEffect(() => {
@@ -108,8 +86,6 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
       <p className="letter--text end">{text}</p>
       
       <canvas className="canvas" />
-      <div className="letter-item-animation--container">
-      </div>
     </div>
   );
 };

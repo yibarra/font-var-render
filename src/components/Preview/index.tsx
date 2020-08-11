@@ -2,6 +2,7 @@ import React, { memo, useContext, useCallback, FunctionComponent } from 'react';
 import { Col } from 'rsuite';
 
 import { LettersContext } from '../../providers/LettersProvider';
+import { FontSettingsContext } from '../../providers/FontSettingsProvider';
 
 import useFont from '../../uses/useFont';
 
@@ -16,6 +17,9 @@ import './preview.scss';
 const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) => {
   // context
   const lettersContext = useContext(LettersContext);
+  const fontSettingsContext = useContext(FontSettingsContext);
+
+  const { settings }:any = fontSettingsContext;
 
   // props context
   const { getFvarTable } = useFont(font);
@@ -36,11 +40,12 @@ const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) =>
         index={i}
         key={i}
         type={3}
+        parentSettings={settings}
         onChange={() => {}} />);
     }
 
     return items;
-  }, [ getFvarTable, letters ]);
+  }, [ getFvarTable, letters, settings ]);
   
   // render
   return (

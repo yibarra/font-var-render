@@ -7,19 +7,6 @@
     }
   }
 
-  &--container {
-    left: 0;
-    position: absolute;
-    top: 0;
-
-    img {
-      background-color: rgba(#fff, 0.3);
-      left: 0;
-      position: absolute;
-      top: 0;
-    }
-  }
-
   .canvas {
     box-sizing: border-box;
     display: inline-block;

@@ -53,6 +53,7 @@
         color: $black-900;
         display: inline-block;
         font-size: inherit;
+        float: left;
         line-height: inherit;
         letter-spacing: inherit;
         padding: 0;
@@ -79,6 +80,10 @@
         position: absolute;
         top: 100%;
         width: auto;
+
+        &--item {
+          float: left;
+        }
 
         .letter {
           &--text {
