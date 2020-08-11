@@ -2,6 +2,7 @@ import React, { memo, useContext, useRef, useState, useEffect } from 'react';
 
 import { FontSettingsContext } from '../../providers/FontSettingsProvider';
 import { LettersContext } from '../../providers/LettersProvider';
+import { TextContext } from '../../providers/TextProvider';
 
 import LetterItemAnimation from './LetterItemAnimation';
 import LetterType from './LetterType';
@@ -13,9 +14,11 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   // context
   const fontSettingsContext = useContext(FontSettingsContext);
   const lettersContext = useContext(LettersContext);
+  const textContext = useContext(TextContext);
 
   const { settings, setInstanceValue, initialState }:any = fontSettingsContext;
   const { updateLetterItem }:any = lettersContext;
+  const { textProperties }:any = textContext;
 
   // element
   const element = useRef(null);
@@ -60,6 +63,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
           letter={letter}
           initialState={initialState}
           text={text}
+          textProperties={textProperties}
           setInstanceValue={setInstanceValue} />}
 
       {type === 2 &&

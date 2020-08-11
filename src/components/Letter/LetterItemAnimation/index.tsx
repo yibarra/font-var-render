@@ -7,7 +7,7 @@ import { ILetterItemAnimation } from './interfaces';
 import './letter-item-animation.scss';
 
 // letter animation
-const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, setInstanceValue, initialState }) => {
+const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, setInstanceValue, initialState, textProperties }) => {
   // context
   const animationContext = useContext(AnimationContext);
   const { current } = animationContext;
@@ -30,13 +30,13 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
         ctx.beginPath();
 
         if (current >= 100 || current <= 100) {
-          ctx.font = "35px Canal Brasil VF";
+          ctx.font = `${textProperties.fontSize}px Canal Brasil VF`;
           ctx.fillStyle = 'red';
           ctx.fillText(text, 0, height - 5);
         }
       }
     }
-  }, []);
+  }, [ textProperties ]);
 
   // animation
   const animation = useCallback((instances: any, element: any) => {
