@@ -12,16 +12,29 @@ export default class View {
 
   canvasDrawing (current: number = 0) {
     const ctx: any = this.canvas?.getContext('2d');
-
+    
     if (ctx instanceof Object) {
+      ctx.clearRect(0, 0, 1020, 1080);
+      ctx.beginPath();
+      
       const letters = document.body.querySelectorAll('.letter-item-animation canvas');
       
       if (letters instanceof Object) {
-        console.log(letters);
+        const { x, y }: any = this.canvas?.getBoundingClientRect();
+
+        letters.forEach((letter: any) => {
+          if (letter instanceof Object) {
+            const img = letter.getBoundingClientRect();
+  
+            console.log(img);
+
+            ctx.drawImage(letter, img.x - x, y - img.y);
+          }
+        });
         //console.log(ctx, current);
       }
 
-      /*const img = document.createElement('img');
+      /*  const img = document.createElement('img');
           const data = parent.toDataURL("image/png", 1.0);
 
           img.setAttribute('src', data);
