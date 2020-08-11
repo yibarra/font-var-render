@@ -9,7 +9,7 @@ import LetterType from './LetterType';
 import './letter.scss';
 
 // letter
-const Letter = ({ items, fvar, index, text, type, onChange, parentSettings }: any) => {
+const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   // context
   const fontSettingsContext = useContext(FontSettingsContext);
   const lettersContext = useContext(LettersContext);
@@ -60,7 +60,6 @@ const Letter = ({ items, fvar, index, text, type, onChange, parentSettings }: an
           letter={letter}
           initialState={initialState}
           text={text}
-          settings={parentSettings}
           setInstanceValue={setInstanceValue} />}
 
       {type === 2 &&

@@ -7,7 +7,7 @@ import { ILetterItemAnimation } from './interfaces';
 import './letter-item-animation.scss';
 
 // letter animation
-const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, setInstanceValue, initialState, settings }) => {
+const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, setInstanceValue, initialState }) => {
   // context
   const animationContext = useContext(AnimationContext);
   const { current } = animationContext;
@@ -16,7 +16,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
   const element = useRef(null);
 
   // animation canvas
-  const animationCanvas = useCallback((element: any, text: string, current: number, settings: any) => {
+  const animationCanvas = useCallback((element: any, text: string, current: number) => {
     const { width, height } = element.getBoundingClientRect();
     const parent: any = element.parentNode.querySelector('.canvas') as HTMLCanvasElement;
     
@@ -28,8 +28,6 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
       if (ctx) {
         ctx.clearRect(0, 0, width, height);
         ctx.beginPath();
-
-        console.log(settings);
 
         if (current >= 100 || current <= 100) {
           ctx.font = "35px Canal Brasil VF";
@@ -69,9 +67,9 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
       });
     }
 
-    animationCanvas(element, text, current, settings);
+    animationCanvas(element, text, current);
     setInstanceValue(props, element);
-  }, [ current, setInstanceValue, initialState, text, animationCanvas, settings ]);
+  }, [ current, setInstanceValue, initialState, text, animationCanvas ]);
 
   // use effect
   useEffect(() => {
