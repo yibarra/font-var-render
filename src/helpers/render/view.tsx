@@ -19,18 +19,19 @@ export default class View {
     
     if (ctx instanceof Object) {
       const letters = document.body.querySelectorAll('.letter-item-animation canvas');
+      const previewContent = document.body.querySelector('.preview--content');
 
       ctx.clearRect(0, 0, 1020, 1080);
       ctx.beginPath();
       
       if (letters instanceof Object) {
-        const { x, y }: any = this.canvas?.getBoundingClientRect();
+        const { x, y }: any = previewContent?.getBoundingClientRect();
 
         letters.forEach((letter: any) => {
           if (letter instanceof Object) {
             const img = letter.getBoundingClientRect();
-
-            ctx.drawImage(letter, img.x - x, y - img.y);
+            
+            ctx.drawImage(letter, img.x - x, img.y - y);
           }
         });
       }
