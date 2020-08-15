@@ -1,4 +1,4 @@
-import React, { createContext, useState, FunctionComponent, memo, useEffect, useCallback } from 'react';
+import React, { createContext, useState, FunctionComponent, memo, useCallback } from 'react';
 
 import useRequestAnimation from '../../uses/useRequestAnimation';
 
@@ -11,21 +11,18 @@ const AnimationContext = createContext({} as IAnimationContext);
 const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: any) => {
   // text
   const [ current, setCurrent ]:any = useState(0);
-  const [ options, setOptions ]:any = useState({ repeat: true });
+  const [ options, setOptions ]:any = useState({ repeat: false });
+
+  // total
+  const total: any = process.env.REACT_APP_FONT_TIME || 0;
 
   // animation
   const animation = (deltaTime: number) => {
-    setCurrent((prev:any) => {
-      const time = (prev) + (deltaTime * 0.05) % 100;
-      const current = parseFloat(time.toString()).toFixed(0);
+    setCurrent(() => {
+      const percent = (deltaTime * 100) / total;
+      const current = parseFloat(percent.toString()).toFixed(0);
 
-      if (!options.repeat) {
-        if (parseInt(current, 10) > 100) {
-          return 100;
-        }
-      }
-
-      return parseInt(current);
+      return parseInt(current, 10);
     });
   };
 
@@ -51,18 +48,6 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
 
     setOptions({...options, ...value});
   }, [ setOptions, options ]);
-
-  // use effect
-  useEffect(() => {
-    if (current >= 100) {
-      if (!options.repeat) {
-        setCurrent(100);
-        onStop();
-      } else {
-        setCurrent(0);
-      }
-    }
-  }, [ play, current, setPlay, onStop, options, setCurrent ]);
 
   // render
   return (

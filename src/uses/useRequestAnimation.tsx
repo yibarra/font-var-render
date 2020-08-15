@@ -8,34 +8,44 @@ const renderCanvas: any = new RenderCanvas();
 // use animation frame
 const useRequestAnimation = (callback: any):any => {
   // refs
-  const requestRef:any = useRef();
+  const requestRef:any = useRef(window.requestAnimationFrame);
   const previousTimeRef:any = useRef();
   
   // state
   const [ play, setPlay ]:any = useState(false);
+
+  let start:any = null;
+  const total: any = process.env.REACT_APP_FONT_TIME || 0;
   
   // animate
-  const animate = (time: number) => {
-    if (previousTimeRef.current !== undefined) {
-      const deltaTime: number = time - previousTimeRef.current;
-
-      renderCanvas.render(deltaTime);
-      callback(deltaTime);
+  const animate = (timestamp: number) => {
+    const ms: number = Date.now() - start;
+    
+    if (ms < total) {
+      callback(ms);
+      renderCanvas.render(ms, true);
+      requestRef.current = requestAnimationFrame(animate);
+    } else {
+      onStop();
     }
 
-    previousTimeRef.current = time;
-    requestRef.current = requestAnimationFrame(animate);
+    previousTimeRef.current = timestamp;
   };
 
   // on play
   const onPlay = () => {
+    start = Date.now();
     requestRef.current = requestAnimationFrame(animate);
+    renderCanvas.render(0, true);
+    
     setPlay(true);
   };
 
   // stop
   const onStop = () => {
     cancelAnimationFrame(requestRef.current);
+    renderCanvas.render(0);
+
     setPlay(false);
   };
   

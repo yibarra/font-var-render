@@ -10,7 +10,7 @@ export default class RenderCanvas extends View {
   }
 
   // render
-  render (current: number) {
-    this.renderView(current);
+  render (current: number, animate: boolean = false) {
+    this.renderView(current, animate);
   }
 }

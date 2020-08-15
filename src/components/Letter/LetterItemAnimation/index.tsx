@@ -16,7 +16,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
   const element = useRef(null);
 
   // animation canvas
-  const animationCanvas = useCallback((element: any, text: string, current: number) => {
+  const animationCanvas = useCallback((element: any, text: string) => {
     const { width, height } = element.getBoundingClientRect();
     const parent: any = element.parentNode.querySelector('.canvas') as HTMLCanvasElement;
     
@@ -29,11 +29,9 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
         ctx.clearRect(0, 0, width, height);
         ctx.beginPath();
 
-        if (current >= 100 || current <= 100) {
-          ctx.font = `${textProperties.fontSize}px Canal Brasil VF`;
-          ctx.fillStyle = 'red';
-          ctx.fillText(text, 0, height - 5);
-        }
+        ctx.font = `${textProperties.fontSize}px Canal Brasil VF`;
+        ctx.fillStyle = 'red';
+        ctx.fillText(text, 0, height - 5);
       }
     }
   }, [ textProperties ]);
@@ -67,7 +65,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
       });
     }
 
-    animationCanvas(element, text, current);
+    animationCanvas(element, text);
     setInstanceValue(props, element);
   }, [ current, setInstanceValue, initialState, text, animationCanvas ]);
 
