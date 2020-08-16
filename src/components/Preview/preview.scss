@@ -62,4 +62,12 @@
       @extend %text;
     }
   }
+
+  canvas {
+    display: none;
+  }
+  
+  video {
+    display: none;
+  }
 }

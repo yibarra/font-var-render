@@ -11,7 +11,6 @@ const AnimationContext = createContext({} as IAnimationContext);
 const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: any) => {
   // text
   const [ current, setCurrent ]:any = useState(0);
-  const [ options, setOptions ]:any = useState({ repeat: false });
 
   // total
   const total: any = process.env.REACT_APP_FONT_TIME || 0;
@@ -20,9 +19,9 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
   const animation = (deltaTime: number) => {
     setCurrent(() => {
       const percent = (deltaTime * 100) / total;
-      const current = parseFloat(percent.toString()).toFixed(0);
+      const current = parseFloat(percent.toString()).toFixed(2);
 
-      return parseInt(current, 10);
+      return parseFloat(current);
     });
   };
 
@@ -42,20 +41,11 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
     }
   }, [ onPlay, onStop, play, setPlay ]);
 
-  // options
-  const onOptions = useCallback((value: any) => {
-    if (value instanceof Object === false) return false;
-
-    setOptions({...options, ...value});
-  }, [ setOptions, options ]);
-
   // render
   return (
     <AnimationContext.Provider value={{
       current,
       setCurrent,
-      onOptions,
-      options,
       play,
       onPlay: onChange,
     }}>

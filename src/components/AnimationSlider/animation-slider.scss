@@ -24,7 +24,7 @@
     display: inline-flex;
     justify-content: flex-start;
     flex-flow: row wrap;
-    width: 70px;
+    width: 120px;
 
     .btn-ui {
       @include font($font-default, 14px, 400, $white-900);
@@ -33,7 +33,7 @@
       border-radius: 0;
       margin: 0 5px 0 0;
       padding: 10px;
-      width: 32px;
+      width: auto;
 
       .rs {
         &-icon {
@@ -73,21 +73,13 @@
           color: $black-900;
         }
       }
-
-      &:last-of-type {
-        margin: 0;
-      }
-    }
-
-    .current {
-      @include box-display;
     }
   }
 
   &--slider {
     @extend %slider;
     padding: 15px !important;
-    width: calc(100% - 70px);
+    width: calc(100% - 120px);
   }
 
   &--title {

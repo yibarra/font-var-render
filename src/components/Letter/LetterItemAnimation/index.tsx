@@ -30,15 +30,19 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
         ctx.beginPath();
 
         ctx.font = `${textProperties.fontSize}px Canal Brasil VF`;
-        ctx.fillStyle = 'red';
-        ctx.fillText(text, 0, height - 5);
+        ctx.fillStyle = 'white';
+        
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, 0, height / 2);
       }
     }
   }, [ textProperties ]);
 
   // animation
   const animation = useCallback((instances: any, element: any) => {
+
     if (instances instanceof Object === false) return false;
+    console.log('intances: ', instances);
 
     const props: any = {};
     const { coordinates }:any = initialState;

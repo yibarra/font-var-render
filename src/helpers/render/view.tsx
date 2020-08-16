@@ -36,7 +36,7 @@ export default class View {
       
       video.src = videoURL;
       video.load();
-      //this.download(videoURL);
+      this.download(videoURL);
     };
 
     this.mediaRecorder.ondataavailable = ({ data }: any) => this.chunks.push(data);
@@ -62,7 +62,6 @@ export default class View {
         letters.forEach((letter: any) => {
           if (letter instanceof Object) {
             const img = letter.getBoundingClientRect();
-            
             ctx.drawImage(letter, img.x - x, img.y - y);
           }
         });
@@ -70,13 +69,14 @@ export default class View {
     }
   }
 
+  // download
   download(url: any) {
     const a = document.createElement('a');
-      a.style.display = 'none';
-      a.href = url;
-      a.download = 'video';
-      document.body.appendChild(a);
-      a.click();
+    a.style.display = 'none';
+    a.href = url;
+    a.download = 'video';
+    document.body.appendChild(a);
+    a.click();
   }
 
   // load
@@ -87,7 +87,6 @@ export default class View {
 
   // on resize
   onResize () {
-    console.log('resize parent view!!!');
     const scale = window.devicePixelRatio; // Change to 1 on retina screens to see blurry canvas.
 
     if (this.canvas instanceof Object) {
@@ -103,13 +102,11 @@ export default class View {
 
   // render
   renderView (current: number, animate: boolean) {
-    console.log(current);
-
     if (!this.canvas) {
       this.canvas = document.body.querySelector('#preview-canvas');
       this.capture(this.canvas);
     }
-
+    
     if (animate === true) {
       if (this.mediaRecorder instanceof Object && this.mediaRecorder.state !== 'recording') {
         console.log('play');
@@ -118,6 +115,7 @@ export default class View {
     } else if (this.mediaRecorder.state !== 'inactive') {
       console.log('stop');
       this.mediaRecorder.stop();
+      this.capture(this.canvas);
     }
 
     this.canvasDrawing();

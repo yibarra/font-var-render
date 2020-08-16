@@ -11,7 +11,7 @@ import './animation-slider.scss';
 const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
   // context
   const animationContext = useContext(AnimationContext);
-  const { current, setCurrent, onOptions, options, onPlay, play } = animationContext;
+  const { current, setCurrent, onPlay, play } = animationContext;
   
   // slider
   const onSlider = (value:number) => {
@@ -31,12 +31,7 @@ const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
           onClick={() => onPlay()}>
           <Icon icon="play" />
           <Icon icon="pause" />
-        </Button>
-
-        <Button
-          className={options.repeat === true ? 'btn-ui active min' : 'btn-ui min'}
-          onClick={() => onOptions({ repeat: !options.repeat })}>
-          <Icon icon="repeat" />
+          <span className="text">Render</span>
         </Button>
       </div>  
 
