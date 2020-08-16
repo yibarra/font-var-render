@@ -19,7 +19,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
   const animationCanvas = useCallback((element: any, text: string) => {
     const { width, height } = element.getBoundingClientRect();
     const parent: any = element.parentNode.querySelector('.canvas') as HTMLCanvasElement;
-    
+
     if (parent) {
       const ctx = parent.getContext('2d');
       parent.setAttribute('width', width);
@@ -40,9 +40,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
 
   // animation
   const animation = useCallback((instances: any, element: any) => {
-
     if (instances instanceof Object === false) return false;
-    console.log('intances: ', instances);
 
     const props: any = {};
     const { coordinates }:any = initialState;

@@ -38,6 +38,7 @@
           &-inner {
             @include font($font-default, 11px, 400, $white-900);
             border-radius: 0;
+            font-variation-settings: normal;
             padding-left: 5px;
             padding-right: 5px;
           }

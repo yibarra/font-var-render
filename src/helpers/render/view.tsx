@@ -21,7 +21,7 @@ export default class View {
   capture (canvas: any) {
     if (canvas instanceof Object === false) return false;
 
-    this.videoStream = this.canvas.captureStream(30);
+    this.videoStream = this.canvas.captureStream(29.97);
     this.mediaRecorder = new MediaRecorder(this.videoStream);
 
     const video:any = document.querySelector('video');
@@ -62,7 +62,7 @@ export default class View {
         letters.forEach((letter: any) => {
           if (letter instanceof Object) {
             const img = letter.getBoundingClientRect();
-            ctx.drawImage(letter, img.x - x, img.y - y);
+            ctx.drawImage(letter, img.x - x, img.y - y, img.width, img.height);
           }
         });
       }

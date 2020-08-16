@@ -1,6 +1,15 @@
 /* -- LETTER ITEM ANIMATION --- */
 
 .letter-item-animation {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  vertical-align: top;
+  
   .letter {
     &--text {
       opacity: 0.3;

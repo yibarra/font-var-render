@@ -22,6 +22,7 @@
   &--content {
     .rs-btn {
       @extend %btn-default;
+      font-variation-settings: normal;
       margin: 2px 4px 2px 0;
     }
   }

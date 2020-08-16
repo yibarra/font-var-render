@@ -24,6 +24,7 @@
     display: inline-flex;
     justify-content: flex-start;
     flex-flow: row wrap;
+    padding: 0;
     width: 120px;
 
     .btn-ui {
@@ -32,36 +33,30 @@
       border: 2px solid $black-900;
       border-radius: 0;
       margin: 0 5px 0 0;
-      padding: 10px;
+      padding: 10px 20px 10px 30px;
       width: auto;
 
-      .rs {
-        &-icon {
-          @include rem('font-size', 10px);
-          line-height: 1em;
-          float: left;
+      .text {
+        font-variation-settings: normal;
+      }
 
-          &-pause {
-            display: none;
-          }
-        }
+      &:before {
+        background-color: $white-900;
+        border-radius: 100%;
+        content: '';
+        height: 4px;
+        left: 20px;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        width: 4px;
       }
 
       &.active {
         background-color: $white-900 !important;
 
-        .rs {
-          &-icon {
-            color: $black-900;
-
-            &-play {
-              display: none;
-            }
-
-            &-pause {
-              display: inline-block;
-            }
-          }
+        &:before {
+          background-color: $red-900;
         }
       }
 
@@ -69,8 +64,8 @@
       &:focus {
         background-color: inherit;
 
-        .rs-icon {
-          color: $black-900;
+        &:before {
+          background-color: $red-900;
         }
       }
     }

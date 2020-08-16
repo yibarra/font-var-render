@@ -24,6 +24,7 @@
       @include font($font-default, 12px, 400, $black-900);
       border: 1px solid $black-900;
       border-radius: 0;
+      font-variation-settings: normal;
       padding: 5px;
       width: 100%;
     }

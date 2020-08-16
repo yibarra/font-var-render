@@ -2,6 +2,8 @@
 @import '../../styles/settings/colors';
 @import '../../styles/settings/fonts';
 
+@import '../../styles/components/animations';
+
 @import '../../styles/tools/mixins';
 
 .letter {
@@ -12,6 +14,7 @@
 
   &--text {
     @include rem('font-size', 20px);
+    color: $black-900;
     font-family: inherit;
     cursor: pointer;;
     line-height: 1em;
@@ -26,6 +29,7 @@
       left: 0;
       opacity: 0;
       position: absolute;
+      transition: all 400ms $base-ease;
       top: 0;
       width: 100%;
       z-index: -1;
@@ -38,8 +42,6 @@
 
     .letter {
       &--text {
-        color: $white-900;
-
         &:before {
           opacity: 1;
         }
@@ -165,8 +167,25 @@
           display: none;
 
           &.end {
-            
             display: inline-block;
+          }
+        }
+
+        &-item {
+          &-animation {
+            position: relative;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .letter {
+        &--text {
+          color: $black-900;
+
+          &:before {
+            display: none;
           }
         }
       }

@@ -22,7 +22,9 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
 
   // element
   const element = useRef(null);
-  const [ letter, setLetter ]:any = useState({});
+  const [ letter, setLetter ]:any = useState({
+    settings: initialState.coordinates
+  });
 
   // active
   const active = () => {

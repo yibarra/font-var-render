@@ -1,5 +1,5 @@
 import React, { memo, FunctionComponent, useContext } from 'react';
-import { Button, Col, Icon, Slider } from 'rsuite';
+import { Button, Col, Slider } from 'rsuite';
 
 import { AnimationContext } from '../../providers/AnimationProvider';
 
@@ -29,8 +29,6 @@ const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
         <Button
           className={play === true ? 'btn-ui active min' : 'btn-ui min'}
           onClick={() => onPlay()}>
-          <Icon icon="play" />
-          <Icon icon="pause" />
           <span className="text">Render</span>
         </Button>
       </div>  
