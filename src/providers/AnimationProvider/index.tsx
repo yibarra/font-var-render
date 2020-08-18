@@ -15,13 +15,17 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
   // total
   const total: any = process.env.REACT_APP_FONT_TIME || 0;
 
+  // ease in back
+  const easeInBack = (t: number, b: number, c: any, d: number) => {
+    return (t === d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
+  }
+
   // animation
   const animation = (deltaTime: number) => {
     setCurrent(() => {
       const percent = (deltaTime * 100) / total;
-      const current = parseFloat(percent.toString()).toFixed(2);
-
-      return parseFloat(current);
+      const current = easeInBack(deltaTime, 0, parseFloat(percent.toString()).toFixed(2), 2000);
+      return current;
     });
   };
 

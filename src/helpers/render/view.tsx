@@ -26,7 +26,7 @@ export default class View {
 
     const video:any = document.querySelector('video');
 
-    this.mediaRecorder.ondataavailable = (e: any) => this.chunks.push(e.data);
+    this.mediaRecorder.ondataavailable = ({ data }: any) => data.size > 0 ? this.chunks.push(data) : null;
 
     this.mediaRecorder.onstop = () => {
       const blob = new Blob(this.chunks, { 'type' : 'video/mp4' });
@@ -35,11 +35,8 @@ export default class View {
       const videoURL: any = URL.createObjectURL(blob);
       
       video.src = videoURL;
-      video.load();
-      this.download(videoURL);
+      video.onloadeddata = () => this.download(videoURL);
     };
-
-    this.mediaRecorder.ondataavailable = ({ data }: any) => this.chunks.push(data);
   }
 
   // canvas drawing

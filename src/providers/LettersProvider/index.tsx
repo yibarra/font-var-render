@@ -42,6 +42,11 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
       setLetters(items);
     }
   }, [ letters, setLetters, getLetter ]);
+
+  // get array words
+  const getCountWords = (str: string) => {
+    return str.trim().split(' ');
+  };
   
   // render
   return (
@@ -50,6 +55,7 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
       setLetters: setLetterItem,
       getLetter,
       updateLetterItem,
+      getCountWords,
     }}>
       {children}
     </LettersContext.Provider>

@@ -22,9 +22,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
 
   // element
   const element = useRef(null);
-  const [ letter, setLetter ]:any = useState({
-    settings: initialState.coordinates
-  });
+  const [ letter, setLetter ]:any = useState({ settings: initialState.coordinates });
 
   // active
   const active = () => {
@@ -43,7 +41,6 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
       const check = items.filter((item:any) => item.index === index);
 
       if (check.length > 0) {
-
         setLetter(check[0]);
       }
     }

@@ -1,0 +1,8 @@
+/* --- WORD --- */
+@import '../../styles/tools/mixins';
+
+.word {
+  @include box-display;
+  position: relative;
+  vertical-align: top;
+}

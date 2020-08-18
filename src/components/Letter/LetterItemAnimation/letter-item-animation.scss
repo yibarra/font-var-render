@@ -26,9 +26,5 @@
     position: absolute;
     top: 0;
     width: 100%;
-  
-    & + .letter-type {
-      display: none !important;
-    }
   }
 }

@@ -5,7 +5,7 @@ import { LettersContext } from '../../providers/LettersProvider';
 
 import useFont from '../../uses/useFont';
 
-import Letter from '../Letter';
+import Word from '../Word';
 
 import { IFontInfo } from '../../providers/FontSettingsProvider/interfaces';
 import { ISelectFinalState } from './interfaces';
@@ -19,28 +19,30 @@ const SelectFinalState: FunctionComponent<ISelectFinalState> = ({ font, text, te
 
   // props context
   const { getFvarTable } = useFont(font);
-  const { letters }:any = lettersContext;
+  const { letters, getCountWords }:any = lettersContext;
 
   // text split
+  // text split
   const textSplit = useCallback((font: IFontInfo, text: string = '') => {
-    const textFull = text;
     const items:any = [];
+    const words: any = getCountWords(text);
 
-    for (let i = 0; i < textFull.length; i++) {
-      const item = textFull[i];
+    for (let i = 0; i < words.length; i++) {
+      const item = words[i];
 
-      items.push(<Letter
-        items={letters}
-        fvar={getFvarTable(font)}
-        text={item === ' ' ? '\u00A0' : item}
+      items.push(<Word
         index={i}
         key={i}
+        font={font}
+        word={item}
+        letters={letters}
+        getFvarTable={getFvarTable}
         type={2}
         onChange={() => {}} />);
     }
 
     return items;
-  }, [ getFvarTable, letters ]);
+  }, [ getFvarTable, letters, getCountWords ]);
   
   // render
   return (
