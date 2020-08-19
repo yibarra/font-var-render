@@ -17,6 +17,7 @@
   vertical-align: top;
 
   &--content {
+    align-content: center;
     align-items: center;
     display: inline-flex;
     justify-content: center;
@@ -24,10 +25,10 @@
     flex-flow: row wrap;
     height: 1080px;
     padding: 0;
-    opacity: 0;
+    //opacity: 0;
     left: 0;
-    position: absolute;
-    pointer-events: none;
+    //: absolute;
+    //pointer-events: none;
     top: 0;
     width: 1920px;
 
@@ -42,6 +43,12 @@
         line-height: inherit;
         letter-spacing: inherit;
       }
+    }
+
+    .separator {
+      display: block;
+      margin: 0;
+      width: 100%;
     }
   }
 

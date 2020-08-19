@@ -10,6 +10,19 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
   // state
   const [ letters, setLetters ]:any = useState([]);
 
+  // get align
+  const getAlign = useCallback((value: string) => {
+    console.log(value);
+    switch (value) {
+      case 'right':
+        return 'flex-end';
+      case 'center':
+        return 'center';
+      default:
+        return 'flex-start';
+    }
+  }, []);
+
   // get element
   const getLetter = useCallback((index: number) => {
     if (letters.length > 0) {
@@ -45,7 +58,12 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
 
   // get array words
   const getCountWords = (str: string) => {
-    return str.trim().split(' ');
+    return str?.trim().split(' ');
+  };
+
+  // get array line break
+  const getLineBreak = (str: string) => {
+    return str?.split(/\r?\n/);
   };
   
   // render
@@ -56,6 +74,8 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
       getLetter,
       updateLetterItem,
       getCountWords,
+      getLineBreak,
+      getAlign,
     }}>
       {children}
     </LettersContext.Provider>

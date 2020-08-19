@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { memo, FunctionComponent } from 'react';
 
 import { IFontInfo } from '../../providers/FontSettingsProvider/interfaces';
 import { IWord } from './interfaces';
@@ -28,6 +28,17 @@ const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, ind
           type={type}
           onChange={onChange} />);
       }
+
+      if (i === (word.length -1)) {
+        items.push(<Letter
+          items={letters}
+          fvar={getFvarTable(font)}
+          text={'\u00A0'}
+          type={1}
+          key={1}
+          index={1}
+          onChange={() => {}} />);
+      }
     }
 
     return items;
@@ -39,4 +50,4 @@ const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, ind
   );
 };
 
-export default Word;
+export default memo(Word);

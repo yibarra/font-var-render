@@ -20,7 +20,7 @@
   .rs-form-control-wrapper {
     width: 100%;
 
-    input {
+    textarea {
       @include font($font-default, 12px, 400, $black-900);
       border: 1px solid $black-900;
       border-radius: 0;

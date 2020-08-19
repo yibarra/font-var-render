@@ -2,13 +2,9 @@ import React, { useContext, FunctionComponent } from 'react';
 
 import { TextContext } from '../../providers/TextProvider';
 
-// import AnimationSlider from '../../components/AnimationSlider';
-// import Preview from '../../components/Preview';
-//import PanelUI from '../../components/PanelUI';
-//import SelectLetters from '../../components/SelectLetters';
-import TextProperties from '../../components/TextProperties';
-
 import { IEditText } from './interfaces';
+
+import TextProperties from '../../components/TextProperties';
 
 import './edit-text.scss';
 

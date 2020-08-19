@@ -59,7 +59,10 @@ export default class View {
         letters.forEach((letter: any) => {
           if (letter instanceof Object) {
             const img = letter.getBoundingClientRect();
-            ctx.drawImage(letter, img.x - x, img.y - y, img.width, img.height);
+
+            if (img.width && img.height) {
+              ctx.drawImage(letter, img.x - x, img.y - y, img.width, img.height);
+            }
           }
         });
       }

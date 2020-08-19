@@ -16,7 +16,7 @@ const InputText: FunctionComponent<IInputText> = ({ label, setText, text }) => {
         <FormControl
           placeholder={label}
           name="text"
-          componentClass="input"
+          componentClass="textarea"
           value={text}
           onChange={value => setText(value.toString().toUpperCase())} />
       </FormGroup>

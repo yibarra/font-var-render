@@ -6,6 +6,8 @@ export interface ILettersContext {
   setLetters: (item: any) => any;
   updateLetterItem: (index: number, value:any) => any;
   getCountWords: (text: string) => any;
+  getLineBreak: (text: string) => any;
+  getAlign: (text: string) => string;
 }
 
 export interface ILettersProvider {
