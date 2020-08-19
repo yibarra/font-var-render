@@ -4,9 +4,6 @@ import { Col } from 'rsuite';
 import { LettersContext } from '../../providers/LettersProvider';
 import useFont from '../../uses/useFont';
 
-import Word from '../Word';
-
-import { IFontInfo } from '../../providers/FontSettingsProvider/interfaces';
 import { ISelectLetters } from './interfaces';
 
 import './select-letters.scss';
@@ -15,7 +12,7 @@ import './select-letters.scss';
 const SelectLetters: FunctionComponent<ISelectLetters> = ({ font, text }) => {
   // context
   const lettersContext = useContext(LettersContext);
-  const { letters, setLetters, getCountWords } = lettersContext;
+  const { letters, setLetters, textWordLetter } = lettersContext;
 
   // uses
   const { getFvarTable } = useFont(font);
@@ -25,28 +22,6 @@ const SelectLetters: FunctionComponent<ISelectLetters> = ({ font, text }) => {
 
   // set letter
   const setLetter = useCallback((letter: number) => setLetters(letter), [ setLetters ]);
-
-  // text split
-  const textSplit = useCallback((font: IFontInfo, text: string = '') => {
-    const items:any = [];
-    const words: any = getCountWords(text);
-
-    for (let i = 0; i < words.length; i++) {
-      const item = words[i];
-
-      items.push(<Word
-        index={i}
-        key={i}
-        font={font}
-        word={item}
-        letters={letters}
-        getFvarTable={getFvarTable}
-        type={1}
-        onChange={setLetter} />);
-    }
-
-    return items;
-  }, [ getFvarTable, letters, getCountWords, setLetter ]);
   
   // render
   return (
@@ -56,7 +31,7 @@ const SelectLetters: FunctionComponent<ISelectLetters> = ({ font, text }) => {
       </Col>
 
       <Col xs={24} className="select-letters--content">
-        {font && textSplit(font, text)}
+        {font && textWordLetter(font, text, getFvarTable, setLetter, 1)}
       </Col>
 
       <Col xs={24}  className="select-letters--count">

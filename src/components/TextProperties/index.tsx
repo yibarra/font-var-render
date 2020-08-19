@@ -38,7 +38,7 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
               label="Font Size"
               property="fontSize"
               onChange={onChange}
-              options={{ defaultValue: 35, step: 1, min: 12, max: 300 }}
+              options={{ defaultValue: 45, step: 1, min: 32, max: 200 }}
               value={fontSize} />
           </Col>
 
@@ -58,7 +58,7 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
               label="Letter Spacing"
               property="letterSpacing"
               onChange={onChange}
-              options={{ defaultValue: 0, step: 1, min: -50, max: 50 }}
+              options={{ defaultValue: 0, step: 1, min: -20, max: 20 }}
               value={letterSpacing} />
           </Col>
         </Col>

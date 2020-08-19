@@ -1,6 +1,9 @@
 import React, { createContext, FunctionComponent, useState, useCallback } from 'react';
 
 import { ILettersContext, ILettersProvider } from './interfaces';
+import { IFontInfo } from '../FontSettingsProvider/interfaces';
+
+import Word from '../../components/Word';
 
 // letter context
 const LettersContext = createContext({} as ILettersContext);
@@ -12,7 +15,6 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
 
   // get align
   const getAlign = useCallback((value: string) => {
-    console.log(value);
     switch (value) {
       case 'right':
         return 'flex-end';
@@ -57,14 +59,43 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
   }, [ letters, setLetters, getLetter ]);
 
   // get array words
-  const getCountWords = (str: string) => {
+  const getCountWords = useCallback((str: string) => {
     return str?.trim().split(' ');
-  };
+  }, []);
 
   // get array line break
-  const getLineBreak = (str: string) => {
+  const getLineBreak = useCallback((str: string) => {
     return str?.split(/\r?\n/);
-  };
+  }, []);
+
+  // text word letter
+  const textWordLetter = useCallback((font: IFontInfo, text: string = '', getFvarTable: any, onChange: any, type: any) => {
+    const items:any = [];
+    const breaks = getLineBreak(text);
+    
+    for (let k = 0; k < breaks.length; k++) {
+      const textLine = breaks[k];
+      const words: any = getCountWords(textLine);
+
+      for (let i = 0; i < words.length; i++) {
+        const item = words[i];
+  
+        items.push(<Word
+          index={i}
+          key={`${k}${i}`}
+          font={font}
+          word={item}
+          letters={letters}
+          getFvarTable={getFvarTable}
+          type={type}
+          onChange={onChange} />);
+      }
+
+      items.push(<div className="separator" key={`separator${k}`}></div>)
+    }
+
+    return items;
+  }, [ letters, getCountWords, getLineBreak ]);
   
   // render
   return (
@@ -76,6 +107,7 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
       getCountWords,
       getLineBreak,
       getAlign,
+      textWordLetter,
     }}>
       {children}
     </LettersContext.Provider>

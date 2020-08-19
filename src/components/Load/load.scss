@@ -1,7 +1,10 @@
 /* --- LOAD --- */
 @import '../../styles/settings/colors';
 
+@import '../../styles/tools/mixins';
+
 .load {
+  @include box-display;
   padding: 0;
   width: 100%;
 }

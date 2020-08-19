@@ -1,13 +1,10 @@
-import React, { memo, useContext, useCallback, FunctionComponent } from 'react';
+import React, { memo, useContext, FunctionComponent } from 'react';
 import { Col, Message } from 'rsuite';
 
 import { LettersContext } from '../../providers/LettersProvider';
 
 import useFont from '../../uses/useFont';
 
-import Word from '../Word';
-
-import { IFontInfo } from '../../providers/FontSettingsProvider/interfaces';
 import { ISelectFinalState } from './interfaces';
 
 import './select-final-state.scss';
@@ -19,30 +16,7 @@ const SelectFinalState: FunctionComponent<ISelectFinalState> = ({ font, text, te
 
   // props context
   const { getFvarTable } = useFont(font);
-  const { letters, getCountWords }:any = lettersContext;
-
-  // text split
-  // text split
-  const textSplit = useCallback((font: IFontInfo, text: string = '') => {
-    const items:any = [];
-    const words: any = getCountWords(text);
-
-    for (let i = 0; i < words.length; i++) {
-      const item = words[i];
-
-      items.push(<Word
-        index={i}
-        key={i}
-        font={font}
-        word={item}
-        letters={letters}
-        getFvarTable={getFvarTable}
-        type={2}
-        onChange={() => {}} />);
-    }
-
-    return items;
-  }, [ getFvarTable, letters, getCountWords ]);
+  const { letters, textWordLetter }:any = lettersContext;
   
   // render
   return (
@@ -52,15 +26,10 @@ const SelectFinalState: FunctionComponent<ISelectFinalState> = ({ font, text, te
 
         {!letters.length && <Message
           type="error"
-          description={
-            <p>
-              Select at least one letter in the previous section.
-            </p>
-          }
-        />}
+          description={<p>Select at least one letter in the previous section.</p>} />}
       </Col>
       <Col className="select-final-state--content" style={{...textProperties}}>
-        {font && textSplit(font, text)}
+        {font && textWordLetter(font, text, getFvarTable, () => {}, 2)}
       </Col>
     </div>
   );

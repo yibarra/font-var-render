@@ -9,13 +9,18 @@
 .drag-drop {
   background-color: transparent;
   height: 100%;
-  left: 0;
+  right: 0;
   margin: 0 !important;
   position: absolute;
   top: 0;
-  width: 100%;
+  width: 70px;
 
   &--container {
+    @include box-display;
+    float: left;
+    position: relative;
+    width: 100%;
+
     &--text {
       @include font($font-default, 14px, 400, rgba($black-900, 0.3));
       text-transform: uppercase;
@@ -23,19 +28,25 @@
   }
 
   .rs-uploader {
+    @include box-display;
+    float: left;
+    position: relative;
+
     &-draggable {
       height: 100%;
     }
 
     &-trigger {
+      @include box-display;
       height: 100%;
+      padding: 0;
+      position: relative;
+      width: 100%;
 
       &-btn {
-        border-width: 2px !important;
-        border-radius: 0 !important;
-        align-content: center;
-        align-items: center;
+        border: none;
         background-color: transparent !important;
+        border-radius: none;
         display: inline-flex !important;
         height: 100%;
         justify-content: center;
@@ -46,5 +57,8 @@
       }
     }
 
+    input {
+      visibility: hidden;
+    }
   }
 }

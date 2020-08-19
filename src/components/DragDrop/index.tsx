@@ -28,7 +28,7 @@ const DragDrop: FunctionComponent<IDragDrop> = ({ onLoad }) => {
         fileListVisible={false}
         onChange={onDrop}>
           <div className="drag-drop--container">
-            <p className="drag-drop--container--text">Click or Drag files to this area to upload</p>
+            <p className="drag-drop--container--text">Area to upload</p>
           </div>
       </Uploader>
     </div>
