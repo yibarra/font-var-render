@@ -1,17 +1,39 @@
-import RecordRTC from 'recordrtc';
 import CanvasRecord from './canvas';
 
 /**
  * View
  */
 export default class View extends CanvasRecord {
+  public chunks: any[];
+  public mediaRecorder: any;
+  public videoStream: any;
+
+  constructor() {
+    super();
+
+    this.chunks = [];
+  }
+
   // capture
   capture (canvas: any) {
-    this.recorder = new RecordRTC(canvas, {
-      type: 'canvas',
-      frameRate: 30,
-      disableLogs: true //false
-    });
+    if (canvas instanceof Object === false) return false;
+
+    this.videoStream = this.canvas.captureStream(30);
+    this.mediaRecorder = new MediaRecorder(this.videoStream);
+
+    const video:any = document.querySelector('video');
+
+    this.mediaRecorder.ondataavailable = ({ data }: any) => data.size > 0 ? this.chunks.push(data) : null;
+
+    this.mediaRecorder.onstop = () => {
+      const blob = new Blob(this.chunks, { 'type' : 'video/mp4; codecs="avc1.4d002a"' });
+      this.chunks = [];
+      
+      const videoURL: any = URL.createObjectURL(blob);
+      
+      video.src = videoURL;
+      video.onloadeddata = () => this.download(videoURL);
+    };
   }
 
   // canvas drawing
@@ -52,11 +74,14 @@ export default class View extends CanvasRecord {
     }
     
     if (animate === true) {
-      if (this.recorder.getState() !== 'recording') {
-        this.recorder.startRecording();
+      if (this.mediaRecorder instanceof Object && this.mediaRecorder.state !== 'recording') {
+        console.log('play');
+        this.mediaRecorder.start();
       }
-    } else if (this.recorder.getState() !== 'inactive') {
-      this.recorder.stopRecording(() => this.generateVideo(this.recorder.getBlob()));
+    } else if (this.mediaRecorder.state !== 'inactive') {
+      console.log('stop');
+      this.mediaRecorder.stop();
+      this.capture(this.canvas);
     }
 
     this.canvasDrawing();
