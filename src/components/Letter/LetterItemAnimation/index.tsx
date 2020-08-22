@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useContext, useEffect, useRef, FunctionComponent } from 'react';
+import BezierEasing from 'bezier-easing';
 
 import { AnimationContext } from '../../../providers/AnimationProvider';
 
@@ -11,6 +12,8 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
   // context
   const animationContext = useContext(AnimationContext);
   const { current } = animationContext;
+
+  const easing = BezierEasing(0, 0, 1, 0.5);
 
   // element
   const element = useRef(null);
@@ -50,7 +53,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
 
       Object.entries(coordinates).forEach(([index, value]:any) => {
         if (index === key) {
-          const diff = Math.abs(end - value);
+          const diff = easing(Math.abs(end - value));
           const inverse = end <= value;
           
           if (inverse === true) {

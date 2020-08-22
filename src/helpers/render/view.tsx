@@ -1,42 +1,17 @@
+import RecordRTC from 'recordrtc';
+import CanvasRecord from './canvas';
+
 /**
  * View
  */
-export default class View {
-  // props
-  public app: any;
-  public canvas: any;
-  public videoStream: any;
-  public mediaRecorder: any;
-  public chunks: any;
-
-  // constructor
-  constructor() {
-    this.app = {};
-
-    this.canvas = document.body.querySelector('#preview-canvas');
-    this.chunks = [];
-  }
-
+export default class View extends CanvasRecord {
   // capture
   capture (canvas: any) {
-    if (canvas instanceof Object === false) return false;
-
-    this.videoStream = this.canvas.captureStream(29.97);
-    this.mediaRecorder = new MediaRecorder(this.videoStream);
-
-    const video:any = document.querySelector('video');
-
-    this.mediaRecorder.ondataavailable = ({ data }: any) => data.size > 0 ? this.chunks.push(data) : null;
-
-    this.mediaRecorder.onstop = () => {
-      const blob = new Blob(this.chunks, { 'type' : 'video/mp4' });
-      this.chunks = [];
-      
-      const videoURL: any = URL.createObjectURL(blob);
-      
-      video.src = videoURL;
-      video.onloadeddata = () => this.download(videoURL);
-    };
+    this.recorder = new RecordRTC(canvas, {
+      type: 'canvas',
+      frameRate: 30,
+      disableLogs: true //false
+    });
   }
 
   // canvas drawing
@@ -69,37 +44,6 @@ export default class View {
     }
   }
 
-  // download
-  download(url: any) {
-    const a = document.createElement('a');
-    a.style.display = 'none';
-    a.href = url;
-    a.download = 'video';
-    document.body.appendChild(a);
-    a.click();
-  }
-
-  // load
-  load () {
-    window.addEventListener('resize', this.onResize);
-    this.onResize();
-  }
-
-  // on resize
-  onResize () {
-    const scale = window.devicePixelRatio; // Change to 1 on retina screens to see blurry canvas.
-
-    if (this.canvas instanceof Object) {
-      this.canvas.width = Math.floor(1920 * scale);
-      this.canvas.height = Math.floor(1080 * scale);
-
-      this.canvas.setAttribute('width', 1920 * window.devicePixelRatio);
-      this.canvas.setAttribute('height', 1080 * window.devicePixelRatio);
-      this.canvas.style.width = 1920 + 'px';
-      this.canvas.style.height = 1080 + 'px';
-    }
-  }
-
   // render
   renderView (current: number, animate: boolean) {
     if (!this.canvas) {
@@ -108,14 +52,11 @@ export default class View {
     }
     
     if (animate === true) {
-      if (this.mediaRecorder instanceof Object && this.mediaRecorder.state !== 'recording') {
-        console.log('play');
-        this.mediaRecorder.start();
+      if (this.recorder.getState() !== 'recording') {
+        this.recorder.startRecording();
       }
-    } else if (this.mediaRecorder.state !== 'inactive') {
-      console.log('stop');
-      this.mediaRecorder.stop();
-      this.capture(this.canvas);
+    } else if (this.recorder.getState() !== 'inactive') {
+      this.recorder.stopRecording(() => this.generateVideo(this.recorder.getBlob()));
     }
 
     this.canvasDrawing();

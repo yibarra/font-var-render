@@ -57,6 +57,14 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
 
       <p className="letter--text">{text}</p>
 
+      {type === 2 &&
+        <LetterType
+          letter={letter}
+          instances={fvar instanceof Object ? fvar.instances : []}
+          onSelect={onSelect}
+          setInstanceValue={setInstanceValue}
+          text={text} />}
+
       {type === 3 &&
         <LetterItemAnimation
           letter={letter}
@@ -65,13 +73,6 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
           textProperties={textProperties}
           setInstanceValue={setInstanceValue} />}
 
-      {type === 2 &&
-        <LetterType
-          letter={letter}
-          instances={fvar instanceof Object ? fvar.instances : []}
-          onSelect={onSelect}
-          setInstanceValue={setInstanceValue}
-          text={text} />}
     </div>
   );
 };
