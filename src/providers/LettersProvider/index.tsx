@@ -43,6 +43,7 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
     if (letter instanceof Object) {
       setLetters(letters.filter((item: any) => item !== letter));
     } else {
+      console.log(letters);
       setLetters([...letters, lett]);
     }
   }, [ letters, setLetters, getLetter ]);
@@ -51,16 +52,13 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
   const updateLetterItem = useCallback((index: number, value: any) => {
     const item = getLetter(index);
 
-    console.log(value, index);
-
     if (item instanceof Object) {
       const items = letters;
-      console.log(item);
       items[items.indexOf(item)] = { ...item, ...value };
 
-      setLetters({
+      setLetters([
         ...items
-      });
+      ]);
     }
   }, [ letters, setLetters, getLetter ]);
 

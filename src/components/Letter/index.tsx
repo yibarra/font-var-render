@@ -19,7 +19,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   const lettersContext = useContext(LettersContext);
   const textContext = useContext(TextContext);
 
-  const { settings, setInstanceValue, initialState }:any = fontSettingsContext;
+  const { setInstanceValue, initialState }:any = fontSettingsContext;
   const { updateLetterItem }:any = lettersContext;
   const { textProperties }:any = textContext;
 
@@ -29,9 +29,9 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   // state
   const [ letter, setLetter ]:any = useState({ 
     index: index,
-    instance: initialState,
-    easing: BezierEasing(.83,.01,.47,.59),
-    settings: initialState,
+    instance: initialState.coordinates,
+    easing: BezierEasing(0.83, 0.01, 0.47, 0.59),
+    settings: initialState.coordinates,
   });
 
   // active
@@ -92,7 +92,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
 
       {type === 2 && active() &&
         <div className="letter--easing">
-          <BezierEditor defaultValue={[0.2, 0.2, 0.8, 0.8]} onChange={onEasing} />
+          <BezierEditor defaultValue={[0.83, 0.01, 0.47, 0.59]} onChange={onEasing} />
         </div>}
 
     </div>

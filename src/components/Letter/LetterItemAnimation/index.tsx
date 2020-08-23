@@ -43,32 +43,27 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = (
   const animation = useCallback((letter: any, element: any) => {
     if (letter instanceof Object === false) return false;
 
-    const currentAni = letter.easing(current * 0.10) * 100;
-    const { settings } = letter;
-    const { coordinates }:any = initialState;
     const props: any = {};
+    const animate = letter.easing(current * 0.10) * 100;
+    const { settings, instance } = letter;
 
-    console.log(settings, coordinates);
+    for (let key in instance.coordinates) {
+      const { coordinates } = instance;
+      const end = coordinates[key];
 
-    /*
-    console.log(coordinates, 'coordinates', instances, 'instances');
-
-    for (let key in instances.coordinates) {
-      const end = instances.coordinates[key];
-
-      Object.entries(coordinates).forEach(([index, value]:any) => {
+      Object.entries(settings.coordinates).forEach(([index, value]:any) => {
         if (index === key) {
           const diff = Math.abs(end - value);
           const inverse = end <= value;
           
           if (inverse === true) {
-            const pos = diff - currentAni;
+            const pos = diff - animate;
             props[key] = (pos <= 0) ? end : pos;
           } else {
-            if (currentAni < value) {
+            if (animate < value) {
               props[key] = value;
             } else {
-              props[key] = currentAni;
+              props[key] = animate;
             }
           }
         }    
@@ -77,8 +72,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = (
 
     animationCanvas(element, text);
     setInstanceValue(props, element);
-    */
-  }, [ current, setInstanceValue, initialState, text, animationCanvas ]);
+  }, [ current, setInstanceValue, text, animationCanvas ]);
 
   // use effect
   useEffect(() => {
