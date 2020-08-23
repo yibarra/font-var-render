@@ -1,4 +1,7 @@
-import React, { memo, useContext, useRef, useState, useEffect } from 'react';
+import React, { memo, useContext, useRef, useState, useEffect, useCallback } from 'react';
+
+import BezierEasing from 'bezier-easing';
+import BezierEditor from 'bezier-easing-editor';
 
 import { FontSettingsContext } from '../../providers/FontSettingsProvider';
 import { LettersContext } from '../../providers/LettersProvider';
@@ -22,7 +25,14 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
 
   // element
   const element = useRef(null);
-  const [ letter, setLetter ]:any = useState({ settings: initialState.coordinates });
+
+  // state
+  const [ letter, setLetter ]:any = useState({ 
+    index: index,
+    instance: initialState,
+    easing: BezierEasing(.83,.01,.47,.59),
+    settings: initialState,
+  });
 
   // active
   const active = () => {
@@ -30,10 +40,18 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   };
 
   // on select
-  const onSelect = (values: any) => {
-    updateLetterItem(index, values);
+  const onSelect = useCallback((values: any) => {
+    updateLetterItem(index, { instance: { ...values }});
     setInstanceValue(values, element.current);
-  };
+  }, [ index, updateLetterItem, setInstanceValue ]);
+
+  // on easing
+  const onEasing = useCallback((values: any[]) => {
+    const lett: any = letter;
+    lett.easing = BezierEasing(values[0], values[1], values[2], values[3]);
+
+    setLetter(lett);
+  }, [ letter ]);
 
   // use effect
   useEffect(() => {
@@ -52,10 +70,9 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
       className="letter"
       ref={element}
       data-active={active()}
-      data-type={type}
-      onClick={() => onChange({ index, settings })}>
+      data-type={type}>
 
-      <p className="letter--text">{text}</p>
+      <p className="letter--text" onClick={() => onChange(letter)}>{text}</p>
 
       {type === 2 &&
         <LetterType
@@ -72,6 +89,11 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
           text={text}
           textProperties={textProperties}
           setInstanceValue={setInstanceValue} />}
+
+      {type === 2 && active() &&
+        <div className="letter--easing">
+          <BezierEditor defaultValue={[0.2, 0.2, 0.8, 0.8]} onChange={onEasing} />
+        </div>}
 
     </div>
   );

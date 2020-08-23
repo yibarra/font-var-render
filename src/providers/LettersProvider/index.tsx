@@ -1,4 +1,4 @@
-import React, { createContext, FunctionComponent, useState, useCallback } from 'react';
+import React, { createContext, FunctionComponent, memo, useState, useCallback } from 'react';
 
 import { ILettersContext, ILettersProvider } from './interfaces';
 import { IFontInfo } from '../FontSettingsProvider/interfaces';
@@ -51,10 +51,16 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
   const updateLetterItem = useCallback((index: number, value: any) => {
     const item = getLetter(index);
 
+    console.log(value, index);
+
     if (item instanceof Object) {
       const items = letters;
-      items[items.indexOf(item)].settings = value;
-      setLetters(items);
+      console.log(item);
+      items[items.indexOf(item)] = { ...item, ...value };
+
+      setLetters({
+        ...items
+      });
     }
   }, [ letters, setLetters, getLetter ]);
 
@@ -115,4 +121,4 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
 };
 
 export { LettersContext, LettersProvider };
-export default LettersProvider;
+export default memo(LettersProvider);

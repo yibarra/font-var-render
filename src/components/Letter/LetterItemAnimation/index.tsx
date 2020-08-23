@@ -1,5 +1,4 @@
 import React, { memo, useCallback, useContext, useEffect, useRef, FunctionComponent } from 'react';
-import BezierEasing from 'bezier-easing';
 
 import { AnimationContext } from '../../../providers/AnimationProvider';
 
@@ -8,12 +7,11 @@ import { ILetterItemAnimation } from './interfaces';
 import './letter-item-animation.scss';
 
 // letter animation
-const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, setInstanceValue, initialState, textProperties }) => {
+const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = (
+  { letter, text, setInstanceValue, initialState, textProperties }) => {
   // context
   const animationContext = useContext(AnimationContext);
   const { current } = animationContext;
-
-  const easing = BezierEasing(0, 0, 1, 0.5);
 
   // element
   const element = useRef(null);
@@ -42,28 +40,35 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
   }, [ textProperties ]);
 
   // animation
-  const animation = useCallback((instances: any, element: any) => {
-    if (instances instanceof Object === false) return false;
+  const animation = useCallback((letter: any, element: any) => {
+    if (letter instanceof Object === false) return false;
 
-    const props: any = {};
+    const currentAni = letter.easing(current * 0.10) * 100;
+    const { settings } = letter;
     const { coordinates }:any = initialState;
+    const props: any = {};
 
-    for (let key in instances) {
-      const end = instances[key];
+    console.log(settings, coordinates);
+
+    /*
+    console.log(coordinates, 'coordinates', instances, 'instances');
+
+    for (let key in instances.coordinates) {
+      const end = instances.coordinates[key];
 
       Object.entries(coordinates).forEach(([index, value]:any) => {
         if (index === key) {
-          const diff = easing(Math.abs(end - value));
+          const diff = Math.abs(end - value);
           const inverse = end <= value;
           
           if (inverse === true) {
-            const pos = diff - current;
+            const pos = diff - currentAni;
             props[key] = (pos <= 0) ? end : pos;
           } else {
-            if (current < value) {
+            if (currentAni < value) {
               props[key] = value;
             } else {
-              props[key] = current;
+              props[key] = currentAni;
             }
           }
         }    
@@ -72,12 +77,13 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
 
     animationCanvas(element, text);
     setInstanceValue(props, element);
+    */
   }, [ current, setInstanceValue, initialState, text, animationCanvas ]);
 
   // use effect
   useEffect(() => {
     if (letter.settings) {
-      animation(letter.settings, element.current);
+      animation(letter, element.current);
     }
   }, [ letter, animation ]);
 

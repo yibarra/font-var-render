@@ -1,6 +1,4 @@
-import React, { useState, useContext } from 'react';
-
-import { LettersContext } from '../../../providers/LettersProvider';
+import React, { memo, useState } from 'react';
 
 import LetterItem from '../LetterItem';
 
@@ -10,10 +8,6 @@ import './letter-type.scss';
 
 // letter type
 const LetterType = ({ letter, setInstanceValue, instances, text, onSelect }: any) => {
-  // letters
-  const lettersContext = useContext(LettersContext);
-  const { updateLetterItem } = lettersContext;
-
   // state
   const [ current, setCurrent ] = useState(null);
 
@@ -24,14 +18,8 @@ const LetterType = ({ letter, setInstanceValue, instances, text, onSelect }: any
     const findInstance = instances.filter(({ coordinates }:any) => coordinates === instance);
     
     if (findInstance.length > 0) {
-      const letterSettings = findInstance[0];
-
-      if (letterSettings.coordinates instanceof Object) {
-        updateLetterItem(letter.index, letterSettings.coordinates);
-      }
-
+      onSelect(findInstance[0]);
       setCurrent(instance);
-      onSelect(instance);
     }
   };
 
@@ -53,4 +41,4 @@ const LetterType = ({ letter, setInstanceValue, instances, text, onSelect }: any
   );
 };
 
-export default LetterType;
+export default memo(LetterType);

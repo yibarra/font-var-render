@@ -22,8 +22,6 @@ export default class CanvasRecord {
     let formData = new FormData();
     formData.append('file', blob);
 
-    console.log(blob, ' video post blob');
-
     axios({
       method: 'POST',
       url: 'https://font-var-render-server.herokuapp.com/upload-video',
@@ -32,7 +30,7 @@ export default class CanvasRecord {
       },
       data: formData
     })
-    .then(e => this.download(window.URL.createObjectURL(blob)))
+    .then(e => console.log(e))//this.download(window.URL.createObjectURL(blob)))
     .catch(e => console.log(e));
   }
 

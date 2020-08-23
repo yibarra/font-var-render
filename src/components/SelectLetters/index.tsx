@@ -21,7 +21,8 @@ const SelectLetters: FunctionComponent<ISelectLetters> = ({ font, text }) => {
   const element = useRef(null);
 
   // set letter
-  const setLetter = useCallback((letter: number) => setLetters(letter), [ setLetters ]);
+  const setLetter = useCallback((letter: number) => {
+    console.log(letter); setLetters(letter); }, [ setLetters ]);
   
   // render
   return (
