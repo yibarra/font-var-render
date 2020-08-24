@@ -44,7 +44,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = (
     if (letter instanceof Object === false) return false;
 
     const props: any = {};
-    const animate = letter.easing(current * 0.10) * 100;
+    const animate = letter.easing(current / 100) * 100;
     const { settings, instance } = letter;
 
     for (let key in instance.coordinates) {
