@@ -59,10 +59,11 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
       const check = items.filter((item:any) => item.index === index);
 
       if (check.length > 0) {
-        setLetter(check[0]);
+        onEasing(check[0].bezier);
+        setTimeout(() => setLetter(check[0]), 500); // fix this
       }
     }
-  }, [ items, index, setLetter ]);
+  }, [ items, index, setLetter, onEasing ]);
 
   // render
   return (
@@ -94,7 +95,6 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
         <div className="letter--easing">
           <BezierEditor defaultValue={[0.83, 0.01, 0.47, 0.59]} onChange={onEasing} />
         </div>}
-
     </div>
   );
 };

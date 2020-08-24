@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { FlexboxGrid } from 'rsuite';
 
-import { FontSettingsContext } from '../../providers/FontSettingsProvider';
 import { LoadFontContext } from '../../providers/LoadFontProvider';
 import { TextContext } from '../../providers/TextProvider';
 import { TemplateContext } from '../../providers/TemplateProvider';
@@ -13,12 +12,10 @@ import Load from '../../components/Load';
 import Preview from '../../components/Preview';
 import SelectLetters from '../../components/SelectLetters';
 import SelectFinalState from '../../components/SelectFinalState';
-import SelectInitState from '../../components/SelectInitState';
 
 // content
 const Content = () => {
   // context
-  const fontSettingsContext = useContext(FontSettingsContext);
   const fontContext = useContext(LoadFontContext);
   const templateContext = useContext(TemplateContext);
   const textContext = useContext(TextContext);
@@ -26,7 +23,6 @@ const Content = () => {
   // font
   const { font, onLoad } = fontContext;
   const { generate } = templateContext;
-  const { initialState, setInitialState } = fontSettingsContext;
   const { text, setText, textProperties } = textContext;
 
   // render
@@ -39,13 +35,6 @@ const Content = () => {
       <FlexboxGrid.Item colspan={9}>
         <InputText label="Type here to text" setText={setText} text={text} />
         <button onClick={() => generate(text)}>GENERATE TEMPLATE</button>
-      </FlexboxGrid.Item>
-
-      <FlexboxGrid.Item colspan={9}>
-        <SelectInitState
-          font={font} 
-          initialState={initialState}
-          setInitialState={setInitialState} />
       </FlexboxGrid.Item>
 
       <FlexboxGrid.Item colspan={9}>
