@@ -14,22 +14,24 @@ const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, ind
     const items:any = [];
 
     for (let i = 0; i < word.length; i++) {
-      const item = word[i];
+      const item: any = word[i];
 
       for (let k = 0; k < item.length; k++) {
         const character = item[k];
+
+        //${value}-${lett-1}-${index.toString()[0]}
 
         items.push(<Letter
           items={letters}
           fvar={getFvarTable(font)}
           text={character}
-          index={`${character}-${i}-${index}`}
-          key={`${character}-${i}-${index}`}
+          index={`${character}-${i}-${k}`}
+          key={`${character}-${i}-${k}`}
           type={type}
           onChange={onChange} />);
       }
 
-      if (i === (word.length -1)) {
+      if (i === (word.length - 1)) {
         items.push(<Letter
           items={letters}
           fvar={getFvarTable(font)}

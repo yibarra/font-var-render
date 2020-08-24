@@ -1,0 +1,50 @@
+@import '../../styles/tools/mixins';
+
+.gallery-templates {
+  @include box-display;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  vertical-align: top;
+  will-change: transform;
+
+  &--item {
+    @include box-display;
+    float: left;
+    position: relative;
+    vertical-align: top;
+    will-change: transform;
+
+    &-element,
+    &-slider--list {
+      @include box-display;
+      float: left;
+      position: relative;
+      vertical-align: top;
+      user-select: none;
+      will-change: transform;
+    }
+    
+    &-element {
+      align-items: center;
+      display: inline-flex;
+      justify-content: center;
+      flex-flow: row wrap;
+      width: 210px;
+
+      img {
+        @include box-display;
+        float: left;
+        position: relative;
+        vertical-align: top;
+        pointer-events: none;
+      }
+    }
+
+    &-slider--list {
+      //cursor: pointer;
+      width: 100%;
+    }
+  }
+}

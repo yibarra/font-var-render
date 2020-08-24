@@ -1,0 +1,28 @@
+/* --- SLIDER --- */
+@import '../../styles/settings/colors';
+@import '../../styles/tools/mixins';
+
+@import '../../styles/components/animations';
+
+.slider {
+  @include box-display;
+  float: left;
+  position: relative;
+  width: 100%;
+  vertical-align: top;
+
+  &--item {
+    display: none;
+    transition: all 450ms $base-ease;
+
+    &[data-current="true"] {
+      display: inline-block;
+    }
+  }
+
+  &--list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
