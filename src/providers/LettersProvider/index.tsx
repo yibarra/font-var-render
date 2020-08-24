@@ -124,6 +124,7 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
   return (
     <LettersContext.Provider value={{
       letters,
+      setAll: setLetters,
       setLetters: setLetterItem,
       getLetter,
       updateLetterItem,
@@ -131,6 +132,7 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
       getLineBreak,
       getAlign,
       textWordLetter,
+      textWordLetterArray,
     }}>
       {children}
     </LettersContext.Provider>

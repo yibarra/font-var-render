@@ -11,6 +11,8 @@ export interface ILettersContext {
   getLineBreak: (text: string) => any;
   getAlign: (text: string) => string;
   textWordLetter: (font: IFontInfo, text: string, getFvarTable: any, onChange: any, type: any) => any;
+  textWordLetterArray: (text: string) => any[];
+  setAll: (value :any) => any;
 }
 
 export interface ILettersProvider {
