@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { FlexboxGrid } from 'rsuite';
+import React, { useContext, useState } from 'react';
+import { FlexboxGrid, Drawer, Button } from 'rsuite';
 
 import { LoadFontContext } from '../../providers/LoadFontProvider';
 import { TextContext } from '../../providers/TextProvider';
@@ -19,6 +19,9 @@ const Content = () => {
   const fontContext = useContext(LoadFontContext);
   const templateContext = useContext(TemplateContext);
   const textContext = useContext(TextContext);
+
+  // state
+  const [ pro, setPro ] = useState(false);
   
   // font
   const { font, onLoad } = fontContext;
@@ -34,18 +37,9 @@ const Content = () => {
 
       <FlexboxGrid.Item colspan={9}>
         <InputText label="Type here to text" setText={setText} text={text} />
+
         <button onClick={() => generate(text)}>GENERATE TEMPLATE</button>
-      </FlexboxGrid.Item>
-
-      <FlexboxGrid.Item colspan={9}>
-        <SelectLetters font={font} text={text} />
-      </FlexboxGrid.Item>
-
-      <FlexboxGrid.Item colspan={9}>
-        <SelectFinalState
-          font={font}
-          text={text}
-          textProperties={textProperties} />
+        <button onClick={() => setPro(true)}>Avanze Controls</button>
       </FlexboxGrid.Item>
 
       <FlexboxGrid.Item colspan={18}>
@@ -56,6 +50,31 @@ const Content = () => {
         <AnimationSlider />
         <Preview font={font} text={text} textProperties={textProperties} />
       </FlexboxGrid.Item>
+
+      <Drawer
+          size={'sm'}
+          placement={'right'}
+          show={pro}
+          onHide={() => setPro(false)}>
+            <Drawer.Header>
+              <Drawer.Title>Drawer Title</Drawer.Title>
+            </Drawer.Header>
+            <Drawer.Body>
+              <SelectLetters font={font} text={text} />
+              <SelectFinalState
+                font={font}
+                text={text}
+                textProperties={textProperties} />
+            </Drawer.Body>
+            <Drawer.Footer>
+              <Button onClick={() => setPro(false)} appearance="primary">
+                Confirm
+              </Button>
+              <Button onClick={() => setPro(false)} appearance="subtle">
+                Cancel
+              </Button>
+          </Drawer.Footer>
+        </Drawer>
     </FlexboxGrid>
   );
 };

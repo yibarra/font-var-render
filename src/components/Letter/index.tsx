@@ -59,11 +59,10 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
       const check = items.filter((item:any) => item.index === index);
 
       if (check.length > 0) {
-        onEasing(check[0].bezier);
-        setTimeout(() => setLetter(check[0]), 500); // fix this
+        setLetter(check[0]);
       }
     }
-  }, [ items, index, setLetter, onEasing ]);
+  }, [ items, index, setLetter ]);
 
   // render
   return (

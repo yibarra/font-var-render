@@ -1,4 +1,5 @@
 import React, { createContext, FunctionComponent, useCallback, useContext } from 'react';
+import BezierEasing from 'bezier-easing';
 
 import { LettersContext } from '../LettersProvider';
 import { LoadFontContext } from '../LoadFontProvider';
@@ -16,10 +17,10 @@ const TemplateProvider: FunctionComponent<ITemplateProvider> = ({ children }) =>
   const templates = [{ 
     word: 1,
     letters: [
-      { type: 'Neutra Curta', limit: 2, bezier: [ 0.83, 0.01, 0.47, 0.59 ] },
-      { type: 'Expressiva Curta', limit: 2, bezier: [ 0.83, 1, 0.40, 1 ] },
-      { type: 'Expressiva', limit: 1, bezier: [ 0.83, 0.01, 0.7, 0.59 ] },
-      { type: 'Expressiva Longa', limit: 1, bezier: [ 0.3, 0.01, 0.7, 0.5 ] }
+      { type: 'Neutra Curta', limit: 2, bezier: '0.83,0.01, 0.47, 0.59' },
+      { type: 'Expressiva Curta', limit: 2, bezier: '0.83,1,0.40,1' },
+      { type: 'Expressiva', limit: 1, bezier: '0.83,0.01,0.7,0.59' },
+      { type: 'Expressiva Longa', limit: 1, bezier: '0.3,0.01,0.7,0.5' }
     ],
     limit: 2,
   }];
@@ -65,10 +66,11 @@ const TemplateProvider: FunctionComponent<ITemplateProvider> = ({ children }) =>
 
     for (let i = 0; i < items.length; i++) {
       const { index, type, bezier } = items[i];
+      const bezierProps: any[] = bezier.split(',');
 
       letters.push({
         index,
-        bezier,
+        easing: BezierEasing(bezierProps[0], bezierProps[1], bezierProps[2], bezierProps[3]),
         instance: getInstances(type),
         settings: { name : { en: 'Neutra' }, coordinates: { wdth: 30, wght: 0 }}
       });
