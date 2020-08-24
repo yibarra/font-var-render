@@ -43,7 +43,6 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
     if (letter instanceof Object) {
       setLetters(letters.filter((item: any) => item !== letter));
     } else {
-      console.log(letters);
       setLetters([...letters, lett]);
     }
   }, [ letters, setLetters, getLetter ]);
@@ -72,8 +71,8 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
     return str?.split(/\r?\n/);
   }, []);
 
-  // text word letter
-  const textWordLetter = useCallback((font: IFontInfo, text: string = '', getFvarTable: any, onChange: any, type: any) => {
+  // text word letters array
+  const textWordLetterArray = useCallback((text: string = '') => {
     const items:any = [];
     const breaks = getLineBreak(text);
     
@@ -82,24 +81,44 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
       const words: any = getCountWords(textLine);
 
       for (let i = 0; i < words.length; i++) {
-        const item = words[i];
-  
-        items.push(<Word
-          index={i}
-          key={`${k}${i}`}
-          font={font}
-          word={item}
-          letters={letters}
-          getFvarTable={getFvarTable}
-          type={type}
-          onChange={onChange} />);
+        items.push({ character: 1, item: words[i], index: `${k}${i}` });
       }
 
-      items.push(<div className="separator" key={`separator${k}`}></div>)
+      items.push({ character: 2, item: {} });
     }
 
     return items;
-  }, [ letters, getCountWords, getLineBreak ]);
+  }, [ getCountWords, getLineBreak ]);
+
+  // text word letter
+  const textWordLetter = useCallback((font: IFontInfo, text: string = '', getFvarTable: any, onChange: any, type: any) => {
+    const elements: any[] = [];
+    const words: any[]  = textWordLetterArray(text);
+
+    for (let i = 0; i < words.length; i++) {
+      const { character, item, index } = words[i];
+
+      switch (character) {
+        case 2:
+          elements.push(<div className="separator" key={`separator${i}`}></div>)
+          break;
+        case 1:
+        default:
+          elements.push(<Word
+            index={i}
+            key={index}
+            font={font}
+            word={item}
+            letters={letters}
+            getFvarTable={getFvarTable}
+            type={type}
+            onChange={onChange} />);
+          break;
+      }
+    }
+
+    return elements;
+  }, [ letters, textWordLetterArray ]);
   
   // render
   return (

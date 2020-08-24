@@ -5,6 +5,7 @@ import LoadFontProvider from '../LoadFontProvider';
 import NotificationProvider from '../NotificationProvider';
 import TextProvider from '../TextProvider';
 import LettersProvider from '../LettersProvider';
+import TemplateProvider from '../TemplateProvider';
 
 // Main Context
 const MainContext = createContext({
@@ -19,10 +20,12 @@ const MainProvider = ({ children }: any) => {
       <LoadFontProvider>
         <AnimationProvider>
           <TextProvider>
-            <LettersProvider>  
-              <MainContext.Provider value={{ active: true, }}>
-                {children}
-              </MainContext.Provider>
+            <LettersProvider>
+              <TemplateProvider>
+                <MainContext.Provider value={{ active: true, }}>
+                  {children}
+                </MainContext.Provider>
+              </TemplateProvider>
             </LettersProvider>
           </TextProvider>
         </AnimationProvider>
