@@ -22,14 +22,10 @@
     justify-content: center;
     float: left;
     flex-flow: row wrap;
-    height: 1080px;
     padding: 0;
-    //opacity: 0;
     left: 0;
-    //: absolute;
-    //pointer-events: none;
     top: 0;
-    width: 1920px;
+    width: 100%;
 
     .letter {
       @include box-display;

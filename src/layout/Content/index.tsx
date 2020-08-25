@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { FlexboxGrid, Drawer, Button } from 'rsuite';
+import { FlexboxGrid, Drawer, Button, ButtonToolbar, Icon } from 'rsuite';
 
 import { LoadFontContext } from '../../providers/LoadFontProvider';
 import { TextContext } from '../../providers/TextProvider';
@@ -110,9 +110,13 @@ const Content = () => {
       </FlexboxGrid.Item>
 
       <FlexboxGrid.Item colspan={9}>
-        <button onClick={() => setPro(true)}>Advanced Properties</button>
+        <ButtonToolbar>
+          <Button onClick={() => setPro(true)}>Advanced Properties</Button>
 
-        <SelectLetters font={font} text={text} />
+          <Button onClick={() => setPro(true)}>
+            <Icon icon="font" />
+          </Button>
+        </ButtonToolbar>
       </FlexboxGrid.Item>
 
       <FlexboxGrid.Item colspan={18}>
