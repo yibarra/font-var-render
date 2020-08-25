@@ -30,8 +30,14 @@ const Content = () => {
         { type: 'Expressiva', limit: 1, bezier: '0.83,0.01,0.7,0.59' },
         { type: 'Expressiva Longa', limit: 1, bezier: '0.3,0.01,0.7,0.5' }
       ],
-      limit: 2,
+      limit: 2
     }],
+    textProperties: {
+      fontSize: 65,
+      lineHeight: 0.9,
+      letterSpacing: 0,
+      textAlign: 'left', 
+    }
   }, { 
     element:<img src="https://via.placeholder.com/150?Text=Example Digital" alt="sip" />,
     template: [{ 
@@ -51,6 +57,12 @@ const Content = () => {
       ],
       limit: 4,
     }],
+    textProperties: {
+      fontSize: 45,
+      lineHeight: 1.5,
+      letterSpacing: 0,
+      textAlign: 'center', 
+    }
   }, { 
     element:<img src="https://via.placeholder.com/150?Text=Canal Brasil" alt="sip" />,
     template: [{ 
@@ -70,6 +82,12 @@ const Content = () => {
       ],
       limit: 4,
     }],
+    textProperties: {
+      fontSize: 57,
+      lineHeight: 1,
+      letterSpacing: 1,
+      textAlign: 'right', 
+    }
   }, { 
     element:<img src="https://via.placeholder.com/150?Text=Example Full" alt="sip" />,
     template: [{ 
@@ -89,10 +107,17 @@ const Content = () => {
       ],
       limit: 4,
     }],
+    textProperties: {
+      fontSize: 35,
+      lineHeight: 1,
+      letterSpacing: 0,
+      textAlign: 'left', 
+    }
   }];
 
   // state
   const [ pro, setPro ] = useState(false);
+  const [ textPro, setTextPro ] = useState(false);
   
   // font
   const { font, onLoad } = fontContext;
@@ -111,16 +136,14 @@ const Content = () => {
 
       <FlexboxGrid.Item colspan={9}>
         <ButtonToolbar>
-          <Button onClick={() => setPro(true)}>Advanced Properties</Button>
-
           <Button onClick={() => setPro(true)}>
+            <Icon icon="gear-circle" />
+          </Button>
+
+          <Button onClick={() => setTextPro(true)}>
             <Icon icon="font" />
           </Button>
         </ButtonToolbar>
-      </FlexboxGrid.Item>
-
-      <FlexboxGrid.Item colspan={18}>
-        <EditText font={font} />
       </FlexboxGrid.Item>
 
       <FlexboxGrid.Item colspan={18}>
@@ -133,7 +156,7 @@ const Content = () => {
       </FlexboxGrid.Item>
 
       <Drawer
-          size={'sm'}
+          size={'xs'}
           placement={'right'}
           show={pro}
           onHide={() => setPro(false)}>
@@ -156,6 +179,27 @@ const Content = () => {
               </Button>
           </Drawer.Footer>
         </Drawer>
+
+      <Drawer
+        size={'xs'}
+        placement={'right'}
+        show={textPro}
+        onHide={() => setTextPro(false)}>
+          <Drawer.Header>
+            <Drawer.Title>Text properties</Drawer.Title>
+          </Drawer.Header>
+          <Drawer.Body>
+            <EditText font={font} />
+          </Drawer.Body>
+          <Drawer.Footer>
+            <Button onClick={() => setTextPro(false)} appearance="primary">
+              Confirm
+            </Button>
+            <Button onClick={() => setTextPro(false)} appearance="subtle">
+              Cancel
+            </Button>
+        </Drawer.Footer>
+      </Drawer>
     </FlexboxGrid>
   );
 };

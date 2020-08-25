@@ -59,6 +59,7 @@ const SliderGallery: FunctionComponent<ISliderGallery> = ({ className, current, 
     if (properties instanceof Object) {
       const { containerWidth } = properties;
       const percentPosition = ((100 * value) / containerWidth) * -1;
+      console.log(percentPosition);
 
       return `${percentPosition}%`;
     }

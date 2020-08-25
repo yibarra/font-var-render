@@ -43,8 +43,12 @@
     }
 
     &-slider--list {
-      //cursor: pointer;
       width: 100%;
+
+      .content {
+        @include box-display;
+        float: left;
+      }
     }
   }
 }

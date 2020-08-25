@@ -1,6 +1,7 @@
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent, useContext, useCallback } from 'react';
 
 import { TemplateContext } from '../../providers/TemplateProvider';
+import { TextContext } from '../../providers/TextProvider';
 
 import SliderGallery from '../Slider/Gallery';
 import SliderBase from '../Slider/Base';
@@ -13,7 +14,16 @@ import './gallery-templates.scss';
 const GalleryTemplates: FunctionComponent<IGalleryTemplates> = ({ current, items, onPrevNext, text }) => {
   // context
   const templateContext = useContext(TemplateContext);
+  const textContext = useContext(TextContext);
+
   const { generate } = templateContext;
+  const { setTextProperties } = textContext;
+
+  // select template
+  const selectTemplate = useCallback((text, template, textProperties) => {
+    setTextProperties(textProperties);
+    generate(text, template);
+  }, [ generate, setTextProperties ]);
   
   // render
   return (
@@ -22,9 +32,12 @@ const GalleryTemplates: FunctionComponent<IGalleryTemplates> = ({ current, items
         className="gallery-templates--item-slider"
         current={current}
         onPrevNext={onPrevNext}
-        width={285}>
-          {items && items.map(({ element, template }: any, key: number) =>
-            <div className="gallery-templates--item-element" key={key} onClick={() => generate(text, template)}>{element}</div>)}
+        width={210}>
+          {items && items.map(({ element, template, textProperties }: any, key: number) =>
+            <div
+              className="gallery-templates--item-element"
+              key={key}
+              onClick={() => selectTemplate(text, template, textProperties)}>{element}</div>)}
       </SliderGallery>
     </div>
   );

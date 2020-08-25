@@ -4,20 +4,26 @@
 
 @import '../../styles/tools/mixins';
 
-.rs-notification {
-  &-description {
-    @include font($font-default, 12px, 400, $black-900);
+.rs {
+  &-container {
+    overflow: hidden;
   }
 
-  &-item {
-    &-content {
-      border-radius: 0;
-      padding: 15px;
+  &-notification {
+    &-description {
+      @include font($font-default, 12px, 400, $black-900);
     }
-  }
-
-  &-title {
-    @include font($font-default, 14px, 700, $black-900);
-    text-transform: uppercase;
+  
+    &-item {
+      &-content {
+        border-radius: 0;
+        padding: 15px;
+      }
+    }
+  
+    &-title {
+      @include font($font-default, 14px, 700, $black-900);
+      text-transform: uppercase;
+    }
   }
 }
