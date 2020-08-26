@@ -5,6 +5,7 @@ import { LoadFontContext } from '../../providers/LoadFontProvider';
 import { TextContext } from '../../providers/TextProvider';
 
 import AnimationSlider from '../../components/AnimationSlider';
+import DragDrop from '../../components/DragDrop';
 import EditText from '../../components/EditText';
 import InputText from '../../components/InputText';
 import GalleryTemplates from '../../components/GalleryTemplates';
@@ -126,10 +127,14 @@ const Content = () => {
   // render
   return (
     <FlexboxGrid justify="center">
-      <FlexboxGrid.Item colspan={18}>
-        <Load font={font} onLoad={onLoad} />
+      <FlexboxGrid.Item colspan={9}>
+        <Load font={font} />
+      </FlexboxGrid.Item>
 
+      <FlexboxGrid.Item colspan={9}>
         <ButtonToolbar>
+          <DragDrop onLoad={onLoad} />
+
           <Button onClick={() => setPro(true)}>
             <Icon icon="gear-circle" />
           </Button>
@@ -145,6 +150,7 @@ const Content = () => {
       </FlexboxGrid.Item>
 
       <FlexboxGrid.Item colspan={9}>
+        <label className="label">Gallery</label>
         <GalleryTemplates items={items} text={text} />
       </FlexboxGrid.Item>
       

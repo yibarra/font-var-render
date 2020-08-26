@@ -26,8 +26,6 @@ const TemplateProvider: FunctionComponent<ITemplateProvider> = ({ children }) =>
   // checked index
   const checkedIndex = useCallback((items: any[], index: string) => {
     const result = items.filter((item: any) => item.index === index);
-
-    console.log(items, 'check');
     return result.length > 0;
   }, []);
 
