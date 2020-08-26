@@ -25,7 +25,7 @@ const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) =>
       </Col>
 
       <canvas id="preview-canvas" width="1920" height="1080" />
-      <video controls />
+      <video />
     </div>
   );
 };

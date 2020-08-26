@@ -128,13 +128,7 @@ const Content = () => {
     <FlexboxGrid justify="center">
       <FlexboxGrid.Item colspan={18}>
         <Load font={font} onLoad={onLoad} />
-      </FlexboxGrid.Item>
 
-      <FlexboxGrid.Item colspan={9}>
-        <InputText label="Type here to text" setText={setText} text={text} />
-      </FlexboxGrid.Item>
-
-      <FlexboxGrid.Item colspan={9}>
         <ButtonToolbar>
           <Button onClick={() => setPro(true)}>
             <Icon icon="gear-circle" />
@@ -146,7 +140,11 @@ const Content = () => {
         </ButtonToolbar>
       </FlexboxGrid.Item>
 
-      <FlexboxGrid.Item colspan={18}>
+      <FlexboxGrid.Item colspan={9}>
+        <InputText label="Type here to text" setText={setText} text={text} />
+      </FlexboxGrid.Item>
+
+      <FlexboxGrid.Item colspan={9}>
         <GalleryTemplates items={items} text={text} />
       </FlexboxGrid.Item>
       

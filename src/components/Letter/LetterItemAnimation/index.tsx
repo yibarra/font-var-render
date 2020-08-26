@@ -43,8 +43,6 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = (
   const animation = useCallback((letter: any, element: any) => {
     if (letter instanceof Object === false) return false;
 
-    console.log(letter);
-
     const props: any = {};
     const animate = letter.easing(current / 100) * 100;
     const { settings, instance } = letter;

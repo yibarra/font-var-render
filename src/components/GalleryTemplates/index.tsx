@@ -32,7 +32,7 @@ const GalleryTemplates: FunctionComponent<IGalleryTemplates> = ({ current, items
         className="gallery-templates--item-slider"
         current={current}
         onPrevNext={onPrevNext}
-        width={210}>
+        width={160}>
           {items && items.map(({ element, template, textProperties }: any, key: number) =>
             <div
               className="gallery-templates--item-element"
