@@ -53,19 +53,18 @@ const SliderGallery: FunctionComponent<ISliderGallery> = ({ className, current, 
   }, [ parentWidth ]);
 
   // scroll move
-  const scrollMove = (value: number) => {
+  const scrollMove = useCallback((value: number) => {
     const properties = parentWidth();
     
     if (properties instanceof Object) {
       const { containerWidth } = properties;
       const percentPosition = ((100 * value) / containerWidth) * -1;
-      console.log(percentPosition);
 
       return `${percentPosition}%`;
     }
 
     return 0;
-  };
+  }, [ parentWidth ]);
 
   // drag
   const drag = useDrag(({ down, movement: [mx], direction: [xDir], distance }) => {

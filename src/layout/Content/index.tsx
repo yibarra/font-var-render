@@ -21,7 +21,7 @@ const Content = () => {
 
   // items
   const items: any[] = [{ 
-    element: <img src="https://via.placeholder.com/150?Text=Example" alt="sip" />,
+    element: <img src="https://via.placeholder.com/150x90.png?Text=Example" alt="sip" />,
     template: [{ 
       word: 1,
       letters: [
@@ -33,13 +33,13 @@ const Content = () => {
       limit: 2
     }],
     textProperties: {
-      fontSize: 65,
+      fontSize: 158,
       lineHeight: 0.9,
-      letterSpacing: 0,
+      letterSpacing: -10,
       textAlign: 'left', 
     }
   }, { 
-    element:<img src="https://via.placeholder.com/150?Text=Example Digital" alt="sip" />,
+    element:<img src="https://via.placeholder.com/150x90.png?Text=Example Digital" alt="sip" />,
     template: [{ 
       word: 1,
       letters: [
@@ -64,7 +64,7 @@ const Content = () => {
       textAlign: 'center', 
     }
   }, { 
-    element:<img src="https://via.placeholder.com/150?Text=Canal Brasil" alt="sip" />,
+    element:<img src="https://via.placeholder.com/150x90.png?Text=Canal Brasil" alt="sip" />,
     template: [{ 
       word: 1,
       letters: [
@@ -89,7 +89,7 @@ const Content = () => {
       textAlign: 'right', 
     }
   }, { 
-    element:<img src="https://via.placeholder.com/150?Text=Example Full" alt="sip" />,
+    element:<img src="https://via.placeholder.com/150x90.png?Text=Example Full" alt="sip" />,
     template: [{ 
       word: 1,
       letters: [
