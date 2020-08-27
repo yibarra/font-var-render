@@ -18,7 +18,6 @@ const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, ind
 
       for (let k = 0; k < item.length; k++) {
         const character = item[k];
-
         //${value}-${lett-1}-${index.toString()[0]}
 
         items.push(<Letter

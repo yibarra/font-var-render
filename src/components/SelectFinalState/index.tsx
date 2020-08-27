@@ -29,7 +29,7 @@ const SelectFinalState: FunctionComponent<ISelectFinalState> = ({ font, text, te
           description={<p>Select at least one letter in the previous section.</p>} />}
       </Col>
       <Col className="select-final-state--content" style={{...textProperties}}>
-        {font && textWordLetter(font, text, getFvarTable, () => {}, 2)}
+        {font && textWordLetter(font, text, getFvarTable, (e: any) => console.log(e), 2)}
       </Col>
     </div>
   );

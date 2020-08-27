@@ -24,14 +24,14 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   const { textProperties }:any = textContext;
 
   // element
-  const element = useRef(null);
+  const element: any = useRef();
 
   // state
   const [ letter, setLetter ]:any = useState({ 
     index: index,
-    instance: initialState.coordinates,
+    instance: initialState,
     easing: BezierEasing(0.83, 0.01, 0.47, 0.59),
-    settings: initialState.coordinates,
+    settings: initialState,
   });
 
   // active
@@ -44,6 +44,11 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
     updateLetterItem(index, { instance: { ...values }});
     setInstanceValue(values, element.current);
   }, [ index, updateLetterItem, setInstanceValue ]);
+
+  // on select settings
+  const onSelectSettings = useCallback((values: any) => {
+    updateLetterItem(index, { settings: { ...values }});
+  }, [ index, updateLetterItem ]);
 
   // on easing
   const onEasing = useCallback((values: any[]) => {
@@ -74,13 +79,21 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
 
       <p className="letter--text" onClick={() => onChange(letter)}>{text}</p>
 
-      {type === 2 &&
-        <LetterType
-          letter={letter}
-          instances={fvar instanceof Object ? fvar.instances : []}
-          onSelect={onSelect}
-          setInstanceValue={setInstanceValue}
-          text={text} />}
+      {type === 2 && <LetterType
+        instances={fvar instanceof Object ? fvar.instances : []}
+        current={letter.settings}
+        onSelect={onSelectSettings}
+        setInstanceValue={setInstanceValue}
+        text={text}
+        key={1} />}
+
+      {type === 2 && <LetterType
+        instances={fvar instanceof Object ? fvar.instances : []}
+        current={letter.instance}
+        onSelect={onSelect}
+        setInstanceValue={setInstanceValue}
+        text={text}
+        key={2} />}
 
       {type === 3 &&
         <LetterItemAnimation

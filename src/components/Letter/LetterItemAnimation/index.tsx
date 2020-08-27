@@ -7,8 +7,7 @@ import { ILetterItemAnimation } from './interfaces';
 import './letter-item-animation.scss';
 
 // letter animation
-const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = (
-  { letter, text, setInstanceValue, initialState, textProperties }) => {
+const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, setInstanceValue, textProperties }) => {
   // context
   const animationContext = useContext(AnimationContext);
   const { current } = animationContext;

@@ -3,5 +3,9 @@
 @import '../../../styles/tools/mixins';
 
 .letter-item {
-  
+  @include box-display;
+  float: left;
+  position: relative;
+  width: 100%;
+  vertical-align: top;
 }

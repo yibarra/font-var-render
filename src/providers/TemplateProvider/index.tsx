@@ -53,14 +53,14 @@ const TemplateProvider: FunctionComponent<ITemplateProvider> = ({ children }) =>
     const letters: any[] = [];
 
     for (let i = 0; i < items.length; i++) {
-      const { index, type, bezier } = items[i];
+      const { init, index, type, bezier } = items[i];
       const bezierProps: any[] = bezier.split(',');
 
       letters.push({
         index,
         easing: BezierEasing(bezierProps[0], bezierProps[1], bezierProps[2], bezierProps[3]),
         instance: getInstances(type),
-        settings: { name : { en: 'Neutra' }, coordinates: { wdth: 30, wght: 0 }}
+        settings: getInstances(init),
       });
     }
 
@@ -88,7 +88,12 @@ const TemplateProvider: FunctionComponent<ITemplateProvider> = ({ children }) =>
           const templateData = template.letters[random];
 
           if (checkedIndex(elements, key) === false && templateData instanceof Object) {
-            elements.push({ value, index: key, type: templateData.type, bezier: template.letters[random].bezier });
+            elements.push({ 
+              value, 
+              index: key, 
+              type: templateData.type,
+              bezier: template.letters[random].bezier,
+              init: template.init });
           }
         }
       }

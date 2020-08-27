@@ -1,18 +1,18 @@
-import React, { useRef, useEffect } from 'react';
+import React, { memo, useRef, useEffect } from 'react';
 
-//import './letter-item.scss';
+import './letter-item.scss';
 
-// leter item
+// letter item
 const LetterItem = ({ instanceFont, setInstanceValue, text, onSelect }: any) => {
   // element
-  const element = useRef(null);
+  const element: any = useRef(null);
 
   // use effect
   useEffect(() => {
     if (element.current) {
       setInstanceValue(instanceFont.coordinates, element.current);
     }
-  }, [ text, instanceFont, setInstanceValue ]);
+  }, [ text, instanceFont, setInstanceValue, element ]);
 
   // render
   return (
@@ -22,4 +22,4 @@ const LetterItem = ({ instanceFont, setInstanceValue, text, onSelect }: any) => 
   );
 };
 
-export default LetterItem;
+export default memo(LetterItem);

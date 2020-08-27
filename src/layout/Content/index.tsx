@@ -23,7 +23,7 @@ const Content = () => {
   // items
   const items: any[] = [{ 
     element: <img src="https://via.placeholder.com/150x90.png?Text=Example" alt="sip" />,
-    template: [{ 
+    template: [{
       word: 1,
       letters: [
         { type: 'Neutra Curta', limit: 2, bezier: '0.83,0.01, 0.47, 0.59' },
@@ -31,7 +31,8 @@ const Content = () => {
         { type: 'Expressiva', limit: 1, bezier: '0.83,0.01,0.7,0.59' },
         { type: 'Expressiva Longa', limit: 1, bezier: '0.3,0.01,0.7,0.5' }
       ],
-      limit: 2
+      limit: 2,
+      init: 'Neutra'
     }],
     textProperties: {
       fontSize: 158,
@@ -49,6 +50,7 @@ const Content = () => {
         { type: 'Expressiva Longa', limit: 1, bezier: '0.3,0.01,0.7,0.5' }
       ],
       limit: 2,
+      init: 'Neutra'
     }, { 
       word: 2,
       letters: [
@@ -57,6 +59,7 @@ const Content = () => {
         { type: 'Expressiva Longa', limit: 2, bezier: '0.3,0.01,0.7,0.5' }
       ],
       limit: 4,
+      init: 'Neutra Longa'
     }],
     textProperties: {
       fontSize: 45,
@@ -74,6 +77,7 @@ const Content = () => {
         { type: 'Expressiva Longa', limit: 1, bezier: '0.3,0.01,0.7,0.5' }
       ],
       limit: 2,
+      init: 'Neutra'
     }, { 
       word: 2,
       letters: [
@@ -82,6 +86,7 @@ const Content = () => {
         { type: 'Expressiva Longa', limit: 2, bezier: '0.3,0.01,0.7,0.5' }
       ],
       limit: 4,
+      init: 'Neutra Longa'
     }],
     textProperties: {
       fontSize: 57,
@@ -99,6 +104,7 @@ const Content = () => {
         { type: 'Expressiva Longa', limit: 1, bezier: '0.3,0.01,0.7,0.5' }
       ],
       limit: 2,
+      init: 'Neutra'
     }, { 
       word: 2,
       letters: [
@@ -107,6 +113,7 @@ const Content = () => {
         { type: 'Expressiva Longa', limit: 2, bezier: '0.3,0.01,0.7,0.5' }
       ],
       limit: 4,
+      init: 'Neutra Longa'
     }],
     textProperties: {
       fontSize: 35,

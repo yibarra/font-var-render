@@ -1,36 +1,32 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useCallback, FunctionComponent } from 'react';
 
 import LetterItem from '../LetterItem';
 
+import { ILetterType } from './interfaces';
+
 import './letter-type.scss';
 
-//interface
-
 // letter type
-const LetterType = ({ letter, setInstanceValue, instances, text, onSelect }: any) => {
-  // state
-  const [ current, setCurrent ] = useState(null);
-
+const LetterType: FunctionComponent<ILetterType> = ({ current, setInstanceValue, instances, text, onSelect }: any) => {
   // on select
-  const selectLetter = (instance: any) => {
+  const selectLetter = useCallback((instance: any) => {
     if (instance instanceof Object === false) return false;
 
     const findInstance = instances.filter(({ coordinates }:any) => coordinates === instance);
     
     if (findInstance.length > 0) {
       onSelect(findInstance[0]);
-      setCurrent(instance);
     }
-  };
+  }, [ onSelect, instances ]);
 
   // render
   return (
     <ul className="letter-type">
       {instances && instances.map((item: any, index: number) => 
         <li className="letter-type--item"
-          data-active={current === item.coordinates}
+          data-active={current.coordinates === item.coordinates}
           key={index}>
-
+          
           <LetterItem
             instanceFont={item}
             setInstanceValue={setInstanceValue}

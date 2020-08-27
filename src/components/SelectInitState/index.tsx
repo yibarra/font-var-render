@@ -37,11 +37,10 @@ const SelectInitState: FunctionComponent<ISelectInitState> = ({ font, initialSta
   return (
     <div className="select-init-state">
       <Col className="select-init-state--title" xs={24}>
-      <p>Select the first state</p>
+        <p>Select the first state</p>
       </Col>
       <Col className="select-init-state--content" xs={24}>
-        {font && 
-          getInstances(font)}
+        {font && getInstances(font)}
       </Col>
     </div>
   );
