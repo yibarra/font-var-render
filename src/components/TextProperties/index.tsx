@@ -31,8 +31,16 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
   return (
     <Form className="text-properties">
       <FormGroup>
-        <Col xs={20}>
-          <Col xs={8}>
+      <Col xs={24} className="text-properties--align">
+          <ButtonGroup>
+            <IconButton icon={<Icon icon="align-left"/>} onClick={() => onAlign('left')} />
+            <IconButton icon={<Icon icon="align-center"/>} onClick={() => onAlign('center')} />
+            <IconButton icon={<Icon icon="align-right"/>} onClick={() => onAlign('right')} />
+          </ButtonGroup>
+        </Col>
+        
+        <Col xs={24}>
+          <Col xs={24}>
             <TextPropertySlider
               icon="font"
               label="Font Size"
@@ -42,7 +50,7 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
               value={fontSize} />
           </Col>
 
-          <Col xs={8}>
+          <Col xs={24}>
             <TextPropertySlider
               icon="text-height"
               label="Line Height"
@@ -52,7 +60,7 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
               value={lineHeight} />
           </Col>
 
-          <Col xs={8}>
+          <Col xs={24}>
             <TextPropertySlider
               icon="text-width"
               label="Letter Spacing"
@@ -61,14 +69,6 @@ const TextProperties: FunctionComponent<ITextProperties> = ({ textProperties, se
               options={{ defaultValue: 0, step: 1, min: -20, max: 20 }}
               value={letterSpacing} />
           </Col>
-        </Col>
-
-        <Col xs={4} className="text-properties--align">
-          <ButtonGroup>
-            <IconButton icon={<Icon icon="align-left"/>} onClick={() => onAlign('left')} />
-            <IconButton icon={<Icon icon="align-center"/>} onClick={() => onAlign('center')} />
-            <IconButton icon={<Icon icon="align-right"/>} onClick={() => onAlign('right')} />
-          </ButtonGroup>
         </Col>
       </FormGroup>
     </Form>

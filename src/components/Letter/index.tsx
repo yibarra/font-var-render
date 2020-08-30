@@ -1,6 +1,4 @@
 import React, { memo, useContext, useRef, useState, useEffect, useCallback } from 'react';
-
-import BezierEasing from 'bezier-easing';
 import BezierEditor from 'bezier-easing-editor';
 
 import { FontSettingsContext } from '../../providers/FontSettingsProvider';
@@ -30,7 +28,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   const [ letter, setLetter ]:any = useState({ 
     index: index,
     instance: initialState,
-    easing: BezierEasing(0.83, 0.01, 0.47, 0.59),
+    easing: [0.83, 0.01, 0.47, 0.59],
     settings: initialState,
   });
 
@@ -49,14 +47,6 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   const onSelectSettings = useCallback((values: any) => {
     updateLetterItem(index, { settings: { ...values }});
   }, [ index, updateLetterItem ]);
-
-  // on easing
-  const onEasing = useCallback((values: any[]) => {
-    const lett: any = letter;
-    lett.easing = BezierEasing(values[0], values[1], values[2], values[3]);
-
-    setLetter(lett);
-  }, [ letter ]);
 
   // use effect
   useEffect(() => {
@@ -105,7 +95,12 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
 
       {type === 2 && active() &&
         <div className="letter--easing">
-          <BezierEditor defaultValue={[0.83, 0.01, 0.47, 0.59]} onChange={onEasing} />
+          <BezierEditor 
+            height={200}
+            curveColor="red"
+            width={330}
+            defaultValue={letter.easing}
+            readOnly />
         </div>}
     </div>
   );

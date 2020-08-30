@@ -1,0 +1,20 @@
+[{
+  "image": "https://via.placeholder.com/150x90.png?Text=Example",
+  "template": [{
+    "word": 1,
+    "letters": [
+      { "type": "Neutra Curta", "limit": 2, "bezier": [0.3,0.1,0.7,0.59] },
+      { "type": "Expressiva Curta", "limit": 2, "bezier": [0.83,1,0.40,1] },
+      { "type": "Expressiva", "limit": 1, "bezier": [0.83,0.01,0.47,0.59] },
+      { "type": "Expressiva Longa", "limit": 1, "bezier": [0.4,0.1,0.1,0.5] }
+    ],
+    "limit": 2,
+    "init": "Expressiva Longa"
+  }],
+  "textProperties": {
+    "fontSize": 158,
+    "lineHeight": 0.9,
+    "letterSpacing": -10,
+    "textAlign": "left" 
+  }
+}]

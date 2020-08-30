@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FlexboxGrid, Drawer, Button, ButtonToolbar, Icon } from 'rsuite';
 
 import { LoadFontContext } from '../../providers/LoadFontProvider';
@@ -16,120 +16,28 @@ import SelectFinalState from '../../components/SelectFinalState';
 
 // content
 const Content = () => {
+  // state
+  const [ items, setItems ]: any = useState([]);
+  const [ pro, setPro ]: any = useState(false);
+  const [ textPro, setTextPro ]: any = useState(false);
+
   // context
   const fontContext = useContext(LoadFontContext);
   const textContext = useContext(TextContext);
-
-  // items
-  const items: any[] = [{ 
-    element: <img src="https://via.placeholder.com/150x90.png?Text=Example" alt="sip" />,
-    template: [{
-      word: 1,
-      letters: [
-        { type: 'Neutra Curta', limit: 2, bezier: '0.83,0.01, 0.47, 0.59' },
-        { type: 'Expressiva Curta', limit: 2, bezier: '0.83,1,0.40,1' },
-        { type: 'Expressiva', limit: 1, bezier: '0.83,0.01,0.7,0.59' },
-        { type: 'Expressiva Longa', limit: 1, bezier: '0.3,0.01,0.7,0.5' }
-      ],
-      limit: 2,
-      init: 'Neutra'
-    }],
-    textProperties: {
-      fontSize: 158,
-      lineHeight: 0.9,
-      letterSpacing: -10,
-      textAlign: 'left', 
-    }
-  }, { 
-    element:<img src="https://via.placeholder.com/150x90.png?Text=Example Digital" alt="sip" />,
-    template: [{ 
-      word: 1,
-      letters: [
-        { type: 'Neutra Curta', limit: 1, bezier: '0.83,0.01, 0.47, 0.59' },
-        { type: 'Expressiva Curta', limit: 1, bezier: '0.83,1,0.40,1' },
-        { type: 'Expressiva Longa', limit: 1, bezier: '0.3,0.01,0.7,0.5' }
-      ],
-      limit: 2,
-      init: 'Neutra'
-    }, { 
-      word: 2,
-      letters: [
-        { type: 'Neutra Curta', limit: 1, bezier: '0.83,0.01, 0.47, 0.59' },
-        { type: 'Expressiva Curta', limit: 2, bezier: '0.83,1,0.40,1' },
-        { type: 'Expressiva Longa', limit: 2, bezier: '0.3,0.01,0.7,0.5' }
-      ],
-      limit: 4,
-      init: 'Neutra Longa'
-    }],
-    textProperties: {
-      fontSize: 45,
-      lineHeight: 1.5,
-      letterSpacing: 0,
-      textAlign: 'center', 
-    }
-  }, { 
-    element:<img src="https://via.placeholder.com/150x90.png?Text=Canal Brasil" alt="sip" />,
-    template: [{ 
-      word: 1,
-      letters: [
-        { type: 'Neutra Curta', limit: 2, bezier: '0.83,0.01, 0.47, 0.59' },
-        { type: 'Expressiva Curta', limit: 2, bezier: '0.83,1,0.40,1' },
-        { type: 'Expressiva Longa', limit: 1, bezier: '0.3,0.01,0.7,0.5' }
-      ],
-      limit: 2,
-      init: 'Neutra'
-    }, { 
-      word: 2,
-      letters: [
-        { type: 'Neutra Curta', limit: 2, bezier: '0.83,0.01, 0.47, 0.59' },
-        { type: 'Expressiva Curta', limit: 2, bezier: '0.83,1,0.40,1' },
-        { type: 'Expressiva Longa', limit: 2, bezier: '0.3,0.01,0.7,0.5' }
-      ],
-      limit: 4,
-      init: 'Neutra Longa'
-    }],
-    textProperties: {
-      fontSize: 57,
-      lineHeight: 1,
-      letterSpacing: 1,
-      textAlign: 'right', 
-    }
-  }, { 
-    element:<img src="https://via.placeholder.com/150x90.png?Text=Example Full" alt="sip" />,
-    template: [{ 
-      word: 1,
-      letters: [
-        { type: 'Neutra Curta', limit: 2, bezier: '0.83,0.01, 0.47, 0.59' },
-        { type: 'Expressiva Curta', limit: 2, bezier: '0.83,1,0.40,1' },
-        { type: 'Expressiva Longa', limit: 1, bezier: '0.3,0.01,0.7,0.5' }
-      ],
-      limit: 2,
-      init: 'Neutra'
-    }, { 
-      word: 2,
-      letters: [
-        { type: 'Neutra Curta', limit: 2, bezier: '0.83,0.01, 0.47, 0.59' },
-        { type: 'Expressiva Curta', limit: 2, bezier: '0.83,1,0.40,1' },
-        { type: 'Expressiva Longa', limit: 2, bezier: '0.3,0.01,0.7,0.5' }
-      ],
-      limit: 4,
-      init: 'Neutra Longa'
-    }],
-    textProperties: {
-      fontSize: 35,
-      lineHeight: 1,
-      letterSpacing: 0,
-      textAlign: 'left', 
-    }
-  }];
-
-  // state
-  const [ pro, setPro ] = useState(false);
-  const [ textPro, setTextPro ] = useState(false);
   
   // font
   const { font, onLoad } = fontContext;
   const { text, setText, textProperties } = textContext;
+
+  useEffect(() => {
+    const load = async () => {
+      fetch(`${process.env.PUBLIC_URL}/template.json`)
+        .then((res) => res.json())
+        .then((data) => setItems(data));
+    };
+
+    load();
+  }, []);
 
   // render
   return (

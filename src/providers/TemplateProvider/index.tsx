@@ -1,5 +1,4 @@
 import React, { createContext, FunctionComponent, useCallback, useContext } from 'react';
-import BezierEasing from 'bezier-easing';
 
 import { LettersContext } from '../LettersProvider';
 import { LoadFontContext } from '../LoadFontProvider';
@@ -54,11 +53,10 @@ const TemplateProvider: FunctionComponent<ITemplateProvider> = ({ children }) =>
 
     for (let i = 0; i < items.length; i++) {
       const { init, index, type, bezier } = items[i];
-      const bezierProps: any[] = bezier.split(',');
 
       letters.push({
         index,
-        easing: BezierEasing(bezierProps[0], bezierProps[1], bezierProps[2], bezierProps[3]),
+        easing: bezier,
         instance: getInstances(type),
         settings: getInstances(init),
       });

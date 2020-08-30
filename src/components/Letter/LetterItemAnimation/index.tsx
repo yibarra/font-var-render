@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useContext, useEffect, useRef, FunctionComponent } from 'react';
+import BezierEasing from 'bezier-easing';
 
 import { AnimationContext } from '../../../providers/AnimationProvider';
 
@@ -29,7 +30,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
         ctx.clearRect(0, 0, width, height);
         ctx.beginPath();
 
-        ctx.font = `${textProperties.fontSize}px Canal Brasil VF`;
+        ctx.font = `${textProperties.fontSize}px Canal Brasil VF`; //var name
         ctx.fillStyle = 'white';
         
         ctx.textBaseline = 'middle';
@@ -43,8 +44,9 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
     if (letter instanceof Object === false) return false;
 
     const props: any = {};
-    const animate = letter.easing(current / 100) * 100;
-    const { settings, instance } = letter;
+    const { settings, instance, easing } = letter;
+    const easingAnimation = BezierEasing(easing[0], easing[1], easing[2], easing[3]);
+    const animate = easingAnimation(current / 100) * 100;
 
     for (let key in instance.coordinates) {
       const { coordinates } = instance;

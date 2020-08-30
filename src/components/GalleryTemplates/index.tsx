@@ -33,11 +33,13 @@ const GalleryTemplates: FunctionComponent<IGalleryTemplates> = ({ current, items
         current={current}
         onPrevNext={onPrevNext}
         width={160}>
-          {items && items.map(({ element, template, textProperties }: any, key: number) =>
+          {items && items.map(({ image, template, textProperties }: any, key: number) =>
             <div
               className="gallery-templates--item-element"
               key={key}
-              onClick={() => selectTemplate(text, template, textProperties)}>{element}</div>)}
+              onClick={() => selectTemplate(text, template, textProperties)}>
+                <img src={image} alt="template" />
+              </div>)}
       </SliderGallery>
     </div>
   );

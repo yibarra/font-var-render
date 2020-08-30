@@ -10,9 +10,9 @@ const TextProvider: FunctionComponent<ITextProvider> = ({ children }) => {
   // text
   const [ text, setText ]:any = useState(process.env.REACT_APP_FONT_TEXT_DEFAULT);
   const [ textProperties, setTextProperties ]:any = useState({
-    fontSize: 35,
+    fontSize: 65,
     lineHeight: 1,
-    letterSpacing: 0,
+    letterSpacing: -10,
     textAlign: 'left', 
   });
 
