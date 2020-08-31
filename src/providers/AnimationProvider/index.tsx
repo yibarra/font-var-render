@@ -17,10 +17,16 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
 
   // animation
   const animation = (deltaTime: number) => {
-    setCurrent(() => {
-      const percent = (deltaTime * 100) / total;
-      return parseFloat(percent.toString()).toFixed(2);
-    });
+    const animation: number = deltaTime * 0.001;
+
+    if (animation >= 1) {
+      const deltaTotal = ((deltaTime - 1) * 100) / (total / 2);
+
+      setCurrent(() => {
+        const percent = deltaTotal;
+        return parseFloat(percent.toString()).toFixed(2);
+      });
+    }
   };
 
   // animation
