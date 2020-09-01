@@ -30,7 +30,7 @@ export default class CanvasRecord {
       },
       data: formData
     })
-    .then(e => console.log(e))//this.download(window.URL.createObjectURL(blob)))
+    .then(e => this.download(window.URL.createObjectURL(blob)))
     .catch(e => console.log(e));
   }
 

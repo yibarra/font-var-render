@@ -10,10 +10,7 @@ const FontSettingsProvider: FunctionComponent<IFontSettingsProvider> = ({ childr
   // axes
   const [ settings, setSettings ]: any = useState();
   const [ initialState, setInitialState ]:any = useState({
-    coordinates: {
-      name: { en: 'Neutra' },
-      coordinates: { 'wdth': 30, 'wght' :0 }
-    }
+    coordinates: { name: { en: 'Neutra' }, coordinates: { 'wdth': 30, 'wght' :0 } }
   });
 
   // set named instance

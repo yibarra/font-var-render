@@ -27,9 +27,9 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
   // state
   const [ letter, setLetter ]:any = useState({ 
     index: index,
-    instance: initialState,
+    instance: initialState.coordinates,
     easing: [0.83, 0.01, 0.47, 0.59],
-    settings: initialState,
+    settings: initialState.coordinates,
   });
 
   // active
@@ -88,7 +88,6 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
       {type === 3 &&
         <LetterItemAnimation
           letter={letter}
-          initialState={initialState}
           text={text}
           textProperties={textProperties}
           setInstanceValue={setInstanceValue} />}

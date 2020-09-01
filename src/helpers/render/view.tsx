@@ -32,7 +32,7 @@ export default class View extends CanvasRecord {
       const videoURL: any = URL.createObjectURL(blob);
       
       video.src = videoURL;
-      video.onloadeddata = () => this.download(videoURL);
+      video.onloadeddata = () => this.generateVideo(blob);
     };
   }
 

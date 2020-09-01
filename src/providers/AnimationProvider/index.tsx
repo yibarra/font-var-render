@@ -12,22 +12,22 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
   // text
   const [ current, setCurrent ]:any = useState(0);
 
-  // total
-  const total: any = process.env.REACT_APP_FONT_TIME || 0;
-
   // animation
   const animation = (deltaTime: number) => {
     const animation: number = deltaTime * 0.001;
 
     if (animation >= 1) {
-      const deltaTotal = ((deltaTime - 1) * 100) / (total / 2);
-
       setCurrent(() => {
-        const percent = deltaTotal;
+        const percent = ((deltaTime - 1000) / 1000) * 100;
+
+        if (percent > 100) {
+          return 100;
+        }
+
         return parseFloat(percent.toString()).toFixed(2);
       });
     }
-  };
+};
 
   // animation
   const requestAnimation = useRequestAnimation(animation);

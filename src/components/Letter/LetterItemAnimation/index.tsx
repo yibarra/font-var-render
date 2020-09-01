@@ -43,11 +43,31 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
   const animation = useCallback((letter: any, element: any) => {
     if (letter instanceof Object === false) return false;
 
-    const props: any = {};
+    let props: any = {};
     const { settings, instance, easing } = letter;
-    const easingAnimation = BezierEasing(easing[0], easing[1], easing[2], easing[3]);
-    const animate = easingAnimation(current / 100) * 100;
 
+    if (settings !== instance) {
+      //const easingAnimation = BezierEasing(.99,0,.99,0);
+      const animate: any = current;
+
+      Object.entries(instance).forEach(([ indexTo, toValue ]:any) => {
+        console.log(toValue, '------');
+
+        Object.entries(settings).forEach(([ index, value ]:any) => {
+          const diff = Math.abs(toValue - value);
+          console.log(value, 'xxxxxx');
+        });
+      });
+
+      console.log(settings, instance, current);
+    } else {
+      props = settings;
+    }
+    
+    
+    
+
+    /*
     for (let key in instance.coordinates) {
       const { coordinates } = instance;
       const end = coordinates[key];
@@ -59,8 +79,10 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
           
           if (inverse === true) {
             const pos = diff - animate;
+            console.log('inverse', pos);
             props[key] = (pos <= 0) ? end : pos;
           } else {
+            console.log('reverso');
             if (animate < value) {
               props[key] = value;
             } else {
@@ -69,10 +91,10 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
           }
         }    
       });
-    }
+    }*/
 
     animationCanvas(element, text);
-    setInstanceValue(props, element);
+    //setInstanceValue(props, element);
   }, [ current, setInstanceValue, text, animationCanvas ]);
 
   // use effect
