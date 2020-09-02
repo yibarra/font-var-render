@@ -13,7 +13,8 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
    text,
    setInstanceValue,
    textProperties,
-   active
+   active,
+   initialState,
   }) => {
   // context
   const animationContext = useContext(AnimationContext);
@@ -68,7 +69,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
   
             if (diff > 0) {
               if (toValue === 0) {
-                const val: any = parseInt((diff - current).toString(), 10);
+                const val: any = Number(parseFloat((diff - current).toString()).toFixed(2));
                 
                 if (val > toValue) {
                   props[indexTo] = val;
@@ -76,7 +77,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
                   props[indexTo] = toValue;
                 }
               } else {
-                const val: any = parseInt((value - animate).toString(), 10);
+                const val: any = Number(parseFloat((value - animate).toString()).toFixed(2));
   
                 if (val > toValue) {
                   props[indexTo] = val;
@@ -91,7 +92,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
             if (value === toValue) {
               props[indexTo] = toValue;
             } else {
-              const pos = parseInt(((toValue * current) / 100).toString(), 10);
+              const pos = Number(parseFloat(((toValue * current) / 100).toString()).toFixed(2));
               props[indexTo] = (pos > toValue) ?  toValue : pos;
             }
           }
@@ -100,14 +101,12 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
         props = settings.coordinates;
       }
     } else {
-      props = settings.coordinates;
-      console.log(props, text, '--------');
+      props = initialState.coordinates;
     }
-
 
     animationCanvas(element, text);
     setInstanceValue(props, element);
-  }, [ current, active, setInstanceValue, text, animationCanvas ]);
+  }, [ active, animationCanvas, current, initialState, setInstanceValue, text ]);
 
   // use effect
   useEffect(() => {
