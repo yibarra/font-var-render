@@ -18,7 +18,7 @@ export default class View extends CanvasRecord {
   capture (canvas: any) {
     if (canvas instanceof Object === false) return false;
 
-    this.videoStream = this.canvas.captureStream(30);
+    this.videoStream = this.canvas.captureStream(29,97);
     this.mediaRecorder = new MediaRecorder(this.videoStream);
 
     const video:any = document.querySelector('video');

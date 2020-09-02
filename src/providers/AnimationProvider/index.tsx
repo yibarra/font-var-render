@@ -16,7 +16,7 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
   const animation = (deltaTime: number) => {
     const animation: number = deltaTime * 0.001;
 
-    if (animation >= 1) {
+    if (animation >= (1 / 100)) {
       setCurrent(() => {
         const percent = ((deltaTime - 1000) / 1000) * 100;
 
