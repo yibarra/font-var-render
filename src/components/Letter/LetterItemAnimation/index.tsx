@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useContext, useEffect, useRef, FunctionComponent } from 'react';
-import BezierEasing from 'bezier-easing';
+//import BezierEasing from 'bezier-easing';
 
 import { AnimationContext } from '../../../providers/AnimationProvider';
 
@@ -44,57 +44,55 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
     if (letter instanceof Object === false) return false;
 
     let props: any = {};
-    const { settings, instance, easing } = letter;
+    const { settings, instance } = letter;
 
     if (settings !== instance) {
-      //const easingAnimation = BezierEasing(.99,0,.99,0);
+      //const easingAnimation = BezierEasing(easing[0], easing[1], easing[2], easing[3]);
       const animate: any = current;
 
-      Object.entries(instance).forEach(([ indexTo, toValue ]:any) => {
-        console.log(toValue, '------');
-
-        Object.entries(settings).forEach(([ index, value ]:any) => {
+      Object.entries(instance.coordinates).forEach(([ indexTo, toValue ]:any) => {
+        const value = settings.coordinates[indexTo];
+        const reverse = toValue < value;
+        
+        if (reverse === true) {
           const diff = Math.abs(toValue - value);
-          console.log(value, 'xxxxxx');
-        });
-      });
 
-      console.log(settings, instance, current);
+          if (diff > 0) {
+            if (toValue === 0) {
+              const val = (diff - current);
+              
+              if (val > toValue) {
+                props[indexTo] = val;
+              } else {
+                props[indexTo] = toValue;
+              }
+            } else {
+              const val = (value - animate);
+
+              if (val > toValue) {
+                props[indexTo] = val;
+              } else {
+                props[indexTo] = toValue;
+              }
+            }
+          } else {
+            props[indexTo] = toValue;
+          }
+        } else {
+          if (value === toValue) {
+            props[indexTo] = toValue;
+          } else {
+            const pos = ((toValue * current) / 100);
+            props[indexTo] = (pos > toValue) ?  toValue : pos;
+          }
+        }
+      });
     } else {
       props = settings;
     }
-    
-    
-    
-
-    /*
-    for (let key in instance.coordinates) {
-      const { coordinates } = instance;
-      const end = coordinates[key];
-
-      Object.entries(settings.coordinates).forEach(([index, value]:any) => {
-        if (index === key) {
-          const diff = Math.abs(end - value);
-          const inverse = end <= value;
-          
-          if (inverse === true) {
-            const pos = diff - animate;
-            console.log('inverse', pos);
-            props[key] = (pos <= 0) ? end : pos;
-          } else {
-            console.log('reverso');
-            if (animate < value) {
-              props[key] = value;
-            } else {
-              props[key] = animate;
-            }
-          }
-        }    
-      });
-    }*/
 
     animationCanvas(element, text);
-    //setInstanceValue(props, element);
+    setInstanceValue(props, element);
   }, [ current, setInstanceValue, text, animationCanvas ]);
 
   // use effect
