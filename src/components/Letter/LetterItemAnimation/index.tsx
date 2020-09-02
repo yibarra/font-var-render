@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useContext, useEffect, useRef, FunctionComponent } from 'react';
-//import BezierEasing from 'bezier-easing';
+import BezierEasing from 'bezier-easing';
 
 import { AnimationContext } from '../../../providers/AnimationProvider';
 
@@ -8,7 +8,13 @@ import { ILetterItemAnimation } from './interfaces';
 import './letter-item-animation.scss';
 
 // letter animation
-const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, text, setInstanceValue, textProperties }) => {
+const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
+   letter,
+   text,
+   setInstanceValue,
+   textProperties,
+   active
+  }) => {
   // context
   const animationContext = useContext(AnimationContext);
   const { current } = animationContext;
@@ -19,22 +25,23 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
   // animation canvas
   const animationCanvas = useCallback((element: any, text: string) => {
     const { width, height } = element.getBoundingClientRect();
+    const padding: number = 10;
     const parent: any = element.parentNode.querySelector('.canvas') as HTMLCanvasElement;
 
     if (parent) {
       const ctx = parent.getContext('2d');
-      parent.setAttribute('width', width);
-      parent.setAttribute('height', height);
+      parent.setAttribute('width', width + padding);
+      parent.setAttribute('height', height + padding);
 
       if (ctx) {
-        ctx.clearRect(0, 0, width, height);
+        ctx.clearRect(0, 0, width + padding, height + padding);
         ctx.beginPath();
 
         ctx.font = `${textProperties.fontSize}px Canal Brasil VF`; //var name
         ctx.fillStyle = 'white';
         
-        ctx.textBaseline = 'middle';
-        ctx.fillText(text, 0, height / 2);
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(text, 0, height);
       }
     }
   }, [ textProperties ]);
@@ -45,55 +52,62 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({ letter, 
 
     let props: any = {};
     const { settings, instance } = letter;
+    const easing = [0.56,0.3,0.82,0.52];
 
-    if (settings !== instance) {
-      //const easingAnimation = BezierEasing(easing[0], easing[1], easing[2], easing[3]);
-      const animate: any = current;
-
-      Object.entries(instance.coordinates).forEach(([ indexTo, toValue ]:any) => {
-        const value = settings.coordinates[indexTo];
-        const reverse = toValue < value;
-        
-        if (reverse === true) {
-          const diff = Math.abs(toValue - value);
-
-          if (diff > 0) {
-            if (toValue === 0) {
-              const val = (diff - current);
-              
-              if (val > toValue) {
-                props[indexTo] = val;
+    if (active === true) {
+      if (settings !== instance) {
+        const easingAnimation = BezierEasing(easing[0], easing[1], easing[2], easing[3]);
+        const animate: any = easingAnimation(current / 100) * 100;
+  
+        Object.entries(instance.coordinates).forEach(([ indexTo, toValue ]:any) => {
+          const value = settings.coordinates[indexTo];
+          const reverse = toValue < value;
+          
+          if (reverse === true) {
+            const diff = Math.abs(toValue - value);
+  
+            if (diff > 0) {
+              if (toValue === 0) {
+                const val: any = parseInt((diff - current).toString(), 10);
+                
+                if (val > toValue) {
+                  props[indexTo] = val;
+                } else {
+                  props[indexTo] = toValue;
+                }
               } else {
-                props[indexTo] = toValue;
+                const val: any = parseInt((value - animate).toString(), 10);
+  
+                if (val > toValue) {
+                  props[indexTo] = val;
+                } else {
+                  props[indexTo] = toValue;
+                }
               }
             } else {
-              const val = (value - animate);
-
-              if (val > toValue) {
-                props[indexTo] = val;
-              } else {
-                props[indexTo] = toValue;
-              }
+              props[indexTo] = toValue;
             }
           } else {
-            props[indexTo] = toValue;
+            if (value === toValue) {
+              props[indexTo] = toValue;
+            } else {
+              const pos = parseInt(((toValue * current) / 100).toString(), 10);
+              props[indexTo] = (pos > toValue) ?  toValue : pos;
+            }
           }
-        } else {
-          if (value === toValue) {
-            props[indexTo] = toValue;
-          } else {
-            const pos = ((toValue * current) / 100);
-            props[indexTo] = (pos > toValue) ?  toValue : pos;
-          }
-        }
-      });
+        });
+      } else {
+        props = settings.coordinates;
+      }
     } else {
-      props = settings;
+      props = settings.coordinates;
+      console.log(props, text, '--------');
     }
+
 
     animationCanvas(element, text);
     setInstanceValue(props, element);
-  }, [ current, setInstanceValue, text, animationCanvas ]);
+  }, [ current, active, setInstanceValue, text, animationCanvas ]);
 
   // use effect
   useEffect(() => {

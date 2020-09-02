@@ -31,6 +31,7 @@ const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
           onClick={() => onPlay()}>
           <span className="text">Render</span>
         </Button>
+        <Button className="btn btn-reset" onClick={() => setCurrent(0)}></Button>
       </div>  
 
       <div className="animation-slider--slider">

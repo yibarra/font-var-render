@@ -38,6 +38,7 @@ export default class View extends CanvasRecord {
 
   // canvas drawing
   canvasDrawing () {
+    const margin: number = 256;
     const scale = window.devicePixelRatio;
     const ctx: any = this.canvas?.getContext('2d');
 
@@ -58,7 +59,7 @@ export default class View extends CanvasRecord {
             const img = letter.getBoundingClientRect();
 
             if (img.width && img.height) {
-              ctx.drawImage(letter, img.x - x, img.y - (y - (540 / 2)), img.width, img.height);
+              ctx.drawImage(letter, (margin + img.x) - x, img.y - (y - (540 / 2)), img.width, img.height);
             }
           }
         });

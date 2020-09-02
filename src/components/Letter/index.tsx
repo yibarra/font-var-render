@@ -85,9 +85,10 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
         text={text}
         key={2} />}
 
-      {type === 3 &&
+      {type === 3 && active() &&
         <LetterItemAnimation
           letter={letter}
+          active={active()}
           text={text}
           textProperties={textProperties}
           setInstanceValue={setInstanceValue} />}

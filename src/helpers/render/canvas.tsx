@@ -22,15 +22,17 @@ export default class CanvasRecord {
     let formData = new FormData();
     formData.append('file', blob);
 
+    const url = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : process.env.REACT_APP_URL_SERVER;
+
     axios({
       method: 'POST',
-      url: 'https://font-var-render-server.herokuapp.com/upload-video',
+      url: `${url}/upload-video`,
       headers: {
         'Content-Type': 'multipart/form-data'
       },
       data: formData
     })
-    .then(e => this.download(window.URL.createObjectURL(blob)))
+    .then(e => this.download(`${url}/output`))
     .catch(e => console.log(e));
   }
 
@@ -42,6 +44,10 @@ export default class CanvasRecord {
     a.download = 'video';
     document.body.appendChild(a);
     a.click();
+    
+    document.body.removeChild(a);
+    const btn = document.querySelector('.btn-reset') as HTMLButtonElement;
+    btn.click();
   }
 
   // generate video
