@@ -32,18 +32,18 @@
   }],
   "words": "titulo titulo",
   "textProperties": {
-    "fontSize": 230,
+    "fontSize": 254,
     "lineHeight": 0.9,
     "letterSpacing": -10,
     "textAlign": "left" 
   }
 }, {
-  "image": "/images/templates/template-line-2.png",
+  "image": "/images/templates/template-line-3.png",
   "templates": [{
-    "word": 2,
+    "word": 3,
     "letters": []
   }],
-  "words": "titulo titulo",
+  "words": "titulo titulo titulo",
   "textProperties": {
     "fontSize": 230,
     "lineHeight": 0.9,
@@ -51,15 +51,15 @@
     "textAlign": "left" 
   }
 }, {
-  "image": "/images/templates/template-line-2.png",
+  "image": "/images/templates/template-line-4.png",
   "templates": [{
-    "word": 2,
+    "word": 4,
     "letters": []
   }],
-  "words": "titulo titulo",
+  "words": "titulo titulo titulo titulo",
   "textProperties": {
-    "fontSize": 230,
-    "lineHeight": 0.9,
+    "fontSize": 162,
+    "lineHeight": 1,
     "letterSpacing": -10,
     "textAlign": "left" 
   }
