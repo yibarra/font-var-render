@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/font-var-render/static/css/main.f8ab8f78.chunk.css",
-    "main.js": "/font-var-render/static/js/main.4da07cce.chunk.js",
-    "main.js.map": "/font-var-render/static/js/main.4da07cce.chunk.js.map",
+    "main.js": "/font-var-render/static/js/main.9ec6fb07.chunk.js",
+    "main.js.map": "/font-var-render/static/js/main.9ec6fb07.chunk.js.map",
     "runtime-main.js": "/font-var-render/static/js/runtime-main.f08522ac.js",
     "runtime-main.js.map": "/font-var-render/static/js/runtime-main.f08522ac.js.map",
     "static/css/2.fd3fe366.chunk.css": "/font-var-render/static/css/2.fd3fe366.chunk.css",
     "static/js/2.fb26750b.chunk.js": "/font-var-render/static/js/2.fb26750b.chunk.js",
     "static/js/2.fb26750b.chunk.js.map": "/font-var-render/static/js/2.fb26750b.chunk.js.map",
     "index.html": "/font-var-render/index.html",
-    "precache-manifest.13c2d03e5b4b855a0d55f92270f4840e.js": "/font-var-render/precache-manifest.13c2d03e5b4b855a0d55f92270f4840e.js",
+    "precache-manifest.dae1c408c225b4089b0c31bfeb5f85c2.js": "/font-var-render/precache-manifest.dae1c408c225b4089b0c31bfeb5f85c2.js",
     "service-worker.js": "/font-var-render/service-worker.js",
     "static/css/2.fd3fe366.chunk.css.map": "/font-var-render/static/css/2.fd3fe366.chunk.css.map",
     "static/css/main.f8ab8f78.chunk.css.map": "/font-var-render/static/css/main.f8ab8f78.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.fd3fe366.chunk.css",
     "static/js/2.fb26750b.chunk.js",
     "static/css/main.f8ab8f78.chunk.css",
-    "static/js/main.4da07cce.chunk.js"
+    "static/js/main.9ec6fb07.chunk.js"
   ]
 }

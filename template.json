@@ -1,6 +1,9 @@
 [{
   "image": "/images/templates/template-line-1.png",
-  "templates": [],
+  "templates": [{
+    "word": 1,
+    "letters": []
+  }],
   "words": "titulo",
   "textProperties": {
     "fontSize": 254,
@@ -10,7 +13,10 @@
   }
 }, {
   "image": "/images/templates/template-line-1-reduce.png",
-  "templates": [],
+  "templates": [{
+    "word": 1,
+    "letters": []
+  }],
   "words": "titulo",
   "textProperties": {
     "fontSize": 158,
@@ -20,8 +26,37 @@
   }
 }, {
   "image": "/images/templates/template-line-2.png",
-  "templates": [],
-  "words": "titulo\ntitulo",
+  "templates": [{
+    "word": 2,
+    "letters": []
+  }],
+  "words": "titulo titulo",
+  "textProperties": {
+    "fontSize": 230,
+    "lineHeight": 0.9,
+    "letterSpacing": -10,
+    "textAlign": "left" 
+  }
+}, {
+  "image": "/images/templates/template-line-2.png",
+  "templates": [{
+    "word": 2,
+    "letters": []
+  }],
+  "words": "titulo titulo",
+  "textProperties": {
+    "fontSize": 230,
+    "lineHeight": 0.9,
+    "letterSpacing": -10,
+    "textAlign": "left" 
+  }
+}, {
+  "image": "/images/templates/template-line-2.png",
+  "templates": [{
+    "word": 2,
+    "letters": []
+  }],
+  "words": "titulo titulo",
   "textProperties": {
     "fontSize": 230,
     "lineHeight": 0.9,
