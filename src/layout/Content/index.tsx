@@ -27,7 +27,7 @@ const Content = () => {
   
   // font
   const { font, onLoad } = fontContext;
-  const { text, setText, textProperties } = textContext;
+  const { text, setText, textProperties, setTextProperties } = textContext;
 
   useEffect(() => {
     const load = async () => {
@@ -66,10 +66,14 @@ const Content = () => {
 
       <FlexboxGrid.Item colspan={9}>
         <label className="label">Gallery</label>
-        <GalleryTemplates items={items} text={text} />
+        <GalleryTemplates
+          items={items}
+          text={text}
+          setText={setText}
+          setTextProperties={setTextProperties} />
       </FlexboxGrid.Item>
       
-      <FlexboxGrid.Item colspan={18}>
+      <FlexboxGrid.Item colspan={18} className="preview-container">
         <AnimationSlider />
         <Preview font={font} text={text} textProperties={textProperties} />
       </FlexboxGrid.Item>

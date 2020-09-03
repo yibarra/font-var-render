@@ -27,3 +27,12 @@
     }
   }
 }
+
+.preview {
+  &-container {
+    align-items: center;
+    display: inline-flex !important;
+    justify-content: center;
+    flex-flow: column;
+  }
+}

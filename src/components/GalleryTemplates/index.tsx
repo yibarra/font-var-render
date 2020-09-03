@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useContext, useCallback } from 'react';
 
 import { TemplateContext } from '../../providers/TemplateProvider';
-import { TextContext } from '../../providers/TextProvider';
 
 import SliderGallery from '../Slider/Gallery';
 import SliderBase from '../Slider/Base';
@@ -11,19 +10,17 @@ import { IGalleryTemplates } from './interfaces';
 import './gallery-templates.scss';
 
 // gallery templates
-const GalleryTemplates: FunctionComponent<IGalleryTemplates> = ({ current, items, onPrevNext, text }) => {
+const GalleryTemplates: FunctionComponent<IGalleryTemplates> = ({ current, items, onPrevNext, text, setText, setTextProperties }) => {
   // context
   const templateContext = useContext(TemplateContext);
-  const textContext = useContext(TextContext);
-
   const { generate } = templateContext;
-  const { setTextProperties } = textContext;
 
   // select template
-  const selectTemplate = useCallback((text, template, textProperties) => {
+  const selectTemplate = useCallback((text, template, textProperties, words) => {
     setTextProperties(textProperties);
+    setText(words);
     generate(text, template);
-  }, [ generate, setTextProperties ]);
+  }, [ generate, setTextProperties, setText ]);
   
   // render
   return (
@@ -32,13 +29,13 @@ const GalleryTemplates: FunctionComponent<IGalleryTemplates> = ({ current, items
         className="gallery-templates--item-slider"
         current={current}
         onPrevNext={onPrevNext}
-        width={160}>
-          {items && items.map(({ image, template, textProperties }: any, key: number) =>
+        width={170}>
+          {items && items.map(({ image, template, textProperties, words }: any, key: number) =>
             <div
               className="gallery-templates--item-element"
               key={key}
-              onClick={() => selectTemplate(text, template, textProperties)}>
-                <img src={image} alt="template" />
+              onClick={() => selectTemplate(text, template, textProperties, words)}>
+                <img src={process.env.PUBLIC_URL + image} alt="template" />
               </div>)}
       </SliderGallery>
     </div>

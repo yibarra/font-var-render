@@ -13,7 +13,7 @@
   pointer-events: none;
   padding: 0;
   position: relative;
-  width: 100%;
+  width: calc(1980px - (190px * 2));
   vertical-align: top;
 
   &--content {
