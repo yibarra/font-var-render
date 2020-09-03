@@ -18,7 +18,7 @@ const GalleryTemplates: FunctionComponent<IGalleryTemplates> = ({ current, items
   // select template
   const selectTemplate = useCallback((text, template, textProperties, words) => {
     setTextProperties(textProperties);
-    setText(words);
+    setText(words.toUpperCase());
     generate(text, template);
   }, [ generate, setTextProperties, setText ]);
   

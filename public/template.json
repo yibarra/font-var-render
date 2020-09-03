@@ -1,18 +1,64 @@
 [{
-  "image": "https://via.placeholder.com/150x90.png?Text=Example",
-  "template": [{
+  "image": "/images/templates/template-line-1.png",
+  "templates": [{
     "word": 1,
-    "letters": [
-      { "type": "Neutra Curta", "limit": 2, "bezier": [0.3,0.1,0.7,0.59] },
-      { "type": "Expressiva Curta", "limit": 2, "bezier": [0.83,1,0.40,1] },
-      { "type": "Expressiva", "limit": 1, "bezier": [0.83,0.01,0.47,0.59] },
-      { "type": "Expressiva Longa", "limit": 1, "bezier": [0.4,0.1,0.1,0.5] }
-    ],
-    "limit": 2,
-    "init": "Expressiva Longa"
+    "letters": []
   }],
+  "words": "titulo",
+  "textProperties": {
+    "fontSize": 254,
+    "lineHeight": 1.1,
+    "letterSpacing": -10,
+    "textAlign": "left" 
+  }
+}, {
+  "image": "/images/templates/template-line-1-reduce.png",
+  "templates": [{
+    "word": 1,
+    "letters": []
+  }],
+  "words": "titulo",
   "textProperties": {
     "fontSize": 158,
+    "lineHeight": 0.9,
+    "letterSpacing": -10,
+    "textAlign": "left" 
+  }
+}, {
+  "image": "/images/templates/template-line-2.png",
+  "templates": [{
+    "word": 2,
+    "letters": []
+  }],
+  "words": "titulo titulo",
+  "textProperties": {
+    "fontSize": 230,
+    "lineHeight": 0.9,
+    "letterSpacing": -10,
+    "textAlign": "left" 
+  }
+}, {
+  "image": "/images/templates/template-line-2.png",
+  "templates": [{
+    "word": 2,
+    "letters": []
+  }],
+  "words": "titulo titulo",
+  "textProperties": {
+    "fontSize": 230,
+    "lineHeight": 0.9,
+    "letterSpacing": -10,
+    "textAlign": "left" 
+  }
+}, {
+  "image": "/images/templates/template-line-2.png",
+  "templates": [{
+    "word": 2,
+    "letters": []
+  }],
+  "words": "titulo titulo",
+  "textProperties": {
+    "fontSize": 230,
     "lineHeight": 0.9,
     "letterSpacing": -10,
     "textAlign": "left" 

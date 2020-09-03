@@ -11,6 +11,7 @@ import './word.scss';
 const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, index, type, onChange }) => {
   // active
   const getItem = useCallback((items, index) => {
+    console.log(items, index);
     return Array.isArray(items) && (items && items.filter((item:any) => item.index === index).length > 0);
   }, []);
 
@@ -18,26 +19,24 @@ const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, ind
   const getWord = useCallback((font: IFontInfo, word: string = '') => {
     const items:any = [];
 
-    for (let i = 0; i < word.length; i++) {
-      const item: any = word[i];
+    for (let k = 0; k < word.length; k++) {
+      const character: any = word[k];
+      const value: any = `${character}-${index}-${k}`;
+      const active: any = getItem(letters, value);
 
-      for (let k = 0; k < item.length; k++) {
-        const character: any = item[k];
-        const index: string = `${character}-${i}-${k}`;
-        const active: any = getItem(letters, index);
+      console.log(value, '---')
 
-        items.push(<Letter
-          active={active}
-          items={letters}
-          fvar={getFvarTable(font)}
-          text={character}
-          index={index}
-          key={index}
-          type={type}
-          onChange={onChange} />);
-      }
+      items.push(<Letter
+        active={active}
+        items={letters}
+        fvar={getFvarTable(font)}
+        text={character}
+        index={value}
+        key={value}
+        type={type}
+        onChange={onChange} />);
 
-      if (i === (word.length - 1)) {
+      if (k === (word.length - 1)) {
         items.push(<Letter
           items={letters}
           fvar={getFvarTable(font)}
@@ -50,7 +49,7 @@ const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, ind
     }
 
     return items;
-  }, [ getItem, letters, getFvarTable, onChange, type ]);
+  }, [ getItem, index, letters, getFvarTable, onChange, type ]);
 
   // render
   return (

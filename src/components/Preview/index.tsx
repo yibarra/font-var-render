@@ -10,11 +10,10 @@ import './preview.scss';
 
 // preview
 const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) => {
+  const { getFvarTable } = useFont(font);
+
   // context
   const lettersContext = useContext(LettersContext);
-
-  // props context
-  const { getFvarTable } = useFont(font);
   const { textWordLetter, getAlign }:any = lettersContext;
   
   // render
