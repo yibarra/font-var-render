@@ -24,8 +24,6 @@ const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, ind
       const value: any = `${character}-${index}-${k}`;
       const active: any = getItem(letters, value);
 
-      console.log(value, '---')
-
       items.push(<Letter
         active={active}
         items={letters}

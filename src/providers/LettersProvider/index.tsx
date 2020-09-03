@@ -113,6 +113,8 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
             getFvarTable={getFvarTable}
             type={type}
             onChange={onChange} />);
+          
+          elements.push(<div className="separator" key={`separator${i}`}></div>);
           break;
       }
     }

@@ -23,7 +23,7 @@
     justify-content: center;
     float: left;
     flex-flow: row wrap;
-    height: 540px;
+    height: calc(1080px - (110px * 2));
     padding: 0;
     left: 0;
     top: 0;

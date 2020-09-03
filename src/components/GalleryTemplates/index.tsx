@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext, useCallback } from 'react';
+import React, { FunctionComponent, useContext, useCallback, useEffect } from 'react';
 
 import { TemplateContext } from '../../providers/TemplateProvider';
 
@@ -21,6 +21,14 @@ const GalleryTemplates: FunctionComponent<IGalleryTemplates> = ({ current, items
     setText(words.toUpperCase());
     generate(text, template);
   }, [ generate, setTextProperties, setText ]);
+
+  // use effect
+  useEffect(() => {
+    if (items.length > 0) {
+      const { text, template, textProperties, words } = items[0];
+      selectTemplate(text, template, textProperties, words);
+    }
+  }, [ items, selectTemplate ]);
   
   // render
   return (

@@ -1,5 +1,5 @@
 import React, { memo, FunctionComponent, useContext } from 'react';
-import { Button, Col, Slider } from 'rsuite';
+import { Button, Col, Icon, IconButton, Slider  } from 'rsuite';
 
 import { AnimationContext } from '../../providers/AnimationProvider';
 
@@ -31,7 +31,9 @@ const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
           onClick={() => onPlay()}>
           <span className="text">Render</span>
         </Button>
-        <Button className="btn btn-reset" onClick={() => setCurrent(0)}></Button>
+        <Button className="btn btn-reset" onClick={() => setCurrent(0)} style={{display: 'none'}}>
+          <IconButton icon={<Icon icon="eraser" />} />
+        </Button>
       </div>  
 
       <div className="animation-slider--slider">
