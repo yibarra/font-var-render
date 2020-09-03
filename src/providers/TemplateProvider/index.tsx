@@ -67,6 +67,8 @@ const TemplateProvider: FunctionComponent<ITemplateProvider> = ({ children }) =>
 
   // generate
   const generate = useCallback((text: string, templates: any[]) => {
+    if (templates instanceof Object === false || templates.length === 0) return false;
+    
     const elements: any[] = [];
     const words = textWordLetterArray(text).filter((item: any) => item.character === 1);
 

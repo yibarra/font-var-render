@@ -11,7 +11,7 @@ import LetterType from './LetterType';
 import './letter.scss';
 
 // letter
-const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
+const Letter = ({ active, items, fvar, index, text, type, onChange }: any) => {
   // context
   const fontSettingsContext = useContext(FontSettingsContext);
   const lettersContext = useContext(LettersContext);
@@ -31,11 +31,6 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
     easing: [0.83, 0.01, 0.47, 0.59],
     settings: initialState.coordinates,
   });
-
-  // active
-  const active = () => {
-    return Array.isArray(items) && (items && items.filter((item:any) => item === letter).length > 0);
-  };
 
   // on select
   const onSelect = useCallback((values: any) => {
@@ -64,7 +59,7 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
     <div
       className="letter"
       ref={element}
-      data-active={active()}
+      data-active={active}
       data-type={type}>
 
       <p className="letter--text" onClick={() => onChange(letter)}>{text}</p>
@@ -89,12 +84,12 @@ const Letter = ({ items, fvar, index, text, type, onChange }: any) => {
         <LetterItemAnimation
           initialState={initialState}
           letter={letter}
-          active={active()}
+          active={active}
           text={text}
           textProperties={textProperties}
           setInstanceValue={setInstanceValue} />}
 
-      {type === 2 && active() &&
+      {type === 2 && active === true &&
         <div className="letter--easing">
           <BezierEditor 
             height={200}

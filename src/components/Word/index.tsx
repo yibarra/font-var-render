@@ -1,4 +1,4 @@
-import React, { memo, FunctionComponent } from 'react';
+import React, { memo, FunctionComponent, useCallback } from 'react';
 
 import { IFontInfo } from '../../providers/FontSettingsProvider/interfaces';
 import { IWord } from './interfaces';
@@ -9,23 +9,30 @@ import './word.scss';
 
 // word
 const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, index, type, onChange }) => {
+  // active
+  const getItem = useCallback((items, index) => {
+    return Array.isArray(items) && (items && items.filter((item:any) => item.index === index).length > 0);
+  }, []);
+
   // text split
-  const getWord = (font: IFontInfo, word: string = '') => {
+  const getWord = useCallback((font: IFontInfo, word: string = '') => {
     const items:any = [];
 
     for (let i = 0; i < word.length; i++) {
       const item: any = word[i];
 
       for (let k = 0; k < item.length; k++) {
-        const character = item[k];
-        //${value}-${lett-1}-${index.toString()[0]}
+        const character: any = item[k];
+        const index: string = `${character}-${i}-${k}`;
+        const active: any = getItem(letters, index);
 
         items.push(<Letter
+          active={active}
           items={letters}
           fvar={getFvarTable(font)}
           text={character}
-          index={`${character}-${i}-${k}`}
-          key={`${character}-${i}-${k}`}
+          index={index}
+          key={index}
           type={type}
           onChange={onChange} />);
       }
@@ -43,7 +50,7 @@ const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, ind
     }
 
     return items;
-  };
+  }, [ getItem, letters, getFvarTable, onChange, type ]);
 
   // render
   return (
