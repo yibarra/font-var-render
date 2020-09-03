@@ -1,6 +1,7 @@
 [{
-  "image": "https://via.placeholder.com/150x90.png?Text=1-Linha",
+  "image": "/images/templates/template-line-1.png",
   "templates": [],
+  "words": "titulo",
   "textProperties": {
     "fontSize": 254,
     "lineHeight": 1.1,
@@ -8,8 +9,9 @@
     "textAlign": "left" 
   }
 }, {
-  "image": "https://via.placeholder.com/150x90.png?Text=Linha-Reducida",
+  "image": "/images/templates/template-line-1-reduce.png",
   "templates": [],
+  "words": "titulo",
   "textProperties": {
     "fontSize": 158,
     "lineHeight": 0.9,
@@ -17,8 +19,9 @@
     "textAlign": "left" 
   }
 }, {
-  "image": "https://via.placeholder.com/150x90.png?Text=Example-2",
+  "image": "/images/templates/template-line-2.png",
   "templates": [],
+  "words": "titulo\ntitulo",
   "textProperties": {
     "fontSize": 230,
     "lineHeight": 0.9,
