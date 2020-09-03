@@ -32,7 +32,7 @@ const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
           <span className="text">Render</span>
         </Button>
         <Button className="btn btn-reset" onClick={() => setCurrent(0)} style={{display: 'none'}}>
-          <IconButton icon={<Icon icon="eraser" />} />
+          <IconButton icon={<Icon icon="eraser" />} circle size="md" />
         </Button>
       </div>  
 

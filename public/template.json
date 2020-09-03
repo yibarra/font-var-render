@@ -33,7 +33,7 @@
   "words": "titulo titulo",
   "textProperties": {
     "fontSize": 254,
-    "lineHeight": 0.9,
+    "lineHeight": 0.94,
     "letterSpacing": -10,
     "textAlign": "left" 
   }
@@ -46,7 +46,7 @@
   "words": "titulo titulo titulo",
   "textProperties": {
     "fontSize": 230,
-    "lineHeight": 0.9,
+    "lineHeight": 0.85,
     "letterSpacing": -10,
     "textAlign": "left" 
   }
@@ -59,7 +59,7 @@
   "words": "titulo titulo titulo titulo",
   "textProperties": {
     "fontSize": 162,
-    "lineHeight": 1,
+    "lineHeight": 0.876,
     "letterSpacing": -10,
     "textAlign": "left" 
   }
