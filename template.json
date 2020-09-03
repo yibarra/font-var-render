@@ -1,18 +1,26 @@
 [{
-  "image": "https://via.placeholder.com/150x90.png?Text=Example",
-  "template": [{
-    "word": 1,
-    "letters": [
-      { "type": "Neutra Curta", "limit": 2, "bezier": [0.56,0.3,0.82,0.52] },
-      { "type": "Expressiva Curta", "limit": 2, "bezier": [0.56,0.3,0.82,0.52] },
-      { "type": "Expressiva", "limit": 1, "bezier": [0.56,0.3,0.82,0.52] },
-      { "type": "Expressiva Longa", "limit": 1, "bezier": [0.56,0.3,0.82,0.52] }
-    ],
-    "limit": 2,
-    "init": "Expressiva Longa"
-  }],
+  "image": "https://via.placeholder.com/150x90.png?Text=1-Linha",
+  "templates": [],
+  "textProperties": {
+    "fontSize": 254,
+    "lineHeight": 1.1,
+    "letterSpacing": -10,
+    "textAlign": "left" 
+  }
+}, {
+  "image": "https://via.placeholder.com/150x90.png?Text=Linha-Reducida",
+  "templates": [],
   "textProperties": {
     "fontSize": 158,
+    "lineHeight": 0.9,
+    "letterSpacing": -10,
+    "textAlign": "left" 
+  }
+}, {
+  "image": "https://via.placeholder.com/150x90.png?Text=Example-2",
+  "templates": [],
+  "textProperties": {
+    "fontSize": 230,
     "lineHeight": 0.9,
     "letterSpacing": -10,
     "textAlign": "left" 
