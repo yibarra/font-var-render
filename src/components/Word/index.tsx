@@ -11,7 +11,6 @@ import './word.scss';
 const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, index, type, onChange }) => {
   // active
   const getItem = useCallback((items, index) => {
-    console.log(items, index);
     return Array.isArray(items) && (items && items.filter((item:any) => item.index === index).length > 0);
   }, []);
 
@@ -33,17 +32,6 @@ const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, ind
         key={value}
         type={type}
         onChange={onChange} />);
-
-      if (k === (word.length - 1)) {
-        items.push(<Letter
-          items={letters}
-          fvar={getFvarTable(font)}
-          text={'\u00A0'}
-          type={1}
-          key={1}
-          index={1}
-          onChange={() => {}} />);
-      }
     }
 
     return items;

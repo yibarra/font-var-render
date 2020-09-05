@@ -14,11 +14,12 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
 
   // animation
   const animation = (deltaTime: number) => {
+    const delayInit: number = 0.110;
     const animation: number = deltaTime * 0.001;
 
-    if (animation >= (1 / 100)) {
+    if (animation >= delayInit) {
       setCurrent(() => {
-        const percent = ((deltaTime - 1000) / 1000) * 100;
+        const percent = ((deltaTime - delayInit) / 940) * 100;
 
         if (percent > 100) {
           return 100;
@@ -26,6 +27,8 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
 
         return parseFloat(percent.toString()).toFixed(2);
       });
+    } else {
+      return 1;
     }
 };
 

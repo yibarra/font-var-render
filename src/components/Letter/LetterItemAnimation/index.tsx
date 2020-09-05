@@ -41,8 +41,8 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
         ctx.font = `${textProperties.fontSize}px Canal Brasil VF`; //var name
         ctx.fillStyle = 'white';
         
-        ctx.textBaseline = 'bottom';
-        ctx.fillText(text, 0, height);
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, 0, height / 2);
       }
     }
   }, [ textProperties ]);
@@ -53,7 +53,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
 
     let props: any = {};
     const { settings, instance } = letter;
-    const easing = [0.56,0.3,0.82,0.52];
+    const easing = [ .01,.68,.4,.91 ];
 
     if (active === true) {
       if (settings !== instance) {
@@ -69,7 +69,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
   
             if (diff > 0) {
               if (toValue === 0) {
-                const val: any = Number(parseFloat((diff - current).toString()).toFixed(2));
+                const val: any = parseInt((diff - current).toString(), 10);
                 
                 if (val > toValue) {
                   props[indexTo] = val;
@@ -77,7 +77,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
                   props[indexTo] = toValue;
                 }
               } else {
-                const val: any = Number(parseFloat((value - animate).toString()).toFixed(2));
+                const val: any = parseInt((value - animate).toString());
   
                 if (val > toValue) {
                   props[indexTo] = val;
@@ -92,7 +92,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
             if (value === toValue) {
               props[indexTo] = toValue;
             } else {
-              const pos = Number(parseFloat(((toValue * current) / 100).toString()).toFixed(2));
+              const pos = parseInt(((toValue * current) / 100).toString(), 10);
               props[indexTo] = (pos > toValue) ?  toValue : pos;
             }
           }

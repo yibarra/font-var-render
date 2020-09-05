@@ -32,7 +32,7 @@ export default class CanvasRecord {
       },
       data: formData
     })
-    .then(e => this.download(`${url}/output`))
+    .then(e => console.log(e))// this.download(`${url}/output`))
     .catch(e => console.log(e));
   }
 

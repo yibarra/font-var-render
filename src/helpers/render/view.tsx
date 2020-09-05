@@ -59,7 +59,7 @@ export default class View extends CanvasRecord {
             const img = letter.getBoundingClientRect();
 
             if (img.width && img.height) {
-              ctx.drawImage(letter, (margin + img.x) - x, img.y - (y - (540 / 2)), img.width, img.height);
+              ctx.drawImage(letter, (margin + img.x) - x, img.y - (y / 2), img.width, img.height);
             }
           }
         });
