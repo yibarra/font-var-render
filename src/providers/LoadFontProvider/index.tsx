@@ -86,7 +86,7 @@ const LoadFontProvider: FunctionComponent<ILoadFontProvider> = ({ children }) =>
       fetch(url)
         .then(response => response.blob())
         .then((blob: any) => {
-          const file = new File([blob], 'untitled', { type: blob.type });
+          const file = new File([blob], 'font', { type: blob.type });
 
           opentype.load(url, (err: any, font: any) => {
             if (err) { console.log(err); return; }

@@ -28,7 +28,7 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
         return parseFloat(percent.toString()).toFixed(2);
       });
     } else {
-      return 1;
+      return 0;
     }
 };
 

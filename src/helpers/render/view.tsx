@@ -67,6 +67,12 @@ export default class View extends CanvasRecord {
     }
   }
 
+  // resetAnimation
+  resetAnimation () {
+    const btn = document.querySelector('.btn-reset') as HTMLButtonElement;
+    btn.click();
+  }
+
   // render
   renderView (current: number, animate: boolean) {
     if (!this.canvas) {
@@ -80,9 +86,10 @@ export default class View extends CanvasRecord {
         this.mediaRecorder.start();
       }
     } else if (this.mediaRecorder.state !== 'inactive') {
-      console.log('stop');
       this.mediaRecorder.stop();
       this.capture(this.canvas);
+
+      this.resetAnimation(); // click to element react
     }
 
     this.canvasDrawing();
