@@ -37,7 +37,7 @@ export default class View extends CanvasRecord {
   }
 
   // canvas drawing
-  canvasDrawing () {
+  canvasDrawing (current: number) {
     const margin: number = 256;
     const scale = window.devicePixelRatio;
     const ctx: any = this.canvas?.getContext('2d');
@@ -45,7 +45,7 @@ export default class View extends CanvasRecord {
     ctx.scale(scale, scale);
 
     if (ctx instanceof Object) {
-      const letters = document.body.querySelectorAll('.letter-item-animation canvas');
+      const letters = document.body.querySelectorAll(`.letter-item-animation--images img:nth-child(${current})`);
       const previewContent = document.body.querySelector('.preview--content');
 
       ctx.clearRect(0, 0, 1920, 1080);
@@ -56,10 +56,15 @@ export default class View extends CanvasRecord {
 
         letters.forEach((letter: any) => {
           if (letter instanceof Object) {
-            const img = letter.getBoundingClientRect();
+            //console.log(current);
+            const image: any = letter;
 
-            if (img.width && img.height) {
-              ctx.drawImage(letter, (margin + img.x) - x, img.y - (y / 2), img.width, img.height);
+            if (image instanceof Object) {
+              const img = image.getBoundingClientRect();
+
+              if (img.width && img.height) {
+                ctx.drawImage(image, (margin + img.x) - x, img.y - (y / 2), img.width, img.height);
+              }
             }
           }
         });
@@ -92,6 +97,7 @@ export default class View extends CanvasRecord {
       this.resetAnimation(); // click to element react
     }
 
-    this.canvasDrawing();
+    const time: any = this.animation(current); 
+    this.canvasDrawing(parseInt(time, 10));
   }
 }

@@ -7,6 +7,7 @@ import useFont from '../../uses/useFont';
 import { IPreview } from './interfaces';
 
 import './preview.scss';
+import CanvasRender from '../CanvasRender';
 
 // preview
 const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) => {
@@ -23,7 +24,7 @@ const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) =>
         {font && textWordLetter(font, text, getFvarTable, () => {}, 3)}
       </Col>
 
-      <canvas id="preview-canvas" width="1920" height="1080" />
+      <CanvasRender id="preview-canvas" width={1920} height={1080}/>
       <video />
     </div>
   );

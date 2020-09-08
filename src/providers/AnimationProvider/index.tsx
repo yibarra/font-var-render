@@ -30,7 +30,7 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
     } else {
       return 0;
     }
-};
+  };
 
   // animation
   const requestAnimation = useRequestAnimation(animation);

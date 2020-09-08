@@ -1,31 +1,45 @@
-import React, { memo, useCallback, useContext, useEffect, useRef, FunctionComponent } from 'react';
-//import BezierEasing from 'bezier-easing';
-
-import { AnimationContext } from '../../../providers/AnimationProvider';
-
+import React, { memo, useCallback, useRef, FunctionComponent, useState } from 'react';
 import { ILetterItemAnimation } from './interfaces';
 
 import './letter-item-animation.scss';
 
 // letter animation
 const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
-   letter,
-   text,
-   setInstanceValue,
-   textProperties,
-   active,
-   initialState,
+    name,
+    letter,
+    onLetterFrames,
+    text,
+    setInstanceValue,
+    textProperties,
+    active,
   }) => {
-  // context
-  const animationContext = useContext(AnimationContext);
-  const { current } = animationContext;
+  // items
+  const [ items, setItems ]: any[] = useState([]);
 
   // element
   const element = useRef(null);
 
+  // add images
+  const addImage = useCallback((src: any, items: any[], current: any, props: any) => {
+    const images: any[] = items;
+    const item = items.filter((item, index) => index === current)[0];
+
+    if (item instanceof Object) {
+      images[current] = { src, ...props }; 
+    } else {
+      images.push({ src, ...props });
+    }
+
+    setItems(images);
+
+    if (current >= 99) {
+      onLetterFrames(items);
+    }
+  }, [ onLetterFrames ]);
+
   // animation canvas
-  const animationCanvas = useCallback((element: any, text: string) => {
-    const { width, height } = element.getBoundingClientRect();
+  const animationCanvas = useCallback((element: any, text: string, current: number) => {
+    const { width, height, x, y } = element.getBoundingClientRect();
     const padding: number = 10;
     const parent: any = element.parentNode.querySelector('.canvas') as HTMLCanvasElement;
 
@@ -38,26 +52,25 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
         ctx.clearRect(0, 0, width + padding, height + padding);
         ctx.beginPath();
 
-        ctx.font = `${textProperties.fontSize}px Canal Brasil VF`; //var name
+        ctx.font = `${textProperties.fontSize}px ${name}`;
         ctx.fillStyle = 'white';
         
         ctx.textBaseline = 'middle';
         ctx.fillText(text, 0, height / 2);
+        addImage(parent.toDataURL("image/png", 1), items, current, { alt: text, width, height, x, y }); // add to image 
       }
     }
-  }, [ textProperties ]);
+  }, [ textProperties, items, name, addImage ]);
 
   // animation
-  const animation = useCallback((letter: any, element: any) => {
-    if (letter instanceof Object === false) return false;
+  const animation = useCallback((letter: any, element: any, current: number) => {
+    if (letter instanceof Object === false || element instanceof Object === false) return false;
 
     let props: any = {};
     const { settings, instance } = letter;
-    // const easing = [ .42, 0, 1, 1 ]; //.01,.68,.4,.91
 
     if (active === true) {
       if (settings !== instance) {
-        //const easingAnimation = BezierEasing(easing[0], easing[1], easing[2], easing[3]);
         const animate: any = current;
   
         Object.entries(instance.coordinates).forEach(([ indexTo, toValue ]:any) => {
@@ -101,25 +114,29 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
         props = settings.coordinates;
       }
     } else {
-      props = initialState.coordinates;
+      props = instance.coordinates;
     }
 
-    animationCanvas(element, text);
+    animationCanvas(element, text, current);
     setInstanceValue(props, element);
-  }, [ active, animationCanvas, current, initialState, setInstanceValue, text ]);
+  }, [ active, animationCanvas, setInstanceValue, text ]);
 
-  // use effect
-  useEffect(() => {
-    setTimeout(() => {
-      animation(letter, element.current);
-    }, 300);
-  }, [ letter, animation ]);
+  // frames
+  const frames = useCallback((letter: any) => {
+    for (let i = 0; i < 100; i++) {
+      setTimeout(() => animation(letter, element.current, i), 500);
+    }
+  }, [ animation ]);
+
+  // generate
+  const generate = useCallback(() => {
+    frames(letter);
+  }, [ frames, letter ]);
 
   // render
   return (
-    <div className="letter-item-animation" ref={element}>
+    <div className="letter-item-animation" ref={element} onClick={() => generate()}>
       <p className="letter--text end">{text}</p>
-      
       <canvas className="canvas" />
     </div>
   );

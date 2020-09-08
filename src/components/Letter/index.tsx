@@ -1,9 +1,4 @@
-import React, { memo, useContext, useRef, useState, useEffect, useCallback } from 'react';
-import BezierEditor from 'bezier-easing-editor';
-
-import { FontSettingsContext } from '../../providers/FontSettingsProvider';
-import { LettersContext } from '../../providers/LettersProvider';
-import { TextContext } from '../../providers/TextProvider';
+import React, { memo, useRef, useState, useEffect, useCallback } from 'react';
 
 import LetterItemAnimation from './LetterItemAnimation';
 import LetterType from './LetterType';
@@ -11,16 +6,20 @@ import LetterType from './LetterType';
 import './letter.scss';
 
 // letter
-const Letter = ({ active, items, fvar, index, text, type, onChange }: any) => {
-  // context
-  const fontSettingsContext = useContext(FontSettingsContext);
-  const lettersContext = useContext(LettersContext);
-  const textContext = useContext(TextContext);
-
-  const { setInstanceValue, initialState }:any = fontSettingsContext;
-  const { updateLetterItem }:any = lettersContext;
-  const { textProperties }:any = textContext;
-
+const Letter = ({
+  active,
+  items,
+  fvar,
+  index,
+  name,
+  text,
+  type,
+  onChange,
+  setInstanceValue,
+  initialState,
+  updateLetterItem,
+  textProperties
+ }: any) => {
   // element
   const element: any = useRef();
 
@@ -30,6 +29,7 @@ const Letter = ({ active, items, fvar, index, text, type, onChange }: any) => {
     instance: initialState.coordinates,
     easing: [0.83, 0.01, 0.47, 0.59],
     settings: initialState.coordinates,
+    frames: []
   });
 
   // on select
@@ -43,16 +43,21 @@ const Letter = ({ active, items, fvar, index, text, type, onChange }: any) => {
     updateLetterItem(index, { settings: { ...values }});
   }, [ index, updateLetterItem ]);
 
+  // on letter frames
+  const onLetterFrames = useCallback((values: any) => {
+    updateLetterItem(index, { frames: { ...values }});
+  }, [ index, updateLetterItem ]);
+
   // use effect
   useEffect(() => {
-    if (Array.isArray(items)) {
+    if (active === true) {
       const check = items.filter((item:any) => item.index === index);
 
       if (check.length > 0) {
         setLetter(check[0]);
       }
     }
-  }, [ items, index, setLetter ]);
+  }, [ items, active, index, setLetter ]);
 
   // render
   return (
@@ -83,21 +88,13 @@ const Letter = ({ active, items, fvar, index, text, type, onChange }: any) => {
       {type === 3 &&
         <LetterItemAnimation
           initialState={initialState}
+          name={name}
           letter={letter}
           active={active}
           text={text}
+          onLetterFrames={onLetterFrames}
           textProperties={textProperties}
           setInstanceValue={setInstanceValue} />}
-
-      {type === 2 && active === true &&
-        <div className="letter--easing">
-          <BezierEditor 
-            height={200}
-            curveColor="red"
-            width={330}
-            defaultValue={letter.easing}
-            readOnly />
-        </div>}
     </div>
   );
 };

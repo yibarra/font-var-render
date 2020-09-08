@@ -36,7 +36,7 @@ const useRequestAnimation = (callback: any):any => {
   const onPlay = () => {
     start = Date.now();
     requestRef.current = requestAnimationFrame(animate);
-    renderCanvas.render(0, true);
+    renderCanvas.render(1, true);
     
     setPlay(true);
   };
@@ -44,7 +44,7 @@ const useRequestAnimation = (callback: any):any => {
   // stop
   const onStop = () => {
     cancelAnimationFrame(requestRef.current);
-    renderCanvas.render(0);
+    renderCanvas.render(1);
 
     setPlay(false);
   };

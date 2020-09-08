@@ -10,7 +10,7 @@
   display: inline-flex;
   justify-content: center;
   flex-flow: row wrap;
-  pointer-events: none;
+  //pointer-events: none;
   padding: 0;
   position: relative;
   width: calc(1980px - (190px * 2));
@@ -96,5 +96,9 @@
   
   video {
     display: none;
+  }
+
+  #preview-canvas {
+    display: inline-block;
   }
 }

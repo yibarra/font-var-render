@@ -3,6 +3,15 @@ import { useCallback } from 'react';
 
 // use font
 const useFont = (font: IFontInfo) => {
+  // get name
+  const getName = useCallback((font: IFontInfo) => {
+    if (font.names) {
+      return font.names.fontFamily.en;
+    }
+
+    return 'Canal Brasil VF';
+  }, []);
+
   // get fvar table
   const getFvarTable = useCallback((font: IFontInfo) => {
     if (font.tables) {
@@ -44,7 +53,8 @@ const useFont = (font: IFontInfo) => {
   return {
     getFvarTable,
     getNamedInstance,
-    getNamedInstanceSetting
+    getNamedInstanceSetting,
+    getName
   };
 };
 

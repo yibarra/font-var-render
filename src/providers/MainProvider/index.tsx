@@ -1,6 +1,6 @@
-import React, { createContext } from 'react';
+import React, { createContext, useContext } from 'react';
 
-import AnimationProvider from '../AnimationProvider';
+import AnimationProvider, { AnimationContext } from '../AnimationProvider';
 import LoadFontProvider from '../LoadFontProvider';
 import NotificationProvider from '../NotificationProvider';
 import TextProvider from '../TextProvider';
@@ -14,6 +14,10 @@ const MainContext = createContext({
 
 // Main Provider
 const MainProvider = ({ children }: any) => {
+  // animation
+  const animationContext = useContext(AnimationContext);
+  const { current } = animationContext;
+
   // render
   return (
     <NotificationProvider>
@@ -24,6 +28,7 @@ const MainProvider = ({ children }: any) => {
               <TemplateProvider>
                 <MainContext.Provider value={{ active: true, }}>
                   {children}
+                  <input id="time-current" type="hidden" value={current} />
                 </MainContext.Provider>
               </TemplateProvider>
             </LettersProvider>

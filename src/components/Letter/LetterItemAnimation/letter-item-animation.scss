@@ -1,4 +1,5 @@
 /* -- LETTER ITEM ANIMATION --- */
+@import '../../../styles/settings/colors';
 
 .letter-item-animation {
   box-sizing: border-box;
@@ -12,7 +13,7 @@
   
   .letter {
     &--text {
-      opacity: 0;
+      opacity: 1;
     }
   }
 
