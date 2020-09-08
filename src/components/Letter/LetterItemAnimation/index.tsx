@@ -37,19 +37,43 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
     }
   }, [ onLetterFrames ]);
 
-  // animation canvas
-  const animationCanvas = useCallback((element: any, text: string, current: number) => {
-    const { width, height, x, y } = element.getBoundingClientRect();
-    const padding: number = 10;
-    const parent: any = element.parentNode.querySelector('.canvas') as HTMLCanvasElement;
+  // load image
+  const loadImage = useCallback((src: any, items: any[], current: number, props: any, index: number) => {
+    if (props instanceof Object === false) return false;
 
-    if (parent) {
-      const ctx = parent.getContext('2d');
-      parent.setAttribute('width', width + padding);
-      parent.setAttribute('height', height + padding);
+    const img = new Image();
+
+    img.onload = () => {
+      const width: number = img.naturalWidth;
+      const height: number = img.naturalHeight;
+
+      const properties = { 
+        alt: 'letter base', 
+        width: parseInt(width.toString(), 10), 
+        height: parseInt(height.toString(), 10),
+        x: props.x,
+        y: props.y,
+        index
+      };
+      
+      addImage(img, items, current, properties);
+    };
+
+    img.src = src;
+  }, [ addImage ]);
+
+  // animation canvas
+  const animationCanvas = useCallback((element: any, text: string, current: number, index: any) => {
+    const { width, height } = element.getBoundingClientRect();
+    const canvas: any = element.parentNode.querySelector('.canvas') as HTMLCanvasElement;
+
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      canvas.setAttribute('width', width);
+      canvas.setAttribute('height', height);
 
       if (ctx) {
-        ctx.clearRect(0, 0, width + padding, height + padding);
+        ctx.clearRect(0, 0, width, height);
         ctx.beginPath();
 
         ctx.font = `${textProperties.fontSize}px ${name}`;
@@ -57,10 +81,11 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
         
         ctx.textBaseline = 'middle';
         ctx.fillText(text, 0, height / 2);
-        addImage(parent.toDataURL("image/png", 1), items, current, { alt: text, width, height, x, y }); // add to image 
+
+        loadImage(canvas.toDataURL("image/png", 1), items, current, element.parentNode.getBoundingClientRect(), index);
       }
     }
-  }, [ textProperties, items, name, addImage ]);
+  }, [ textProperties, items, name, loadImage ]);
 
   // animation
   const animation = useCallback((letter: any, element: any, current: number) => {
@@ -117,7 +142,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
       props = instance.coordinates;
     }
 
-    animationCanvas(element, text, current);
+    animationCanvas(element, text, current, letter.index);
     setInstanceValue(props, element);
   }, [ active, animationCanvas, setInstanceValue, text ]);
 

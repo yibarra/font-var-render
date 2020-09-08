@@ -19,27 +19,45 @@ const CanvasRender = ({ id, width, height }: any) => {
   const createFrame = useCallback((current: any) => {
     const parent: any = element.current;
 
-    for (let i = 0; i < letters.length; i++) {
-      const letter: any = letters[i];
+    if (parent instanceof Object) {
+      parent.setAttribute('width', width);
+      parent.setAttribute('height', height);
 
-      if (letter instanceof Object) {
-        const { frames } = letter;
-        const frame = frames[current];
+      const ctx = parent.getContext('2d');
+      ctx.clearRect(0, 0, width, height);
+      ctx.beginPath();
 
-        if (frame instanceof Object) {
-          const { src, height, width, x, y } = frame;
+      if (ctx) {
+        let x = 190;
 
-          const ctx = parent.getContext('2d');
-          const img = new Image();
+        for (let i = 0; i < letters.length; i++) {
+          const letter: any = letters[i];
+    
+          if (letter instanceof Object) {
+            const { frames } = letter;
+            const frame = frames[current];
+    
+            if (frame instanceof Object) {
+              console.log(x, i);
 
-          img.onload = () => ctx.drawImage(img, x, y, width, height);
-          img.src = src;
-          console.log('image', x, y, width, height);
-          //ctx.drawImage(src, x, y, width, height);
+              const { src, index } = frame;
+              const frameWidth = frame.width;
+              const frameHeight = frame.height;
+
+              const cas = index.split('-');
+              const line = cas[1];
+              x += parseInt(frameWidth.toString(), 10);
+              console.log(x, frameWidth);
+
+              ctx.drawImage(src, x, (height / 2) - ((line + 1) * (frameHeight / 2)));
+              //const { src, index } = frame;
+              //ctx.drawImage(img, x, (realHeight / 2) - ((line + 1) * (realHeight / 2)));
+            }
+          }
         }
       }
     }
-  }, [ letters, element ]);
+  }, [ letters, element, height, width ]);
 
   // use effect
   useEffect(() => {

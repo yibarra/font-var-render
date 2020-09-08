@@ -97,7 +97,7 @@ export default class View extends CanvasRecord {
       this.resetAnimation(); // click to element react
     }
 
-    const time: any = this.animation(current); 
-    this.canvasDrawing(parseInt(time, 10));
+    //const time: any = this.animation(current); 
+    //this.canvasDrawing(parseInt(time, 10));
   }
 }
