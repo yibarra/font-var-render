@@ -65,7 +65,7 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
   // animation canvas
   const animationCanvas = useCallback((element: any, text: string, current: number, index: any) => {
     const { width, height } = element.getBoundingClientRect();
-    const padding: number = 6;
+    const padding: number = 10;
     const canvas: any = element.parentNode.querySelector('.canvas') as HTMLCanvasElement;
 
     if (canvas) {
@@ -161,9 +161,10 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
 
   // render
   return (
-    <div className="letter-item-animation" ref={element} onClick={() => generate()}>
+    <div className="letter-item-animation" ref={element}>
       <p className="letter--text end">{text}</p>
       <canvas className="canvas" />
+      <button className="letter--gen" onClick={() => generate()}>RENERATE GLYPHS</button>
     </div>
   );
 };

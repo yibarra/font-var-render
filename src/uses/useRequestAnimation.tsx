@@ -1,10 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
 
-import RenderCanvas from '../helpers';
-
-// render canvas
-const renderCanvas: any = new RenderCanvas();
-
 // use animation frame
 const useRequestAnimation = (callback: any):any => {
   // refs
@@ -23,7 +18,6 @@ const useRequestAnimation = (callback: any):any => {
     
     if (ms < total) {
       callback(ms);
-      renderCanvas.render(ms, true);
       requestRef.current = requestAnimationFrame(animate);
     } else {
       onStop();
@@ -36,16 +30,12 @@ const useRequestAnimation = (callback: any):any => {
   const onPlay = () => {
     start = Date.now();
     requestRef.current = requestAnimationFrame(animate);
-    renderCanvas.render(1, true);
-    
     setPlay(true);
   };
 
   // stop
   const onStop = () => {
     cancelAnimationFrame(requestRef.current);
-    renderCanvas.render(1);
-
     setPlay(false);
   };
   

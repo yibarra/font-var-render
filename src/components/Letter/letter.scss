@@ -63,35 +63,28 @@
   }
 
   &[data-type="2"] {
-    .letter-type {
-      &:first-of-type {
-        .letter-type {
-          &--item {
-            &[data-active="true"] {
-              background-color: $purple-900;
-            }
-          }
+    .letter {
+      &-type {
+        display: inline-block;
+        position: relative;
+        order: 3;
+        width: 100%;
+      }
+
+      &--text {
+        &.end {
+          float: none;
         }
       }
     }
 
     &[data-active="true"] {
-      align-items: flex-start;
-      display: inline-flex !important;
-      justify-content: flex-start;
-
       > .letter {
         &--text {
-          &:before {
-            display: inline-block;
-          }
-
           &:first-of-type {
-            @include rem('font-size', 66px);
+            display: none;
             margin: 0;
-            line-height: 1em;
             text-align: left;
-            width: 90px;
 
             &:before {
               display: none;
@@ -112,12 +105,6 @@
       }
 
       &[data-active="true"] {
-        .letter {
-          &-type {
-            display: inline-block;
-          }
-        }
-
         &:after {
           background-color: $red-900;
           border-radius: 100%;
@@ -127,55 +114,6 @@
           position: absolute;
           top: 0;
           width: 4px;
-        }
-      }
-    }
-  }
-
-  &[data-type="3"] {
-    .letter {
-      &--text {
-        display: inline-block;
-        //letter-spacing: 0em;
-        
-        &.end {
-          display: none;
-          color: $black-900;
-
-          &:before {
-            display: none;
-          }
-        }
-      }
-    }
-
-    &[data-active="true"] {
-      .letter {
-        &--text {
-          display: none;
-
-          &.end {
-            display: inline-block;
-            //letter-spacing: 0em;
-          }
-        }
-
-        &-item {
-          &-animation {
-            position: relative;
-          }
-        }
-      }
-    }
-
-    &:hover {
-      .letter {
-        &--text {
-          color: $black-900;
-
-          &:before {
-            display: none;
-          }
         }
       }
     }

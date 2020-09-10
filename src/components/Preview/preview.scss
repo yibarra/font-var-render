@@ -13,98 +13,17 @@
   //pointer-events: none;
   padding: 0;
   position: relative;
-  width: calc(1980px - (190px * 2));
+  width: 100%;
   vertical-align: top;
 
-  &--content {
-    align-content: center;
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    float: left;
-    flex-flow: row wrap;
-    height: calc(1080px - (110px * 2));
-    padding: 0;
-    left: 0;
-    top: 0;
-    width: 100%;
-
-    .letter {
-      @include box-display;
-      font-size: inherit;
-      line-height: inherit;
-      letter-spacing: inherit;
-
-      &--text {
-        font-size: inherit;
-        line-height: inherit;
-        letter-spacing: inherit;
-      }
-    }
-
-    .separator {
-      display: block;
-      margin: 0;
-      width: 100%;
-    }
-  }
-
-  &--title {
-    .rs-message {
-      background-color: transparent;
-      margin: 10px 0 0;
-
-      .rs-message {
-        &-container {
-          padding: 10px 30px;
-
-          p {
-            @extend %text;
-            font-weight: 700;
-            position: relative;
-
-            &:before {
-              background-color: $red-900;
-              content: '';
-              height: 6px;
-              left: -15px;
-              position: absolute;
-              top: 50%;
-              transform: translate(0, -50%);
-              width: 6px;
-            }
-          }
-        }
-      }
-    }
-
-    p {
-      @extend %text;
-    }
-  }
-
-  canvas {
+  #preview-canvas {
     @include box-display;
     background-color: $black-900;
-    display: none;
-    float: left;
-    letter-spacing: 0em;
+    pointer-events: none;
     position: relative;
+    transform: scale(0.5);
     transform-origin: center top;
     vertical-align: top;
-  }
-  
-  video {
-    display: none;
-  }
-
-  #preview-canvas {
-    display: inline-block;
-    left: 0;
-    position: absolute;
-    top: 0;
-    pointer-events: none;
-    transform: scale(0.5);
     z-index: 999;
   }
 }

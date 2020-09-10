@@ -28,28 +28,20 @@
         font-size: inherit;
         line-height: inherit;
         letter-spacing: inherit;
-
-        &.end {
-          display: none;
-        }
-      }
-
-      .letter-type {
-        display: inline-block;
-        line-height: 1em;
-        float: left;
-        position: relative;
-        width: auto;
-        vertical-align: top;
       }
 
       &[data-active="true"] {
-        display: inline-block !important;
+        align-items: center;
+        display: inline-flex !important;
+        flex-flow: row wrap;
+        justify-content: center;
+        width: 100%;
       }
     }
 
     .word {
       float: left;
+      width: 100%;
     }
   }
 

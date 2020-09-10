@@ -85,7 +85,7 @@ const Letter = ({
         text={text}
         key={2} />}
 
-      {type === 3 &&
+      {type === 2 &&
         <LetterItemAnimation
           initialState={initialState}
           name={name}
