@@ -24,7 +24,7 @@ const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, ind
   const textContext = useContext(TextContext);
 
   const { setInstanceValue, initialState }:any = fontSettingsContext;
-  const { updateLetterItem }:any = lettersContext;
+  const { updateLetterItem, setLetters }:any = lettersContext;
   const { textProperties }:any = textContext;
 
   // active
@@ -38,7 +38,7 @@ const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, ind
 
     for (let k = 0; k < word.length; k++) {
       const character: any = word[k];
-      const value: any = `${character}-${index}-${k}`;
+      const value: any = `${character}-${index+1}-${k+1}`;
       const active: any = getItem(letters, value);
 
       items.push(<Letter
@@ -54,11 +54,12 @@ const Word: FunctionComponent<IWord> = ({ font, word, letters, getFvarTable, ind
         initialState={initialState}
         updateLetterItem={updateLetterItem}
         textProperties={textProperties}
+        setLetters={setLetters}
         onChange={onChange} />);
     }
 
     return items;
-  }, [ getItem, getName, index, letters, getFvarTable, onChange, type, setInstanceValue, initialState, updateLetterItem, textProperties ]);
+  }, [ getItem, getName, index, letters, getFvarTable, onChange, type, setInstanceValue, initialState, updateLetterItem, textProperties, setLetters ]);
 
   // render
   return (

@@ -21,11 +21,13 @@
       line-height: 1em;
       outline: none;
       padding: 10px 20px;
+      position: relative;
       pointer-events: initial;
       font-variation-settings: initial;
       text-align: center;
       width: 100%;
       vertical-align: top;
+      z-index: 2;
     }
 
     &--text {

@@ -18,7 +18,8 @@ const Letter = ({
   setInstanceValue,
   initialState,
   updateLetterItem,
-  textProperties
+  textProperties,
+  setLetters
  }: any) => {
   // element
   const element: any = useRef();
@@ -31,6 +32,13 @@ const Letter = ({
     settings: initialState.coordinates,
     frames: []
   });
+
+  // init set
+  const initSet = useCallback((check: boolean) => {
+    if (check === false) {
+      setLetters(letter);
+    }
+  }, [ letter, setLetters ]);
 
   // on select
   const onSelect = useCallback((values: any) => {
@@ -50,14 +58,16 @@ const Letter = ({
 
   // use effect
   useEffect(() => {
-    if (active === true) {
-      const check = items.filter((item:any) => item.index === index);
+    const check = items.filter((item:any) => item.index === index);
 
+    if (active === true) {
       if (check.length > 0) {
         setLetter(check[0]);
       }
     }
-  }, [ items, active, index, setLetter ]);
+
+    initSet(check.length > 0);
+  }, [ items, active, index, setLetter, initSet ]);
 
   // render
   return (
@@ -85,7 +95,7 @@ const Letter = ({
         text={text}
         key={2} />}
 
-      {type === 2 &&
+      {(type === 2 || type === 3) &&
         <LetterItemAnimation
           initialState={initialState}
           name={name}

@@ -62,6 +62,26 @@ const CanvasRender = ({ id, width, height }: any) => {
     image.src = img;
   }, [ items, sendFrame ]);
 
+  // order by index
+  const orderByIndex = useCallback((items: any[]) => {
+    if (!Array.isArray(items)) return false;
+
+    const order = items.sort((a, b) => {
+      const aInd = a.index.split('-');
+      const aIndex: number = parseInt(`${aInd[1]}${aInd[2]}`, 10);
+
+      const bInd = b.index.split('-');
+      const bIndex: number = parseInt(`${bInd[1]}${bInd[2]}`, 10);
+      
+      if (aIndex < bIndex) return -1;
+      if (bIndex > aIndex) return 1;
+
+      return 0;
+    });
+
+    return order;
+  }, []);
+
   // create frame
   const createFrame = useCallback((current: any) => {
     const parent: any = element.current;
@@ -79,9 +99,10 @@ const CanvasRender = ({ id, width, height }: any) => {
 
       if (ctx) {
         let x: number = 190;
+        const lettersOrder: any = orderByIndex(letters);
         
-        for (let i = 0; i < letters.length; i++) {
-          const letter: any = letters[i];
+        for (let i = 0; i < lettersOrder.length; i++) {
+          const letter: any = lettersOrder[i];
     
           if (letter instanceof Object) {
             const { frames } = letter;
@@ -95,7 +116,7 @@ const CanvasRender = ({ id, width, height }: any) => {
               const indexes: any [] = index.split('-');
               const line = indexes[1];
               
-              ctx.drawImage(src, x, (height / 2) - ((line + 1) * (frameHeight / 2)));
+              ctx.drawImage(src, x, (height / 2) - (line * (frameHeight / 2)));
               x += parseInt(frameWidth.toString(), 10);
             }
           }
@@ -104,7 +125,7 @@ const CanvasRender = ({ id, width, height }: any) => {
         addImage(parent, current);
       }
     }
-  }, [ letters, element, addImage, height, width ]);
+  }, [ letters, element, addImage, height, width, orderByIndex ]);
 
   // use effect
   useEffect(() => {

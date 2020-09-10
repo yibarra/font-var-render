@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React from 'react';
 
 import AnimationProvider from '../AnimationProvider';
 import LoadFontProvider from '../LoadFontProvider';
@@ -7,11 +7,6 @@ import TextProvider from '../TextProvider';
 import LettersProvider from '../LettersProvider';
 import TemplateProvider from '../TemplateProvider';
 
-// Main Context
-const MainContext = createContext({
-  active: true,
-});
-
 // Main Provider
 const MainProvider = ({ children }: any) => {
   // render
@@ -19,20 +14,17 @@ const MainProvider = ({ children }: any) => {
     <NotificationProvider>
       <LoadFontProvider>
         <AnimationProvider>
-          <TextProvider>
-            <LettersProvider>
+          <LettersProvider>
+            <TextProvider>
               <TemplateProvider>
-                <MainContext.Provider value={{ active: true, }}>
-                  {children}
-                </MainContext.Provider>
+                {children}
               </TemplateProvider>
-            </LettersProvider>
-          </TextProvider>
+            </TextProvider>
+          </LettersProvider>
         </AnimationProvider>
       </LoadFontProvider>
     </NotificationProvider>
   );
 };
 
-export { MainContext, MainProvider };
 export default MainProvider;

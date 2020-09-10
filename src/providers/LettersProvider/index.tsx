@@ -81,7 +81,7 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
       const words: any = getCountWords(textLine);
 
       for (let i = 0; i < words.length; i++) {
-        items.push({ character: 1, item: words[i], index: `${k}${i}` });
+        items.push({ character: 1, item: words[i], index: `${k+1}${i+1}` });
       }
 
       items.push({ character: 2, item: {} });
@@ -100,7 +100,7 @@ const LettersProvider: FunctionComponent<ILettersProvider> = ({ children }) => {
 
       switch (character) {
         case 2:
-          elements.push(<div className="separator" key={`separator${i}`}></div>)
+          elements.push(<div className="separator" key={`separator${i}`} data-type="2"></div>)
           break;
         case 1:
         default:
