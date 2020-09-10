@@ -41,7 +41,7 @@ const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
         <Slider
           onChange={onSlider}
           min={0}
-          max={100}
+          max={99}
           value={parseInt(current.toString(), 10)}
           progress
           defaultValue={0} />

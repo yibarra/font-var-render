@@ -65,15 +65,16 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
   // animation canvas
   const animationCanvas = useCallback((element: any, text: string, current: number, index: any) => {
     const { width, height } = element.getBoundingClientRect();
+    const padding: number = 6;
     const canvas: any = element.parentNode.querySelector('.canvas') as HTMLCanvasElement;
 
     if (canvas) {
       const ctx = canvas.getContext('2d');
-      canvas.setAttribute('width', width);
-      canvas.setAttribute('height', height);
+      canvas.setAttribute('width', width + padding);
+      canvas.setAttribute('height', height + padding);
 
       if (ctx) {
-        ctx.clearRect(0, 0, width, height);
+        ctx.clearRect(0, 0, width + padding, height + padding);
         ctx.beginPath();
 
         ctx.font = `${textProperties.fontSize}px ${name}`;
