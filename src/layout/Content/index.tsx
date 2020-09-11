@@ -14,6 +14,8 @@ import Preview from '../../components/Preview';
 import SelectLetters from '../../components/SelectLetters';
 import SelectFinalState from '../../components/SelectFinalState';
 
+import Steps from '../../components/Steps';
+
 // content
 const Content = () => {
   // state
@@ -29,6 +31,7 @@ const Content = () => {
   const { font, onLoad } = fontContext;
   const { text, setText, textProperties, setTextProperties } = textContext;
 
+  // load
   useEffect(() => {
     const load = async () => {
       fetch(`${process.env.PUBLIC_URL}/template.json`)
@@ -41,7 +44,22 @@ const Content = () => {
 
   // render
   return (
-    <FlexboxGrid justify="center">
+    <div>
+      <div className="">
+        <Steps>
+          <GalleryTemplates
+            items={items}
+            text={text}
+            setText={setText}
+            textPropertiesMain={textProperties}
+            setTextProperties={setTextProperties} />
+
+          <div>
+            <InputText label="Type here to text" setText={setText} text={text} />
+          </div>
+        </Steps>
+      </div>
+
       <FlexboxGrid.Item colspan={9}>
         <Load font={font} />
       </FlexboxGrid.Item>
@@ -61,16 +79,8 @@ const Content = () => {
       </FlexboxGrid.Item>
 
       <FlexboxGrid.Item colspan={9}>
-        <InputText label="Type here to text" setText={setText} text={text} />
-      </FlexboxGrid.Item>
-
-      <FlexboxGrid.Item colspan={9}>
         <label className="label">Gallery</label>
-        <GalleryTemplates
-          items={items}
-          text={text}
-          setText={setText}
-          setTextProperties={setTextProperties} />
+        
       </FlexboxGrid.Item>
       
       <FlexboxGrid.Item colspan={18} className="preview-container">
@@ -123,7 +133,7 @@ const Content = () => {
             </Button>
         </Drawer.Footer>
       </Drawer>
-    </FlexboxGrid>
+    </div>
   );
 };
 

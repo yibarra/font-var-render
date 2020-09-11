@@ -1,3 +1,5 @@
+@import '../../styles/components/animations';
+@import '../../styles/settings/colors';
 @import '../../styles/tools/mixins';
 
 .gallery-templates {
@@ -11,45 +13,51 @@
 
   &--item {
     @include box-display;
+    background-color: transparent;
+    box-shadow: none;
     float: left;
     position: relative;
+    width: 100%;
     vertical-align: top;
-    will-change: transform;
-    
-    &-element,
-    &-slider--list {
+
+    img {
       @include box-display;
       float: left;
+      filter: grayscale(1);
       position: relative;
-      vertical-align: top;
-      user-select: none;
-      will-change: transform;
-    }
-    
-    &-element {
-      align-items: center;
-      display: inline-flex;
-      justify-content: center;
-      flex-flow: row wrap;
-      padding: 5px;
-
-      img {
-        @include box-display;
-        float: left;
-        position: relative;
-        width: 100%;
-        vertical-align: top;
-        pointer-events: none;
-      }
-    }
-
-    &-slider--list {
+      transition: all 600ms $base-ease;
       width: 100%;
+    }
 
-      .content {
-        @include box-display;
-        float: left;
+    &[data-active="true"] {
+      img {
+        filter: grayscale(0);
       }
+    }
+  }
+
+  .slider {
+    @include box-display;
+    float: left;
+    position: relative;
+    width: 100%;
+    vertical-align: top;
+
+    &--item,
+    &--list {
+      @include box-display;
+      margin: 0;
+      position: relative;
+    }
+
+    &--item {
+      display: inline-block;
+      width: calc(100% / 3);
+    }
+
+    &--list {
+      list-style: none;
+      width: 100%;
     }
   }
 }
