@@ -16,10 +16,35 @@
   width: 100%;
   vertical-align: top;
 
+  &--content {
+    @include box-display;
+    left: 0;
+    opacity: 0;
+    height: auto;
+    position: absolute;
+    padding: 0;
+    top: 0;
+    width: 100%;
+
+    .letter {
+      @include box-display;
+      font-size: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+
+      &--text {
+        font-size: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
+      }
+    }
+  }
+
   #preview-canvas {
     @include box-display;
     background-color: $black-900;
     pointer-events: none;
+    opacity: 1;
     position: relative;
     transform: scale(0.5);
     transform-origin: center top;

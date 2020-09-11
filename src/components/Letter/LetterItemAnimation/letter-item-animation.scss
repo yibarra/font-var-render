@@ -11,25 +11,6 @@
   vertical-align: top;
   
   .letter {
-    &--gen {
-      @include box-display;
-      @include font($font-default, 12px, 400, $white-900);
-      background-color: $black-900;
-      float: left;
-      order: 4;
-      margin: 0 0 20px;
-      line-height: 1em;
-      outline: none;
-      padding: 10px 20px;
-      position: relative;
-      pointer-events: initial;
-      font-variation-settings: initial;
-      text-align: center;
-      width: 100%;
-      vertical-align: top;
-      z-index: 2;
-    }
-
     &--text {
       opacity: 1;
     }

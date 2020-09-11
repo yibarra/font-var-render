@@ -118,4 +118,16 @@
       }
     }
   }
+
+  &[data-type="3"] {
+    .letter {
+      &--text {
+        display: none;
+
+        &.end {
+          display: inline-block;
+        }
+      }
+    }
+  }
 }

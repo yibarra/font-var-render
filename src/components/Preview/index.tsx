@@ -23,9 +23,7 @@ const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) =>
     <div className="preview">
       <Col className="preview--content" style={{
         ...textProperties, 
-        justifyContent: getAlign(textProperties.textAlign),
-        display: 'none'
-      }}>
+        justifyContent: getAlign(textProperties.textAlign) }}>
         {font && textWordLetter(font, text, getFvarTable, () => {}, 3)}
       </Col>
 

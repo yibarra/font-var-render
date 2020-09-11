@@ -1,10 +1,10 @@
 import React from 'react';
 
 import AnimationProvider from '../AnimationProvider';
+import LettersProvider from '../LettersProvider';
 import LoadFontProvider from '../LoadFontProvider';
 import NotificationProvider from '../NotificationProvider';
 import TextProvider from '../TextProvider';
-import LettersProvider from '../LettersProvider';
 import TemplateProvider from '../TemplateProvider';
 
 // Main Provider

@@ -4,7 +4,7 @@
     "word": 1,
     "letters": []
   }],
-  "words": "estação",
+  "words": "",
   "textProperties": {
     "fontSize": 254,
     "lineHeight": 1.1,
@@ -17,7 +17,7 @@
     "word": 1,
     "letters": []
   }],
-  "words": "titulo",
+  "words": "",
   "textProperties": {
     "fontSize": 158,
     "lineHeight": 0.9,
@@ -30,7 +30,7 @@
     "word": 2,
     "letters": []
   }],
-  "words": "titulo titulo",
+  "words": "",
   "textProperties": {
     "fontSize": 254,
     "lineHeight": 0.94,
@@ -43,7 +43,7 @@
     "word": 3,
     "letters": []
   }],
-  "words": "titulo titulo titulo",
+  "words": "",
   "textProperties": {
     "fontSize": 230,
     "lineHeight": 0.85,
@@ -56,7 +56,7 @@
     "word": 4,
     "letters": []
   }],
-  "words": "titulo titulo titulo titulo",
+  "words": "",
   "textProperties": {
     "fontSize": 162,
     "lineHeight": 0.876,

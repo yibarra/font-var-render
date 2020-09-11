@@ -1,4 +1,4 @@
-import React, { memo, FunctionComponent, useContext } from 'react';
+import React, { memo, FunctionComponent, useCallback, useContext } from 'react';
 import { Button, Col, Slider  } from 'rsuite';
 
 import { AnimationContext } from '../../providers/AnimationProvider';
@@ -11,12 +11,19 @@ import './animation-slider.scss';
 const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
   // context
   const animationContext = useContext(AnimationContext);
-  const { current, setCurrent, onPlay, play } = animationContext;
+  const { current, setCurrent, play } = animationContext;
   
   // slider
-  const onSlider = (value:number) => {
+  const onSlider = useCallback((value:number) => {
     setCurrent(value);
-  };
+  }, [ setCurrent ]);
+
+  // on open
+  const onPlay = useCallback(() => {
+    for (let i = 0; i < 100; i++) {
+      setTimeout(() => setCurrent(i), 1000);
+    }
+  }, [ setCurrent ]);
 
   // render
   return (

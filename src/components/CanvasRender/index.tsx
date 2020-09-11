@@ -98,7 +98,8 @@ const CanvasRender = ({ id, width, height }: any) => {
       ctx.fillRect(0, 0, width, height);
 
       if (ctx) {
-        let x: number = 190;
+        let lastLine: boolean = false;
+        let positionX: number = 190;
         const lettersOrder: any = orderByIndex(letters);
         
         for (let i = 0; i < lettersOrder.length; i++) {
@@ -116,8 +117,12 @@ const CanvasRender = ({ id, width, height }: any) => {
               const indexes: any [] = index.split('-');
               const line = indexes[1];
               
-              ctx.drawImage(src, x, (height / 2) - (line * (frameHeight / 2)));
-              x += parseInt(frameWidth.toString(), 10);
+              ctx.drawImage(src, positionX, (height / 2) - (line * (frameHeight / 2)));
+              lastLine = line !== lastLine ? line : lastLine;
+              
+
+              positionX += parseInt(frameWidth.toString(), 10);
+
             }
           }
         }

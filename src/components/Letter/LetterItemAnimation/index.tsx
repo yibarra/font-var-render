@@ -161,10 +161,9 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
 
   // render
   return (
-    <div className="letter-item-animation" ref={element}>
+    <div className="letter-item-animation" ref={element} onClick={() => generate()}>
       <p className="letter--text end">{text}</p>
       <canvas className="canvas" />
-      <button className="letter--gen" onClick={() => generate()}>RENERATE GLYPHS</button>
     </div>
   );
 };
