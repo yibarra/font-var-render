@@ -18,6 +18,24 @@
   }
 
   &--item {
+    left: 100%;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    
+    &[data-active="true"] {
+      left: 0;
+      opacity: 1;
+      position: relative;
+      pointer-events: auto;
+    }
+
+    .gallery-templates,
+    .input-text {
+      @include box-display;
+      width: 50%;
+    }
   }
 
   &--list {

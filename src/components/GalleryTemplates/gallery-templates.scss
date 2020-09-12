@@ -16,6 +16,7 @@
     background-color: transparent;
     box-shadow: none;
     float: left;
+    padding: 5px;
     position: relative;
     width: 100%;
     vertical-align: top;
@@ -47,6 +48,7 @@
     &--list {
       @include box-display;
       margin: 0;
+      float: left;
       position: relative;
     }
 

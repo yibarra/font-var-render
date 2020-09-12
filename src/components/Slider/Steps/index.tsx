@@ -26,7 +26,7 @@ const StepsSlider: FunctionComponent<IStepsSlider> = ({ children, current, direc
 
       <ul className="steps-slider--list">
         {children && Children.map(children, (child, index) =>
-          <li className="steps-slider--item" data-current={current === index} data-last={last === index}>{child}</li>)}
+          <li className="steps-slider--item" data-active={current === index} data-last={last === index}>{child}</li>)}
       </ul>
     </div>
   );

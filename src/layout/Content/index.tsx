@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, Fragment } from 'react';
 import { FlexboxGrid, Drawer, Button, ButtonToolbar, Icon } from 'rsuite';
 
 import { LoadFontContext } from '../../providers/LoadFontProvider';
@@ -15,6 +15,8 @@ import SelectLetters from '../../components/SelectLetters';
 import SelectFinalState from '../../components/SelectFinalState';
 
 import Steps from '../../components/Steps';
+
+import './content.scss';
 
 // content
 const Content = () => {
@@ -44,27 +46,9 @@ const Content = () => {
 
   // render
   return (
-    <div>
-      <div className="">
-        <Steps>
-          <GalleryTemplates
-            items={items}
-            text={text}
-            setText={setText}
-            textPropertiesMain={textProperties}
-            setTextProperties={setTextProperties} />
-
-          <div>
-            <InputText label="Type here to text" setText={setText} text={text} />
-          </div>
-        </Steps>
-      </div>
-
-      <FlexboxGrid.Item colspan={9}>
+    <section className="content">
+      <div className="content--wrapper">
         <Load font={font} />
-      </FlexboxGrid.Item>
-
-      <FlexboxGrid.Item colspan={9}>
         <ButtonToolbar>
           <DragDrop onLoad={onLoad} />
 
@@ -76,17 +60,25 @@ const Content = () => {
             <Icon icon="font" />
           </Button>
         </ButtonToolbar>
-      </FlexboxGrid.Item>
 
-      <FlexboxGrid.Item colspan={9}>
-        <label className="label">Gallery</label>
-        
-      </FlexboxGrid.Item>
-      
-      <FlexboxGrid.Item colspan={18} className="preview-container">
-        <AnimationSlider />
-        <Preview font={font} text={text} textProperties={textProperties} />
-      </FlexboxGrid.Item>
+        <Steps items={[0, 1]}>
+          <Fragment>
+            <GalleryTemplates
+              items={items}
+              text={text}
+              setText={setText}
+              textPropertiesMain={textProperties}
+              setTextProperties={setTextProperties} />
+
+            <InputText label="Type here to text" setText={setText} text={text} />
+          </Fragment>
+
+          <Fragment>
+            <AnimationSlider />
+            <Preview font={font} text={text} textProperties={textProperties} />
+          </Fragment>
+        </Steps>
+      </div>
 
       <Drawer
           size={'xs'}
@@ -133,7 +125,7 @@ const Content = () => {
             </Button>
         </Drawer.Footer>
       </Drawer>
-    </div>
+    </section>
   );
 };
 

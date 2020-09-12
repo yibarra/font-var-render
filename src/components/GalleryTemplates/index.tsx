@@ -35,6 +35,8 @@ const GalleryTemplates: FunctionComponent<IGalleryTemplates> = ({
   // render
   return (
     <div className="gallery-templates">
+      <p>Templates</p>
+
       <Slider current={current} direction='' last={last} onPrevNext={onPrevNext} type="1">
         {items && items.map(({ image, template, textProperties, words }: any, key: number) =>
           <button

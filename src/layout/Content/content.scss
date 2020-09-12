@@ -1,0 +1,24 @@
+/* --- MAIN  --- */
+@import '../../styles/settings/colors';
+@import '../../styles/settings/fonts';
+
+@import '../../styles/tools/mixins';
+
+.content {
+  @include box-display;
+  float: left;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  vertical-align: top;
+
+  &--wrapper {
+    @include box-display;
+    float: none;
+    max-width: 1024px;
+    position: relative;
+    text-align: left;
+    width: 100%;
+    vertical-align: top;
+  }
+}

@@ -1,0 +1,12 @@
+@import '../../styles/settings/colors';
+@import '../../styles/tools/mixins';
+
+.steps {
+  @include box-display;
+  float: left;
+  position: relative;
+  width: 100%;
+  vertical-align: top;
+
+  
+}
