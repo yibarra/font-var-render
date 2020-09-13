@@ -40,6 +40,9 @@
 
   &--list {
     margin: 0;
+    list-style: none;
+    overflow: hidden;
     padding: 0;
+    width: 100%;
   }
 }

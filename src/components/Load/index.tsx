@@ -2,16 +2,21 @@ import React, { memo, FunctionComponent } from 'react';
 
 import FontLoad from '../FontLoad';
 
+import DragDrop from '../DragDrop';
+
 import { ILoad } from './interfaces';
 
 import './load.scss';
 
 // load
-const Load: FunctionComponent<ILoad> = ({ font }) => {
+const Load: FunctionComponent<ILoad> = ({ font, onLoad }) => {
   // render
   return (
     <div className="load">
-      {font && <FontLoad names={font.names} />}
+      {font &&
+        <FontLoad names={font.names} />}
+
+      <DragDrop onLoad={onLoad} />
     </div>
   );
 };

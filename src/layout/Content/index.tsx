@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect, Fragment } from 'react';
-import { FlexboxGrid, Drawer, Button, ButtonToolbar, Icon } from 'rsuite';
+import { Drawer, Button, ButtonToolbar, Icon } from 'rsuite';
 
 import { LoadFontContext } from '../../providers/LoadFontProvider';
 import { TextContext } from '../../providers/TextProvider';
 
+import Header from '../Header';
+
 import AnimationSlider from '../../components/AnimationSlider';
-import DragDrop from '../../components/DragDrop';
 import EditText from '../../components/EditText';
 import InputText from '../../components/InputText';
 import GalleryTemplates from '../../components/GalleryTemplates';
@@ -48,10 +49,11 @@ const Content = () => {
   return (
     <section className="content">
       <div className="content--wrapper">
-        <Load font={font} />
-        <ButtonToolbar>
-          <DragDrop onLoad={onLoad} />
+        <Header>
+          <Load font={font} onLoad={onLoad} />
+        </Header>
 
+        <ButtonToolbar>
           <Button onClick={() => setPro(true)}>
             <Icon icon="gear-circle" />
           </Button>

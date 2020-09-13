@@ -5,6 +5,21 @@
 
 .load {
   @include box-display;
+  float: left;
   padding: 0;
+  position: relative;
   width: 100%;
+  vertical-align: top;
+
+  .font-load,
+  .rs-uploader {
+    @include box-display;
+    float: left;
+    position: relative;
+  }
+
+  .rs-uploader {
+    float: right;
+    margin: 20px 0 0;
+  }
 }

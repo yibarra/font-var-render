@@ -1,26 +1,24 @@
-import React from 'react';
-import { Col } from 'rsuite';
+import React, { memo, FunctionComponent } from 'react';
 
 import { IFontLoad } from './interfaces';
 
 import './font-load.scss';
 
 // header name
-const FontLoad = ({ names }: IFontLoad) => {
+const FontLoad: FunctionComponent<IFontLoad> = ({ names }) => {
   // name
   const { fontFamily, version } = names;
 
   // render
   return (
-    <Col className="font-load" xs={24}>
-      <Col className="font-load--content" xs={24}>
+    <div className="font-load">
+      <div className="font-load--content">
         <p className="label">Font Family</p>
-
         <p className="name">{fontFamily.en}</p>
         <p className="version">{version.en}</p>
-      </Col>
-    </Col>
+      </div>
+    </div>
   );
 };
 
-export default FontLoad;
+export default memo(FontLoad);

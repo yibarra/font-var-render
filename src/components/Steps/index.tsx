@@ -28,8 +28,7 @@ const Steps: FunctionComponent<ISteps> = ({ children, current, direction, last, 
         {children}
       </StepsSlider>
 
-      <StepsFooter
-        onPrevNext={onPrevNext} />
+      <StepsFooter onPrevNext={onPrevNext} />
     </div>
   );
 };

@@ -1,0 +1,25 @@
+@import '../../../styles/settings/colors';
+@import '../../../styles/tools/mixins';
+
+.steps-footer {
+  @include box-display;
+  float: left;
+  padding: 10px 0;
+  position: relative;
+  width: 100%;
+  vertical-align: top;
+
+  .btn {
+    @include box-display;
+    position: relative;
+    vertical-align: top;
+
+    &.prev {
+      float: left;
+    }
+
+    &.next {
+      float: right;
+    }
+  }
+}
