@@ -7,13 +7,13 @@ import { LettersContext } from '../../providers/LettersProvider';
 import { ICanvasRender } from './interfaces';
 
 // canvas render
-const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height }: any) => {
+const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height, text }: any) => {
   // context
   const animationContext = useContext(AnimationContext);
   const lettersContext = useContext(LettersContext);
 
   const { current, setCurrent, processing, setProcessing } = animationContext;
-  const { letters } = lettersContext;
+  const { letters, getLineBreak } = lettersContext;
 
   // state
   const [ items, setItems ]: any = useState([]);
@@ -108,10 +108,14 @@ const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height }: a
       ctx.fillStyle = 'black';
       ctx.fillRect(0, 0, width, height);
 
+      let numberWord: number = 0;
+      
       if (ctx) {
-        let lastLine: boolean = false;
+        let lastLine: number = 0;
         let positionX: number = 190;
+
         const lettersOrder: any = orderByIndex(letters);
+        const countWords: any = getLineBreak(text).length;
         
         for (let i = 0; i < lettersOrder.length; i++) {
           const letter: any = lettersOrder[i];
@@ -124,12 +128,19 @@ const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height }: a
               const { src, index } = frame;
               const frameWidth = frame.width;
               const frameHeight = frame.height;
-
-              const indexes: any [] = index.split('-');
-              const line = indexes[1];
               
-              ctx.drawImage(src, positionX, (height / 2) - (line * (frameHeight / 2)));
+              const indexes: any [] = index.split('-');
+              const line = parseInt(indexes[1]);
+              
               lastLine = line !== lastLine ? line : lastLine;
+              let positionY = (lastLine * frameHeight) - (((countWords - 1) * (frameHeight / 2) - (frameHeight / 2)));
+
+              if (line !== numberWord) {
+                positionX = 190;
+                numberWord = line;
+              }
+              
+              ctx.drawImage(src, positionX, positionY);
               positionX += parseInt(frameWidth.toString(), 10);
             }
           }
@@ -138,7 +149,7 @@ const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height }: a
         addImage(parent, current);
       }
     }
-  }, [ letters, element, addImage, height, width, orderByIndex ]);
+  }, [ letters, element, addImage, height, width, orderByIndex, getLineBreak, text ]);
 
   // use effect
   useEffect(() => {

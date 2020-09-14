@@ -27,7 +27,7 @@ const Preview: FunctionComponent<IPreview> = ({ font, text, textProperties }) =>
         {font && textWordLetter(font, text, getFvarTable, () => {}, 3)}
       </Col>
 
-      <CanvasRender id="preview-canvas" width={1920} height={1080}/>
+      <CanvasRender id="preview-canvas" width={1920} height={1080} text={text} />
     </div>
   );
 };

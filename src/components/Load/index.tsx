@@ -1,7 +1,6 @@
 import React, { memo, FunctionComponent } from 'react';
 
 import FontLoad from '../FontLoad';
-
 import DragDrop from '../DragDrop';
 
 import { ILoad } from './interfaces';
