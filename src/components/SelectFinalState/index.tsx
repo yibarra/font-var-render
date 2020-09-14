@@ -22,7 +22,7 @@ const SelectFinalState: FunctionComponent<ISelectFinalState> = ({ font, text, te
   return (
     <div className="select-final-state">
       <Col className="select-final-state--title" xs={24}>
-        <p>Select the final stage to letter</p>
+        <p className="text">Select the initial and final stage of each letter</p>
 
         {!letters.length && <Message
           type="error"

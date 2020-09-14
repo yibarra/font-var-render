@@ -1,4 +1,5 @@
-import React, { createContext, useState, FunctionComponent, memo, useCallback } from 'react';
+import React, { createContext, useState, FunctionComponent, memo, useCallback, useEffect } from 'react';
+import { Modal } from 'rsuite';
 
 import useRequestAnimation from '../../uses/useRequestAnimation';
 
@@ -49,6 +50,13 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
     }
   }, [ onPlay, onStop, play, setPlay ]);
 
+  // open modal
+  useEffect(() => {
+    if (processing === true) {
+
+    }
+  }, [ processing ]);
+
   // render
   return (
     <AnimationContext.Provider value={{
@@ -60,6 +68,17 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
       onPlay: onChange,
     }}>
       {children}
+
+      <Modal show={processing}>
+        <Modal.Header>
+          <Modal.Title>
+            <p className="title">System Info</p>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p className="text">Processing Frames</p>
+        </Modal.Body>
+      </Modal>
     </AnimationContext.Provider>
   );
 };

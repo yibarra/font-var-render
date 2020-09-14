@@ -1,4 +1,5 @@
 import React, { memo, useContext, useEffect, useCallback, useRef, useState, FunctionComponent } from 'react';
+import { Modal } from 'rsuite';
 import axios from 'axios';
 
 import { AnimationContext } from '../../providers/AnimationProvider';
@@ -17,6 +18,7 @@ const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height, tex
 
   // state
   const [ items, setItems ]: any = useState([]);
+  const [ sendFrames, setSendFrames ]: any = useState(false);
 
   // element
   const element = useRef(null);
@@ -50,7 +52,10 @@ const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height, tex
           setCurrent(current + 1);
         } else if (processing === true) {
           setProcessing(false);
+          setSendFrames(true);
           setCurrent(1);
+
+          axios.get(`${url}/frames`).then(() => setSendFrames(true));
         }
       })
       .catch(e => console.log(e));
@@ -158,12 +163,25 @@ const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height, tex
 
   // render
   return (
+    <>
     <canvas
       id={id}
       height={height}
       width={width}
       ref={element}>
     </canvas>
+
+    <Modal backdrop={sendFrames} show={sendFrames}>
+      <Modal.Body>
+        <p className="text">
+          Your video was successfully send, it cant take a few minutes.
+          <a href='https://font-var-render-server.herokuapp.com/output'>
+            visit
+          </a>
+        </p>
+      </Modal.Body>
+    </Modal>
+    </>
   );
 };
 

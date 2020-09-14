@@ -1,5 +1,5 @@
 import React, { memo, FunctionComponent, useCallback, useContext } from 'react';
-import { Button, Col, Slider  } from 'rsuite';
+import { Slider, Icon } from 'rsuite';
 
 import { AnimationContext } from '../../providers/AnimationProvider';
 
@@ -8,41 +8,29 @@ import { IAnimationSlider } from './interfaces';
 import './animation-slider.scss';
 
 // animation slider
-const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
+const AnimationSlider: FunctionComponent<IAnimationSlider> = ({ setPro }) => {
   // context
   const animationContext = useContext(AnimationContext);
-  const { current, setCurrent, play } = animationContext;
+  const { current, setCurrent } = animationContext;
   
   // slider
   const onSlider = useCallback((value:number) => {
     setCurrent(value);
   }, [ setCurrent ]);
 
-  // on open
-  const onPlay = useCallback(() => {
-    for (let i = 0; i < 100; i++) {
-      setTimeout(() => setCurrent(i), 1000);
-    }
-  }, [ setCurrent ]);
-
   // render
   return (
-    <Col className="animation-slider" xs={24}>
-      <div className="animation-slider--title">
-        <p>Time Controls</p>
-      </div>
-
+    <div className="animation-slider">
       <div className="animation-slider--controls">
-        <Button
-          className={play === true ? 'btn-ui active min' : 'btn-ui min'}
-          onClick={() => onPlay()}>
-          <span className="text">Render</span>
-        </Button>
-
-        <Button className="btn btn-reset" onClick={() => setCurrent(0)}>
+        <button className="btn btn-reset" onClick={() => setCurrent(0)}>
           refresh
-        </Button>
-      </div>  
+        </button>
+
+        <button className="btn-default" onClick={() => setPro(true)}>
+          <Icon icon="gear-circle" />
+          <span className="text">Select letter to animation</span>
+        </button>
+      </div>
 
       <div className="animation-slider--slider">
         <Slider
@@ -53,7 +41,7 @@ const AnimationSlider: FunctionComponent<IAnimationSlider> = () => {
           progress
           defaultValue={0} />
       </div>
-    </Col>
+    </div>
   );
 };
 

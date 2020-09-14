@@ -8,14 +8,16 @@
 
 
 .animation-slider {
+  @include box-display;
   margin: 0;
   padding: 10px 10px !important;
   width: 100%;
 
   &--controls,
   &--slider {
-    display: inline-block;
-    width: 100%;
+    @include box-display;
+    float: left;
+    width: 50%;
     vertical-align: top;
   }
 
@@ -25,48 +27,14 @@
     justify-content: flex-start;
     flex-flow: row wrap;
     padding: 0;
-    width: 120px;
 
-    .btn-ui {
-      @include font($font-default, 14px, 400, $white-900);
-      background-color: $black-900;
-      border: 2px solid $black-900;
-      border-radius: 0;
-      margin: 0 5px 0 0;
-      padding: 10px 20px 10px 30px;
-      width: auto;
+    .btn-default {
+      .rs-icon {
+        margin: 0 10px 0 0;
+      }
 
       .text {
-        font-variation-settings: normal;
-      }
-
-      &:before {
-        background-color: $white-900;
-        border-radius: 100%;
-        content: '';
-        height: 4px;
-        left: 20px;
-        position: absolute;
-        top: 50%;
-        transform: translate(0, -50%);
-        width: 4px;
-      }
-
-      &.active {
-        background-color: $white-900 !important;
-
-        &:before {
-          background-color: $red-900;
-        }
-      }
-
-      &:hover,
-      &:focus {
-        background-color: inherit;
-
-        &:before {
-          background-color: $red-900;
-        }
+        color: $white-900;
       }
     }
   }
@@ -74,7 +42,6 @@
   &--slider {
     @extend %slider;
     padding: 15px !important;
-    width: calc(100% - 120px);
   }
 
   &--title {

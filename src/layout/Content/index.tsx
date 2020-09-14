@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect, Fragment, memo } from 'react';
-import { Drawer, Button, ButtonToolbar, Icon } from 'rsuite';
+import React, { useContext, useState, useEffect, Fragment, memo, useCallback } from 'react';
+import { Drawer, Button } from 'rsuite';
 
 import { LoadFontContext } from '../../providers/LoadFontProvider';
 import { TextContext } from '../../providers/TextProvider';
@@ -11,7 +11,6 @@ import InputText from '../../components/InputText';
 import GalleryTemplates from '../../components/GalleryTemplates';
 import Load from '../../components/Load';
 import Preview from '../../components/Preview';
-import SelectLetters from '../../components/SelectLetters';
 import SelectFinalState from '../../components/SelectFinalState';
 
 import Steps from '../../components/Steps';
@@ -31,6 +30,21 @@ const Content = () => {
   // font
   const { font, onLoad } = fontContext;
   const { text, setText, textProperties, setTextProperties } = textContext;
+
+  // render click
+  const renderClick = useCallback(() => {
+    const btns = document.body.querySelectorAll('.letter-item-animation');
+    
+    if (btns) {
+      for (let i = 0; i < btns.length; i++) {
+        const btn: any = btns[i];
+
+        if (btn instanceof Object) btn.click();
+      }
+    }
+
+    setPro(false);
+  }, [ setPro ]);
 
   // load
   useEffect(() => {
@@ -64,13 +78,7 @@ const Content = () => {
           </Fragment>
 
           <Fragment>
-            <ButtonToolbar>
-              <Button onClick={() => setPro(true)}>
-                <Icon icon="gear-circle" />
-              </Button>
-            </ButtonToolbar>
-
-            <AnimationSlider />
+            <AnimationSlider setPro={setPro} />
             <Preview font={font} text={text} textProperties={textProperties} />
           </Fragment>
         </Steps>
@@ -82,20 +90,21 @@ const Content = () => {
         show={pro}
         onHide={() => setPro(false)}>
           <Drawer.Header>
-            <Drawer.Title>Advanced Properties</Drawer.Title>
+            <Drawer.Title>
+              <p className="title">Advanced Properties</p>
+            </Drawer.Title>
           </Drawer.Header>
           <Drawer.Body>
-            <SelectLetters font={font} text={text} />
             <SelectFinalState
               font={font}
               text={text}
               textProperties={textProperties} />
           </Drawer.Body>
           <Drawer.Footer>
-            <Button onClick={() => setPro(false)} appearance="primary">
+            <Button className="btn-default" onClick={() => renderClick()}>
               Confirm
             </Button>
-            <Button onClick={() => setPro(false)} appearance="subtle">
+            <Button className="btn-default clear" onClick={() => setPro(false)}>
               Cancel
             </Button>
         </Drawer.Footer>
