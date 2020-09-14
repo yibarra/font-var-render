@@ -4,6 +4,8 @@
 
 @import '../../styles/tools/mixins';
 
+@import '../../styles/components/buttons';
+
 .content {
   @include box-display;
   float: left;

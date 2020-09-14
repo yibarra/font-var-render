@@ -5,14 +5,44 @@
 @import '../tools/mixins';
 
 %btn-default {
-  @include font($font-default, 12px, 400, $white-900);
+  @include box-display;
+  @include font($font-default, 14px, 600, $white-900);
   background-color: $black-900;
   border-radius: 0;
+  font-variation-settings: initial;
+  letter-spacing: 0.01em;
   border: 2px solid $black-900;
-  padding: 5px 10px;
+  outline: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
 
   &.rs-btn-active {
     background-color: $white-900;
     color: $black-900;
+  }
+}
+
+.btn-default {
+  @extend %btn-default;
+
+  &.clear {
+    background-color: transparent !important;
+    border: none;
+    border-radius: 0;
+    padding: 5px 10px;
+
+    .rs-icon {
+      margin: 0 10px 0 0;
+    }
+
+    .text {
+      &:empty {
+        display: none;
+      }
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
   }
 }

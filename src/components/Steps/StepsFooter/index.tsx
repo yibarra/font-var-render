@@ -41,8 +41,9 @@ const StepsFooter: FunctionComponent<IStepsFooter> = ({ current, last, count, on
   // render
   return (
     <div className="steps-footer">
-      <button className="btn prev" onClick={() => checkNext('prev')} disabled={current === 0}>back</button>
-      <button className="btn next" onClick={() => checkNext('next')}>next</button>
+      <button className="btn-default prev" onClick={() => checkNext('prev')} disabled={current === 0}>back</button>
+      <button className="btn-default next" onClick={() => checkNext('next')}>
+        { current !== last ? 'next' : 'render' }</button>
     </div>
   );
 };
