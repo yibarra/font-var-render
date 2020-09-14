@@ -1,4 +1,6 @@
 import React, { memo, useCallback, useRef, FunctionComponent, useState } from 'react';
+import BezierEasing from 'bezier-easing';
+
 import { ILetterItemAnimation } from './interfaces';
 
 import './letter-item-animation.scss';
@@ -97,42 +99,33 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
 
     if (active === true) {
       if (settings !== instance) {
-        const animate: any = current;
+        const easing: any [] = [ 0.06, 0.89, 0.44, 0.97 ];
+        const easingAnimation = BezierEasing(easing[0], easing[1], easing[2], easing[3]);
+        const animate: any = easingAnimation(current / 100) * 100; //current;
   
-        Object.entries(instance.coordinates).forEach(([ indexTo, toValue ]:any) => {
-          const value = settings.coordinates[indexTo];
-          const reverse = toValue < value;
-          
+        Object.entries(instance.coordinates).forEach(([ indexTo, toValue ]: any) => {
+          const value: any = settings.coordinates[indexTo];
+          const reverse: any = toValue < value;
+      
           if (reverse === true) {
-            const diff = Math.abs(toValue - value);
-  
-            if (diff > 0) {
-              if (toValue === 0) {
-                const val: any = parseInt((diff - current).toString(), 10);
-                
-                if (val > toValue) {
-                  props[indexTo] = val;
-                } else {
-                  props[indexTo] = toValue;
-                }
-              } else {
-                const val: any = parseInt((value - animate).toString());
-  
-                if (val > toValue) {
-                  props[indexTo] = val;
-                } else {
-                  props[indexTo] = toValue;
-                }
-              }
+            const diff: any = Math.abs(toValue - value);
+            
+            if (diff === 0) {
+              props[indexTo] = value;
             } else {
-              props[indexTo] = toValue;
-            }
+              const per = (diff / 100) * animate;
+              const position = value - per;
+              
+              props[indexTo] = position;
+            } 
           } else {
-            if (value === toValue) {
-              props[indexTo] = toValue;
+            const diff: any = Math.abs(toValue - value);
+            
+            if (diff > 0) {
+              const position = (diff / 100) * animate;
+              props[indexTo] = position;
             } else {
-              const pos = parseInt(((toValue * current) / 100).toString(), 10);
-              props[indexTo] = (pos > toValue) ?  toValue : pos;
+              props[indexTo] = value;
             }
           }
         });

@@ -74,7 +74,7 @@ const Content = () => {
               textPropertiesMain={textProperties}
               setTextProperties={setTextProperties} />
 
-            <InputText label="Type here to text" setText={setText} text={text} />
+            <InputText label="Type the text here!" setText={setText} text={text} />
           </Fragment>
 
           <Fragment>

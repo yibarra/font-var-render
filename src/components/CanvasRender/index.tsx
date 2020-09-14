@@ -48,7 +48,7 @@ const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height, tex
     
     axios.post(`${url}/images`, formData, { headers: { 'enctype': 'multipart/form-data' } })
       .then(({ data }: any) => {
-        if ((data && current < 100) && processing === true) {
+        if ((data && current < 99) && processing === true) {
           setCurrent(current + 1);
         } else if (processing === true) {
           setProcessing(false);
@@ -180,6 +180,9 @@ const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height, tex
           </a>
         </p>
       </Modal.Body>
+      <Modal.Footer>
+        <button className="btn-default" onClick={() => setSendFrames(false)}>OK</button>
+      </Modal.Footer>
     </Modal>
     </>
   );
