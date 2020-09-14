@@ -9,7 +9,7 @@ const NotificationContext = createContext({} as INotificationContext);
 // notification
 const NotificationProvider: FunctionComponent<INotificationProvider> = ({ children }) => {
   // duration
-  const duration = 5000;
+  const duration = 4000;
 
   // notification 
   const notificationBasic = useCallback((title: string, description: string) => {

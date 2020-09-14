@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, Fragment } from 'react';
+import React, { useContext, useState, useEffect, Fragment, memo } from 'react';
 import { Drawer, Button, ButtonToolbar, Icon } from 'rsuite';
 
 import { LoadFontContext } from '../../providers/LoadFontProvider';
@@ -7,7 +7,6 @@ import { TextContext } from '../../providers/TextProvider';
 import Header from '../Header';
 
 import AnimationSlider from '../../components/AnimationSlider';
-import EditText from '../../components/EditText';
 import InputText from '../../components/InputText';
 import GalleryTemplates from '../../components/GalleryTemplates';
 import Load from '../../components/Load';
@@ -24,7 +23,6 @@ const Content = () => {
   // state
   const [ items, setItems ]: any = useState([]);
   const [ pro, setPro ]: any = useState(false);
-  const [ textPro, setTextPro ]: any = useState(false);
 
   // context
   const fontContext = useContext(LoadFontContext);
@@ -53,16 +51,6 @@ const Content = () => {
           <Load font={font} onLoad={onLoad} />
         </Header>
 
-        <ButtonToolbar>
-          <Button onClick={() => setPro(true)}>
-            <Icon icon="gear-circle" />
-          </Button>
-
-          <Button onClick={() => setTextPro(true)}>
-            <Icon icon="font" />
-          </Button>
-        </ButtonToolbar>
-
         <Steps items={[0, 1]}>
           <Fragment>
             <GalleryTemplates
@@ -76,6 +64,12 @@ const Content = () => {
           </Fragment>
 
           <Fragment>
+            <ButtonToolbar>
+              <Button onClick={() => setPro(true)}>
+                <Icon icon="gear-circle" />
+              </Button>
+            </ButtonToolbar>
+
             <AnimationSlider />
             <Preview font={font} text={text} textProperties={textProperties} />
           </Fragment>
@@ -83,46 +77,25 @@ const Content = () => {
       </div>
 
       <Drawer
-          size={'xs'}
-          placement={'right'}
-          show={pro}
-          onHide={() => setPro(false)}>
-            <Drawer.Header>
-              <Drawer.Title>Advanced Properties</Drawer.Title>
-            </Drawer.Header>
-            <Drawer.Body>
-              <SelectLetters font={font} text={text} />
-              <SelectFinalState
-                font={font}
-                text={text}
-                textProperties={textProperties} />
-            </Drawer.Body>
-            <Drawer.Footer>
-              <Button onClick={() => setPro(false)} appearance="primary">
-                Confirm
-              </Button>
-              <Button onClick={() => setPro(false)} appearance="subtle">
-                Cancel
-              </Button>
-          </Drawer.Footer>
-        </Drawer>
-
-      <Drawer
         size={'xs'}
         placement={'right'}
-        show={textPro}
-        onHide={() => setTextPro(false)}>
+        show={pro}
+        onHide={() => setPro(false)}>
           <Drawer.Header>
-            <Drawer.Title>Text properties</Drawer.Title>
+            <Drawer.Title>Advanced Properties</Drawer.Title>
           </Drawer.Header>
           <Drawer.Body>
-            <EditText font={font} />
+            <SelectLetters font={font} text={text} />
+            <SelectFinalState
+              font={font}
+              text={text}
+              textProperties={textProperties} />
           </Drawer.Body>
           <Drawer.Footer>
-            <Button onClick={() => setTextPro(false)} appearance="primary">
+            <Button onClick={() => setPro(false)} appearance="primary">
               Confirm
             </Button>
-            <Button onClick={() => setTextPro(false)} appearance="subtle">
+            <Button onClick={() => setPro(false)} appearance="subtle">
               Cancel
             </Button>
         </Drawer.Footer>
@@ -131,4 +104,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default memo(Content);

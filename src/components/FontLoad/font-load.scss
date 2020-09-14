@@ -10,43 +10,35 @@
   position: relative;
 
   &--content {
-    padding: 0;
-  }
-
-  p {
-    @include font($font-default, 12px, 400, $black-900);
-    display: inline-block;
-    font-variation-settings: normal;
-    line-height: 1em;
-    margin: 0;
-    position: relative;
-
-    &.name,
-    &.version {
-      @include font($font-default, 18px, 400, $black-900);
-    }
-
-    &.name {
-      margin: 0 0 0 10px;
-    }
-
-    &.version {
-      @include rem('font-size', 10px);
-      color: rgba($black-900, 0.8);
-      display: block;
-    }
-  }
-
-  &:before {
     @include box-display;
-    border: none;
-    border-bottom: 1px solid $black-900;
-    bottom: 0;
-    content: '';
-    height: 0;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, 0);
-    width: 100vw;
+    float: left;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    vertical-align: top;
+
+    p {
+      @include font($font-default, 12px, 400, $black-900);
+      display: inline-block;
+      font-variation-settings: normal;
+      line-height: 1em;
+      margin: 0;
+      position: relative;
+  
+      &.name,
+      &.version {
+        @include font($font-default, 18px, 400, $black-900);
+      }
+  
+      &.name {
+        margin: 0 0 0 10px;
+      }
+  
+      &.version {
+        @include rem('font-size', 10px);
+        color: rgba($black-900, 0.8);
+        display: block;
+      }
+    }
   }
 }

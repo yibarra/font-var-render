@@ -9,12 +9,8 @@
 .input-text {
   padding: 10px;
 
-  .label {
-    @extend %text;
-    display: inline-block;
-    margin: 0 0 10px;
-    width: 100%;
-    vertical-align: top;
+  .title {
+    margin: 0 0 15px;
   }
 
   .rs-form-control-wrapper {

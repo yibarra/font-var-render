@@ -5,8 +5,24 @@
 @import './../tools/mixins';
 
 %text {
-  @include font($font-default, 12px, 400, $black-900);
+  @include font($font-default, 14px, 400, $black-900);
   line-height: 1em;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
   font-variation-settings: normal;
+}
+
+.text {
+  @extend %text;
+}
+
+.title {
+  @include box-display;
+  @include font($font-default, 14px, 600, $black-900);
+  font-variation-settings: normal;
+  line-height: 1em;
+  float: left;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  width: 100%;
+  vertical-align: top;
 }

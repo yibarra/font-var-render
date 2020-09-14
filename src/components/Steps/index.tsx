@@ -28,7 +28,11 @@ const Steps: FunctionComponent<ISteps> = ({ children, current, direction, last, 
         {children}
       </StepsSlider>
 
-      <StepsFooter onPrevNext={onPrevNext} />
+      <StepsFooter 
+        current={current}
+        count={Array.from(Array(children).keys()).length}
+        last={last}
+        onPrevNext={onPrevNext} />
     </div>
   );
 };

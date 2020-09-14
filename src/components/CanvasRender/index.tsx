@@ -1,20 +1,23 @@
-import React, { memo, useContext, useEffect, useCallback, useRef, useState } from 'react';
+import React, { memo, useContext, useEffect, useCallback, useRef, useState, FunctionComponent } from 'react';
 import axios from 'axios';
 
 import { AnimationContext } from '../../providers/AnimationProvider';
 import { LettersContext } from '../../providers/LettersProvider';
 
+import { ICanvasRender } from './interfaces';
+
 // canvas render
-const CanvasRender = ({ id, width, height }: any) => {
+const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height }: any) => {
   // context
   const animationContext = useContext(AnimationContext);
   const lettersContext = useContext(LettersContext);
 
-  const { current } = animationContext;
+  const { current, setCurrent, processing, setProcessing } = animationContext;
   const { letters } = lettersContext;
 
   // state
   const [ items, setItems ]: any = useState([]);
+
   // element
   const element = useRef(null);
 
@@ -33,6 +36,7 @@ const CanvasRender = ({ id, width, height }: any) => {
   // send frames
   const sendFrame = useCallback((image: any, current: number) => {
     if (!image) return false;
+
     const index: any = current < 10 ? `0${current}` : current;
     const file = new File([new Uint8Array(getBytesBlob(image))], `frame-${index}.png`, { type: 'image/png' });
 
@@ -41,9 +45,16 @@ const CanvasRender = ({ id, width, height }: any) => {
     formData.append('file', file);
     
     axios.post(`${url}/images`, formData, { headers: { 'enctype': 'multipart/form-data' } })
-      .then(e => console.log(e)) // this.download(`${url}/output`))
+      .then(({ data }: any) => {
+        if ((data && current < 100) && processing === true) {
+          setCurrent(current + 1);
+        } else if (processing === true) {
+          setProcessing(false);
+          setCurrent(1);
+        }
+      })
       .catch(e => console.log(e));
-  }, [ getBytesBlob ]);
+  }, [ getBytesBlob, setCurrent, processing, setProcessing ]);
 
   // add image
   const addImage = useCallback((canvas: any, current: number) => {
@@ -119,10 +130,7 @@ const CanvasRender = ({ id, width, height }: any) => {
               
               ctx.drawImage(src, positionX, (height / 2) - (line * (frameHeight / 2)));
               lastLine = line !== lastLine ? line : lastLine;
-              
-
               positionX += parseInt(frameWidth.toString(), 10);
-
             }
           }
         }
@@ -139,9 +147,12 @@ const CanvasRender = ({ id, width, height }: any) => {
 
   // render
   return (
-    <>
-    <canvas id={id} width={width} height={height} ref={element} />
-    </>
+    <canvas
+      id={id}
+      height={height}
+      width={width}
+      ref={element}>
+    </canvas>
   );
 };
 

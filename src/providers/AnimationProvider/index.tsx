@@ -11,6 +11,7 @@ const AnimationContext = createContext({} as IAnimationContext);
 const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: any) => {
   // text
   const [ current, setCurrent ]:any = useState(0);
+  const [ processing, setProcessing ] = useState(false);
 
   // animation
   const animation = (deltaTime: number) => {
@@ -34,7 +35,7 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
 
   // animation
   const requestAnimation = useRequestAnimation(animation);
-  const { play, setPlay, onPlay, onStop } = requestAnimation;
+  const { play, setPlay, onPlay, onStop } = requestAnimation; 
 
   // play
   const onChange = useCallback(() => {
@@ -54,6 +55,8 @@ const AnimationProvider: FunctionComponent<IAnimationProvider> = ({ children }: 
       current,
       setCurrent,
       play,
+      processing,
+      setProcessing,
       onPlay: onChange,
     }}>
       {children}

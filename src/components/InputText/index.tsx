@@ -11,7 +11,7 @@ const InputText: FunctionComponent<IInputText> = ({ label, setText, text }) => {
   return (
     <Form className="input-text">
       <FormGroup className="input-text--text">
-        <label className="label">{label}</label>
+        <p className="title">{label}</p>
 
         <FormControl
           placeholder={label}

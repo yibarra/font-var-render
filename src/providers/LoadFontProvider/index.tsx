@@ -1,8 +1,7 @@
-import React, { createContext, memo, useCallback, useEffect, useState, useContext, FunctionComponent } from 'react';
+import React, { createContext, memo, useCallback, useEffect, useState, FunctionComponent } from 'react';
 import opentype from 'opentype.js';
 import base64 from 'base-64';
 
-import { NotificationContext } from '../NotificationProvider';
 import FontSettingsProvider from '../FontSettingsProvider';
 
 import useFont from '../../uses/useFont';
@@ -15,10 +14,6 @@ const LoadFontContext = createContext({} as ILoadFontContext);
 
 // Load Font Provider
 const LoadFontProvider: FunctionComponent<ILoadFontProvider> = ({ children }) => {
-  // context
-  const notificationContext = useContext(NotificationContext);
-  const { notificationSuccess, notificationError } = notificationContext;
-
   // state
   const [ font, setFont ]:any = useState<IFontInfo>();
 
@@ -48,10 +43,8 @@ const LoadFontProvider: FunctionComponent<ILoadFontProvider> = ({ children }) =>
 
       const style: any = document.getElementById('font-load');
       style.textContent = fontFace;
-      
-      notificationSuccess('Upload', 'The type font was successfully loaded!');
     }
-  }, [ notificationSuccess ]);
+  }, []);
 
   // on read file
   const onReadFile = useCallback((file): any => {
@@ -65,18 +58,13 @@ const LoadFontProvider: FunctionComponent<ILoadFontProvider> = ({ children }) =>
         setFont(font);
         setFontFace(font, fontBuffer);
       } catch (err) {
-        notificationError('Erro loading', 'Verify the font file and try again!');
         console.error(err.toString());
       }
     };
 
-    reader.onerror = err => {
-      notificationError('Erro loading', 'Verify the font file and try again!');
-      console.error(err.toString());
-    };
-
+    reader.onerror = err => console.error(err.toString());
     reader.readAsArrayBuffer(file);
-  }, [ setFontFace, notificationError ]);
+  }, [ setFontFace ]);
 
   // use effect
   useEffect(() => {

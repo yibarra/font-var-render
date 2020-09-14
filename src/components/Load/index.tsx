@@ -13,8 +13,7 @@ const Load: FunctionComponent<ILoad> = ({ font, onLoad }) => {
   // render
   return (
     <div className="load">
-      {font &&
-        <FontLoad names={font.names} />}
+      {font && <FontLoad names={font.names} />}
 
       <DragDrop onLoad={onLoad} />
     </div>

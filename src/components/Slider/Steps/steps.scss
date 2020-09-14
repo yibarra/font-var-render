@@ -19,6 +19,7 @@
 
   &--item {
     left: 100%;
+    overflow: hidden;
     opacity: 0;
     pointer-events: none;
     position: absolute;

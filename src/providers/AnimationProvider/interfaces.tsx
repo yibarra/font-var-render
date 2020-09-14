@@ -4,6 +4,8 @@ export interface IAnimationContext {
   current: number;
   setCurrent: (value: any) => void;
   onPlay: () => void;
+  processing: boolean;
+  setProcessing: (value: any) => void;
   play: boolean;
 }
 

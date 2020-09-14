@@ -9,7 +9,7 @@ const StepsHeader: FunctionComponent<IStepsHeader> = () => {
   // render
   return (
     <div className="steps-header">
-      
+      <button className="">back</button>
     </div>
   );
 };
