@@ -64,16 +64,46 @@
 
   &[data-type="2"] {
     .letter {
-      &-type {
-        display: inline-block;
-        position: relative;
-        order: 3;
-        width: 100%;
-      }
-
       &--text {
+        @include box-display;
+        color: $black-900;
+        font-size: inherit;
+        float: left;
+        line-height: inherit;
+        letter-spacing: inherit;
+        padding: 0;
+        text-align: center;
+        width: auto;
+
         &.end {
           float: none;
+        }
+
+        &:before {
+          bottom: 0;
+          display: none;
+          height: 2px;
+          left: 1px;
+          opacity: 1;
+          top: initial;
+          position: absolute;
+          width: calc(100% - 2px);
+          z-index: 5;
+        }
+      }
+
+      &-type {
+        &--item {
+          float: left;
+        }
+
+        .letter {
+          &--text {
+            @include rem('font-size', 20px);
+            line-height: 1em;
+            letter-spacing: initial;
+            padding: 8px;
+          }
         }
       }
     }

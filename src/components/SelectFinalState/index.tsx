@@ -1,5 +1,4 @@
 import React, { memo, useContext, FunctionComponent } from 'react';
-import { Col, Message } from 'rsuite';
 
 import { LettersContext } from '../../providers/LettersProvider';
 
@@ -16,21 +15,18 @@ const SelectFinalState: FunctionComponent<ISelectFinalState> = ({ font, text, te
 
   // props context
   const { getFvarTable } = useFont(font);
-  const { letters, textWordLetter }:any = lettersContext;
+  const { textWordLetter }:any = lettersContext;
   
   // render
   return (
     <div className="select-final-state">
-      <Col className="select-final-state--title" xs={24}>
-        <p className="text">Select the initial and final stage of each letter</p>
-
-        {!letters.length && <Message
-          type="error"
-          description={<p>Select at least one letter in the previous section.</p>} />}
-      </Col>
-      <Col className="select-final-state--content" style={{...textProperties}}>
-        {font && textWordLetter(font, text, getFvarTable, (e: any) => console.log(e), 2)}
-      </Col>
+      <div className="select-final-state--title">
+        <p className="text">Select the initial and the final stage of each letter</p>
+      </div>
+      <div className="select-final-state--content" style={{...textProperties}}>
+        {font &&
+        textWordLetter(font, text, getFvarTable, (e: any) => {}, 2)}
+      </div>
     </div>
   );
 };

@@ -99,30 +99,26 @@ const LetterItemAnimation: FunctionComponent<ILetterItemAnimation> = ({
 
     if (active === true) {
       if (settings !== instance) {
-        const easing: any [] = [ 0.06, 0.89, 0.44, 0.97 ];
+        const easing: any [] = [ .56,.69,.14,1 ];
         const easingAnimation = BezierEasing(easing[0], easing[1], easing[2], easing[3]);
-        const animate: any = easingAnimation(current / 100) * 100; //current;
+        const animate: any = easingAnimation(current / 100) * 100;
   
         Object.entries(instance.coordinates).forEach(([ indexTo, toValue ]: any) => {
           const value: any = settings.coordinates[indexTo];
           const reverse: any = toValue < value;
+          const diff: number = Math.abs(toValue - value);
       
           if (reverse === true) {
-            const diff: any = Math.abs(toValue - value);
-            
             if (diff === 0) {
-              props[indexTo] = value;
+              props[indexTo] = parseInt(value, 10);
             } else {
-              const per = (diff / 100) * animate;
-              const position = value - per;
-              
+              const percent: number = parseInt(((diff / 100) * animate).toString(), 10);
+              const position = parseInt((value - percent).toString(), 10);
               props[indexTo] = position;
             } 
           } else {
-            const diff: any = Math.abs(toValue - value);
-            
             if (diff > 0) {
-              const position = (diff / 100) * animate;
+              const position = parseInt(((diff / 100) * animate).toString(), 10);
               props[indexTo] = position;
             } else {
               props[indexTo] = value;

@@ -3,5 +3,6 @@ export interface ILetterType {
   setInstanceValue: (value: any) => any;
   instances: any;
   text: string;
+  type: number;
   onSelect: (value: any) => any;
 }

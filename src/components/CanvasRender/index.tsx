@@ -145,7 +145,7 @@ const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height, tex
                 numberWord = line;
               }
               
-              ctx.drawImage(src, positionX, positionY);
+              ctx.drawImage(src, parseInt(positionX.toString(), 10), parseInt(positionY.toString(), 10));
               positionX += parseInt(frameWidth.toString(), 10);
             }
           }
@@ -158,7 +158,7 @@ const CanvasRender: FunctionComponent<ICanvasRender> = ({ id, width, height, tex
 
   // use effect
   useEffect(() => {
-    createFrame(parseInt(Math.floor(current).toString(), 10));
+    createFrame(parseInt(current.toString(), 10));
   }, [ current, createFrame ]);
 
   // render

@@ -86,6 +86,7 @@ const Content = () => {
 
       <Drawer
         size={'xs'}
+        backdrop="static"
         placement={'right'}
         show={pro}
         onHide={() => setPro(false)}>

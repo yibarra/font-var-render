@@ -7,7 +7,7 @@ import { ILetterType } from './interfaces';
 import './letter-type.scss';
 
 // letter type
-const LetterType: FunctionComponent<ILetterType> = ({ current, setInstanceValue, instances, text, onSelect }: any) => {
+const LetterType: FunctionComponent<ILetterType> = ({ current, setInstanceValue, instances, text, onSelect, type }: any) => {
   // on select
   const selectLetter = useCallback((instance: any) => {
     if (instance instanceof Object === false) return false;
@@ -21,7 +21,7 @@ const LetterType: FunctionComponent<ILetterType> = ({ current, setInstanceValue,
 
   // render
   return (
-    <ul className="letter-type">
+    <ul className="letter-type" data-type={type}>
       {instances && instances.map((item: any, index: number) => 
         <li className="letter-type--item"
           data-active={current.coordinates === item.coordinates}

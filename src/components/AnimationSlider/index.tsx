@@ -28,7 +28,7 @@ const AnimationSlider: FunctionComponent<IAnimationSlider> = ({ setPro }) => {
 
         <button className="btn-default" onClick={() => setPro(true)}>
           <Icon icon="gear-circle" />
-          <span className="text">Select letter to animation</span>
+          <span className="text">Select letter to animate</span>
         </button>
       </div>
 

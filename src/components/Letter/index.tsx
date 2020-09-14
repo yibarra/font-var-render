@@ -85,7 +85,8 @@ const Letter = ({
         onSelect={onSelectSettings}
         setInstanceValue={setInstanceValue}
         text={text}
-        key={1} />}
+        key={1}
+        type={1} />}
 
       {type === 2 && <LetterType
         instances={fvar instanceof Object ? fvar.instances : []}
@@ -93,7 +94,8 @@ const Letter = ({
         onSelect={onSelect}
         setInstanceValue={setInstanceValue}
         text={text}
-        key={2} />}
+        key={2}
+        type={2} />}
 
       {type === 3 &&
         <LetterItemAnimation

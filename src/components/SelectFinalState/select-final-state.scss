@@ -4,17 +4,25 @@
 @import '../../styles/components/typography';
 
 .select-final-state {
-  display: inline-block;
-  padding: 10px 5px;
+  @include box-display;
+  float: left;
+  padding: 0;
+  position: relative;
   width: 100%;
   vertical-align: top;
 
-  &--content {
+  &--content,
+  &--title {
+    @include box-display;
     float: left;
-    line-height: 1em !important;
-    padding: 10px 5px;
     position: relative;
     width: 100%;
+    vertical-align: top;
+  }
+
+  &--content {
+    line-height: 1em !important;
+    padding: 10px 0;
 
     .letter {
       display: none;
@@ -31,11 +39,11 @@
       }
 
       &[data-active="true"] {
-        align-items: center;
-        display: inline-flex !important;
-        flex-flow: row wrap;
-        justify-content: center;
-        width: 100%;
+        display: inline-block;
+      }
+
+      &[data-type="2"] {
+        line-height: 1em;
       }
     }
 
@@ -44,37 +52,7 @@
       width: 100%;
 
       > .letter {
-        margin: 5px 0;
-      }
-    }
-  }
-
-  &--title {
-    .rs-message {
-      background-color: transparent;
-      margin: 10px 0 0;
-
-      .rs-message {
-        &-container {
-          padding: 10px 30px;
-
-          p {
-            @extend %text;
-            font-weight: 700;
-            position: relative;
-
-            &:before {
-              background-color: $red-900;
-              content: '';
-              height: 6px;
-              left: -15px;
-              position: absolute;
-              top: 50%;
-              transform: translate(0, -50%);
-              width: 6px;
-            }
-          }
-        }
+        margin: 0 0 10px;
       }
     }
   }

@@ -6,17 +6,17 @@
 
 .letter {
   &-type {
+    @include box-display;
     background-color: rgba($white-900, 0.9);
     border: none;
-    display: none;
-    flex-flow: row wrap;
+    float: left;
     list-style: none;
-    justify-content: center;
     margin: 0;
     padding: 0;
+    position: relative;
     text-align: left;
     user-select: none;
-    width: auto;
+    width: 100%;
     z-index: 2;
 
     &--item {
@@ -27,7 +27,7 @@
       margin: 0 0 1px;
       padding: 0;
       position: relative;
-      width: 40px;
+      width: calc(100% / 6);
       vertical-align: top;
 
       .letter {
@@ -62,53 +62,19 @@
         border-right: 1px solid rgba($black-900, 0.1);
       }
     }
-  }
 
-  &[data-type="2"] {
-    .letter {
-      &--text {
-        color: $black-900;
-        display: inline-block;
-        font-size: inherit;
-        float: left;
-        line-height: inherit;
-        letter-spacing: inherit;
-        padding: 0;
-        text-align: center;
-        width: auto;
-
-        &:before {
-          bottom: 0;
-          display: none;
-          height: 2px;
-          left: 1px;
-          opacity: 1;
-          top: initial;
-          position: absolute;
-          width: calc(100% - 2px);
-          z-index: 5;
+    &[data-type="1"] {
+      .letter-type--item {
+        &[data-active="true"] {
+          background-color: $purple-900;
         }
       }
+    }
 
-      &-type {
-        display: none;
-        left: 0;
-        padding: 0;
-        position: absolute;
-        top: 100%;
-        width: auto;
-
-        &--item {
-          float: left;
-        }
-
-        .letter {
-          &--text {
-            @include rem('font-size', 16px);
-            line-height: 1em;
-            letter-spacing: initial;
-            padding: 8px;
-          }
+    &[data-type="2"] {
+      .letter-type--item {
+        &[data-active="true"] {
+          background-color: $red-900;
         }
       }
     }
