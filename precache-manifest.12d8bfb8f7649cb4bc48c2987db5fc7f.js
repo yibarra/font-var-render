@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d99751229e87bd28886367d6a19ddb65",
+    "revision": "5c0d004a23c1df35ff09a69a2dbc5aea",
     "url": "/font-var-render/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/font-var-render/static/css/2.fd3fe366.chunk.css"
   },
   {
-    "revision": "1c06990de0d96d3ccba1",
+    "revision": "b117ded2589690f296b3",
     "url": "/font-var-render/static/css/main.0f688ad1.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/font-var-render/static/js/2.dced4fc6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1c06990de0d96d3ccba1",
-    "url": "/font-var-render/static/js/main.6f80e20a.chunk.js"
+    "revision": "b117ded2589690f296b3",
+    "url": "/font-var-render/static/js/main.779b9786.chunk.js"
   },
   {
     "revision": "ece0b63d2244c4dfad5c",
